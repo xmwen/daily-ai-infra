@@ -16,6 +16,14 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+# 在 Windows GBK 控制台下也能正常打印 emoji / 中文
+if sys.stdout.encoding and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 ROOT = Path(__file__).resolve().parent.parent
 GH_EXE = r"C:\Program Files\GitHub CLI\gh.exe"
 
