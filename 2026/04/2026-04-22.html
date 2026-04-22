@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - 2026-04-22 Wednesday</title>
-<!-- rendered_at: 2026-04-22 12:07:36 UTC -->
-<!-- source: today_raw.json data_generated_at: 2026-04-22T11:16:48.372126+00:00 -->
+<!-- rendered_at: 2026-04-22 12:13:49 UTC -->
+<!-- source: today_curated.json data_generated_at: 2026-04-22T12:18:00+00:00 -->
 <style>
 * { box-sizing: border-box; }
 body {
@@ -157,38 +157,20 @@ footer a { color: #94a3b8; }
 <div class="container">
   <header class="hero">
     <h1>🧠 AI Infra 每日动态</h1>
-    <p>2026-04-22 Wednesday · 回溯 36h · 共 68 条</p>
+    <p>2026-04-22 Wednesday · 回溯 36h · 共 21 条</p>
     <div class="badges">
-      <span class="badge">关键词打分</span>
-      <span class="badge">Data: 2026-04-22 11:16:48 UTC</span>
-      <span class="badge">Rendered: 2026-04-22 12:07:36 UTC</span>
-      <span class="badge">Source: today_raw.json</span>
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-04-22 12:18:00 UTC</span>
+      <span class="badge">Rendered: 2026-04-22 12:13:49 UTC</span>
+      <span class="badge">Source: today_curated.json</span>
     </div>
   </header>
 
     <section class="section" style="--accent:#6366f1">
       <h2 class="sec-title">📄 重点论文
-        <span class="count">8/32</span>
+        <span class="count">7/7</span>
       </h2>
       <div class="cards">
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.18616" target="_blank" rel="noopener">ARGUS: Agentic GPU Optimization Guided by Data-Flow Invariants</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 12.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>arXiv:2604.18616v1 Announce Type: new Abstract: LLM-based coding agents can generate functionally correct GPU kernels, yet their performance remains far below hand-optimized libraries on critical computations such as matrix multiplication, attention, and Mixture-of-Experts (MoE). Peak GPU performance requires coordinat…</p></div>
-      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU kernel</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span></div>
-    </article>
-    
-
     <article class="card">
       <div class="card-head">
         <a class="card-title" href="https://arxiv.org/abs/2604.19241" target="_blank" rel="noopener">UniEP: Unified Expert-Parallel MoE MegaKernel for LLM Training</a>
@@ -198,522 +180,397 @@ footer a { color: #94a3b8; }
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          
+          <span class="rel rel-9">LLM 9/10</span>
           <span class="score">kw 11.0</span>
         </div>
       </div>
-      <div class="card-body"><p>arXiv:2604.19241v1 Announce Type: new Abstract: The exponential growth in Large Language Model (LLM) parameters has transformed model training into an increasingly resource-intensive endeavor. With the stagnation of Moore&#x27;s Law and the widening disparity between computation throughput and communication bandwidth, exper…</p></div>
-      <div class="card-tags"><span class="tag">expert parallel</span><span class="tag">Megatron-LM</span><span class="tag">veRL</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+      <div class="card-body"><p><strong>面向 MoE 训练的统一 Expert Parallel 巨核</strong>：针对 Megatron-LM 中 EP 实现零散、kernel 难复用、数值不稳定的问题，把通信压缩与 comp/comm overlap 统一到单个 MegaKernel 里，并兼容多种 EP 配置。<strong>与 DeepGemm 巨型 MoE kernel 重叠分析方向高度一致</strong>，值得精读。</p></div>
+      <div class="card-tags"><span class="tag">expert parallel</span><span class="tag">Megatron-LM</span><span class="tag">kernel</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.18655" target="_blank" rel="noopener">Unlocking the Edge deployment and ondevice acceleration of multi-LoRA enabled one-for-all foundational LLM</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.18616" target="_blank" rel="noopener">ARGUS: Agentic GPU Optimization Guided by Data-Flow Invariants</a>
         <div class="card-meta">
           <span class="src">arXiv cs.DC</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          
+          <span class="rel rel-8">LLM 8/10</span>
+          <span class="score">kw 12.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>把 LLM Coding Agent 升级成 GPU Kernel 优化器</strong>：用编译期的 data-flow invariants（tiling、shared memory staging、software pipelining、指令调度）做约束，替代传统 pass/fail 的稀疏反馈，在 <code>matmul/attention/MoE</code> 关键算子上拉近手写库水平。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU kernel</span><span class="tag">attention</span><span class="tag">MoE</span><span class="tag">compiler</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.18655" target="_blank" rel="noopener">Edge deployment of multi-LoRA foundational LLM on Snapdragon</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          <span class="rel rel-7">LLM 7/10</span>
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p>arXiv:2604.18655v1 Announce Type: new Abstract: Deploying large language models (LLMs) on smartphones poses significant engineering challenges due to stringent constraints on memory, latency, and runtime flexibility. In this work, we present a hardware-aware framework for efficient on-device inference of a LLaMA-based …</p></div>
-      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">INT4</span><span class="tag">quantization</span><span class="tag">decoding</span><span class="tag">LLaMA</span></div>
+      <div class="card-body"><p><strong>端侧多 LoRA 共享推理图 + 多流解码</strong>：在三星 S24/S25（Snapdragon SM8650/SM8750）上把多个应用层 LoRA 挂载到同一 frozen 推理图做运行时切换，避免重编译与显存膨胀；另提出多流解码并行产出风格变体，INT4 量化下可跑。</p></div>
+      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">INT4</span><span class="tag">quantization</span><span class="tag">LLaMA</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.18614" target="_blank" rel="noopener">HadAgent: Harness-Aware Decentralized Agentic AI Serving with Proof-of-Inference Blockchain Consensus</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 6.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>arXiv:2604.18614v1 Announce Type: new Abstract: Proof-of-Work (PoW) blockchain consensus consumes vast computational resources without producing useful output, while the rapid growth of large language model (LLM) agents has created unprecedented demand for GPU computation. We present HadAgent, a decentralized agentic A…</p></div>
-      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">serving</span><span class="tag">GPU</span><span class="tag">TPU</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19004" target="_blank" rel="noopener">Ocean: Fast Estimation-Based Sparse General Matrix-Matrix Multiplication on GPU</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>arXiv:2604.19004v1 Announce Type: new Abstract: In computational science and data analytics, many workloads involve irregular and sparse computations that are inherently difficult to optimize for modern hardware. A key kernel is Sparse General Matrix-Matrix Multiplication (SpGEMM), which underpins simulations, graph an…</p></div>
-      <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span><span class="tag">TPU</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19337" target="_blank" rel="noopener">POLAR-PIC: A Holistic Framework for Matrixized PIC with Co-Designed Compute, Layout, and Communication</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>arXiv:2604.19337v1 Announce Type: new Abstract: Particle-in-Cell (PIC) simulations are fundamental to plasma physics but often suffer from limited scalability due to particle-grid interaction bottlenecks and particle redistribution costs. Specifically, the particle-grid interaction computations have not taken full adva…</p></div>
-      <div class="card-tags"><span class="tag">veRL</span><span class="tag">GPU</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2505.16968" target="_blank" rel="noopener">CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark</a>
+        <a class="card-title" href="https://arxiv.org/abs/2505.16968" target="_blank" rel="noopener">CASS: NVIDIA→AMD GPU 代码 transpile 数据集与模型</a>
         <div class="card-meta">
           <span class="src">arXiv cs.AR</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          
+          <span class="rel rel-7">LLM 7/10</span>
           <span class="score">kw 4.0</span>
         </div>
       </div>
-      <div class="card-body"><p>arXiv:2505.16968v4 Announce Type: replace Abstract: Cross-architecture GPU code transpilation is essential for unlocking low-level hardware portability, yet no scalable solution exists. We introduce CASS, the first dataset and model suite for source- and assembly-level GPU translation (CUDA HIP, SASS RDNA3). CASS conta…</p></div>
-      <div class="card-tags"><span class="tag">serving</span><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
+      <div class="card-body"><p><strong>CUDA→HIP、SASS→RDNA3 源码与汇编级翻译</strong>：60k 对已验证 host-device 代码对，训练专用小模型拿到 CUDA→HIP 88.2%、SASS→RDNA3 69.1%，大幅超过 GPT-5.1 / Claude-4.5 / Hipify。国产卡迁移与 MI300X 适配的基础设施向工作。</p></div>
+      <div class="card-tags"><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2603.04445" target="_blank" rel="noopener">Dynamic Model Routing and Cascading for Efficient LLM Inference: A Survey</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.19004" target="_blank" rel="noopener">Ocean: 基于估计的稀疏 SpGEMM 快速实现</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          <span class="rel rel-5">LLM 5/10</span>
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>绕开 SpGEMM 的 symbolic pass</strong>：现有 GPU SpGEMM 两遍流程里 symbolic 占 ~28% 运行时，Ocean 用估计法替代精确计数，H100 上显著加速。与 MoE sparse gather、attention sparse mask kernel 的底层优化思路相通。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2603.04445" target="_blank" rel="noopener">Dynamic Model Routing and Cascading for Efficient LLM Inference (Survey)</a>
         <div class="card-meta">
           <span class="src">arXiv cs.PF</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          
+          <span class="rel rel-5">LLM 5/10</span>
           <span class="score">kw 3.0</span>
         </div>
       </div>
-      <div class="card-body"><p>arXiv:2603.04445v2 Announce Type: replace-cross Abstract: The rapid growth of large language models (LLMs) with diverse capabilities, costs, and domains has created a critical need for intelligent model selection at inference time. While smaller models suffice for routine queries, complex tasks demand more capable mode…</p></div>
+      <div class="card-body"><p><strong>推理层多模型路由/级联系统综述</strong>：区别于 MoE 单模型内部路由，系统性梳理「请求→小模型先跑→必要时升级大模型」这类 serving 调度策略，覆盖路由器设计、成本/质量权衡、在线评估等。serving side 的工程参考。</p></div>
       <div class="card-tags"><span class="tag">LLM inference</span></div>
     </article>
-    </div>
-      <p class="more">... 还有 24 条未显示（见 cache/today_raw.json）</p>
-    </section>
-    
-    <section class="section" style="--accent:#10b981">
-      <h2 class="sec-title">🚀 代码更新
-        <span class="count">8/15</span>
-      </h2>
-      <div class="cards">
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">trunk/0274ad69c3effaef66b5776db5f752b6cf7d8154: [Inductor] Forward optimize_mem to combo kernel inductor_meta (#180790)</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 01:41 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 7.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>This PR enables optimize_mem to flow into combo kernel inductor_meta , which was previously dropped so cached_autotune defaulted it to True. Setting inductor_meta[&quot;optimize_mem&quot;] = V.graph.is_inference or V.graph.is_backward in jit_line() matches the standalone kernel behavior at triton.py:codegen_kernel() Pull Request…</p></div>
-      <div class="card-tags"><span class="tag">MLA</span><span class="tag">triton</span><span class="tag">kernel</span></div>
-    </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F89ed986a77847a4cec520920f6d27baa72102995" target="_blank" rel="noopener">trunk/89ed986a77847a4cec520920f6d27baa72102995</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.18909" target="_blank" rel="noopener">ChipLight: 面向 LLM 训练的 chiplet + 光互联跨层优化</a>
         <div class="card-meta">
-          <span class="src">PyTorch</span>
+          <span class="src">arXiv cs.AR</span>
           <span class="dot">·</span>
-          <span class="time">04-22 11:00 UTC</span>
+          <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>[Inductor] Use triton_meta_common() in combo kernel jit_line for disa…</p></div>
-      <div class="card-tags"><span class="tag">triton</span><span class="tag">kernel</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F4c9b9c34341249955f056a6df3296b0cc044393f" target="_blank" rel="noopener">trunk/4c9b9c34341249955f056a6df3296b0cc044393f: [vllm hash update] update the pinned vllm hash (#181048)</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 05:47 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>This PR is auto-generated nightly by this action . Update the pinned vllm hash. Pull Request resolved: #181048 Approved by: https://github.com/pytorchbot Co-authored-by: Huy Do huydhn@gmail.com</p></div>
-      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">PyTorch</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F17b157385f3f37f05e53b37ea130bf1ce3fe7650" target="_blank" rel="noopener">trunk/17b157385f3f37f05e53b37ea130bf1ce3fe7650: [s390x CI] Disable scheduled s390x-periodic runs (#181005)</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 02:44 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 2.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Summary Goal: Remove a workflow that hasn&#x27;t provided useful signal in months. Disables the scheduled and ciflow/periodic triggers of s390x-periodic . The workflow has been failing on every run since Feb 2nd. Failure timeline The workflow had three distinct failure eras this year: Date range Failure mode Feb 2 – Mar 28 …</p></div>
-      <div class="card-tags"><span class="tag">TPU</span><span class="tag">PyTorch</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">v0.19.1</a>
-        <div class="card-meta">
-          <span class="src">vLLM</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 00:46 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 2.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>This is a patch release on top of v0.19.0 with Transformers v5.5.3 upgrade and bug fixes for Gemma4: Update to transformers v5 ( #30566 ) [Bugfix] Fix invalid JSON in Gemma 4 streaming tool calls by stripping partial delimiters ( #38992 ) [Bugfix][Frontend] Fix Gemma4 streaming HTML duplication after tool calls ( #3890…</p></div>
-      <div class="card-tags"><span class="tag">transformer</span><span class="tag">Kimi</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F5e344fd391f1d6adab02d794d44cab3f4b5b3744" target="_blank" rel="noopener">trunk/5e344fd391f1d6adab02d794d44cab3f4b5b3744</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 01:31 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 1.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>[MTIA][Inductor] Eliminate redundant copy kernel for concat graph out…</p></div>
-      <div class="card-tags"><span class="tag">kernel</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">v0.20.0rc1</a>
-        <div class="card-meta">
-          <span class="src">vLLM</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 09:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
+          <span class="domain">arxiv.org</span>
+          <span class="rel rel-6">LLM 6/10</span>
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Revert &quot;[Misc] Move pyav and soundfile to common requirements&quot; (#…</p></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439" target="_blank" rel="noopener">nv_dev_c491439</a>
-        <div class="card-meta">
-          <span class="src">DeepGEMM</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 08:26 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>No content.</p></div>
-      <div class="card-tags"></div>
-    </article>
-    </div>
-      <p class="more">... 还有 7 条未显示（见 cache/today_raw.json）</p>
-    </section>
-    
-    <section class="section" style="--accent:#f59e0b">
-      <h2 class="sec-title">📝 技术博客
-        <span class="count">5/5</span>
-      </h2>
-      <div class="cards">
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://research.google/blog/reasoningbank-enabling-agents-to-learn-from-experience/" target="_blank" rel="noopener">ReasoningBank: Enabling agents to learn from experience</a>
-        <div class="card-meta">
-          <span class="src">Google Research</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 16:42 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">research.google</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Generative AI</p></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://engineering.fb.com/2026/04/21/ml-applications/modernizing-the-facebook-groups-search-to-unlock-the-power-of-community-knowledge/" target="_blank" rel="noopener">Modernizing the Facebook Groups Search to Unlock the Power of Community Knowledge</a>
-        <div class="card-meta">
-          <span class="src">Meta Engineering</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 16:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">engineering.fb.com</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>We’ve fundamentally transformed Facebook Groups Search to help people more reliably discover, sort through, and validate community content that’s most relevant to them. We’ve adopted a new hybrid retrieval architecture and implemented automated model-based evaluation to address the major friction points people experien…</p></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard" target="_blank" rel="noopener">QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderboard</a>
-        <div class="card-meta">
-          <span class="src">HuggingFace Blog</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 10:09 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">huggingface.co</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://huggingface.co/blog/nvidia/build-korean-agents-with-nemotron-personas" target="_blank" rel="noopener">How to Ground a Korean AI Agent in Real Demographics with Synthetic Personas</a>
-        <div class="card-meta">
-          <span class="src">HuggingFace Blog</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 00:40 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">huggingface.co</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://huggingface.co/blog/cybersecurity-openness" target="_blank" rel="noopener">AI and the Future of Cybersecurity: Why Openness Matters</a>
-        <div class="card-meta">
-          <span class="src">HuggingFace Blog</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 00:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">huggingface.co</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"></div>
+      <div class="card-body"><p><strong>Chiplet 做 scale-up + 光互联做 scale-out</strong>：建模大规模训练集群，联合优化 chiplet 架构、训练并行策略（TP/PP/EP）、光互联拓扑，针对通信瓶颈做跨层折衷。NVLink/UALink/CXL 之外的另一条路径。</p></div>
       <div class="card-tags"></div>
     </article>
     </div>
       
     </section>
     
-    <section class="section" style="--accent:#ec4899">
-      <h2 class="sec-title">💬 社区热议
-        <span class="count">8/16</span>
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">8/8</span>
       </h2>
       <div class="cards">
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss5j2x/moonshot_opensourced_flashkda_cutlass_kernels_for/" target="_blank" rel="noopener">Moonshot open-sourced FlashKDA, CUTLASS kernels for Kimi Delta Attention, up to 2.22x over the Triton baseline on H20</a>
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">vLLM v0.19.1 发布（Gemma4 系列修复 + Transformers v5.5.3）</a>
+        <div class="card-meta">
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 00:46 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-8">LLM 8/10</span>
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>v0.19.0 基础上的补丁版本</strong>：升级到 transformers v5.5.3；集中修 Gemma4 的流式 tool calls、bool/number 值被截断、LoRA 适配器加载、Eagle3 投机解码支持、quantized MoE 支持；修正 BOS 注入导致的 token 重复。生产部署 Gemma4 必升。</p></div>
+      <div class="card-tags"><span class="tag">transformer</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">vLLM v0.20.0rc1</a>
+        <div class="card-meta">
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 09:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-7">LLM 7/10</span>
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>v0.20 预发布</strong>：正式版即将到来的 RC，版本号跃进通常意味着调度器 / 分离式 serving / 新模型支持等较大改动，生产环境可关注但不建议直接上。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439" target="_blank" rel="noopener">DeepGEMM 新提交 nv_dev_c491439</a>
+        <div class="card-meta">
+          <span class="src">DeepGEMM</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 08:26 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-9">LLM 9/10</span>
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>DeepSeek DeepGEMM nv_dev 分支新 tag</strong>：DeepGEMM 是 DeepSeek 的 FP8 GEMM 库，nv_dev 分支持续迭代 H100/H800 FP8 kernel 性能。<strong>与 DeepGemm MoE 巨型 kernel 工作直接相关，建议拉下来 diff 看改动</strong>。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/nightly-v0.6.8-20260421" target="_blank" rel="noopener">FlashInfer Nightly v0.6.8-20260421</a>
+        <div class="card-meta">
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 06:54 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-7">LLM 7/10</span>
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>FlashInfer 每日构建</strong>：面向 LLM serving 的 attention / MoE / 采样 kernel 库，vLLM、SGLang 的后端之一。nightly 用于跟踪最新 API 与 kernel 优化，生产请用 stable。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">PyTorch Inductor: combo kernel 打通 optimize_mem（#180790）</a>
+        <div class="card-meta">
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 01:41 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 7.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>Inductor combo kernel 元信息修复</strong>：把 <code>optimize_mem</code> 正确透传到 combo kernel 的 <code>inductor_meta</code>（之前丢失后被 <code>cached_autotune</code> 默认设 True），让 combo 路径和独立 kernel 行为一致。推理/训练编译栈常见 corner case。</p></div>
+      <div class="card-tags"><span class="tag">MLA</span><span class="tag">triton</span><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F4c9b9c34341249955f056a6df3296b0cc044393f" target="_blank" rel="noopener">PyTorch: vLLM pinned hash 更新（#181048）</a>
+        <div class="card-meta">
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 05:47 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>PyTorch CI 里 vLLM 固定 hash 的 nightly 自动刷新</strong>：说明 PyTorch 主干开始把 vLLM 作为必测后端持续 CI，两边 API 耦合度升级，对 vLLM 用户意味着 torch 主线变化能更快被验证。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F50294ed45005ceb3b8669c68b408236e3f06d6b1" target="_blank" rel="noopener">PyTorch MPS: BatchNorm3d 展平到 4D 提速 2.4x</a>
+        <div class="card-meta">
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 03:08 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-5">LLM 5/10</span>
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>Apple Silicon 上 BN3d 性能修复</strong>：MPSGraph 对 rank-5 tensor 的 normalization 明显慢于 rank-4，把 <code>[N,C,D,H,W]</code> reshape 成 <code>[N,C,D*H,W]</code> 后复用 4D 路径，M4 Pro 上前向+反向从 8.7ms → 3.5ms。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4" target="_blank" rel="noopener">LLVM 22.1.4 发布</a>
+        <div class="card-meta">
+          <span class="src">LLVM/MLIR</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 13:55 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          <span class="rel rel-5">LLM 5/10</span>
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>LLVM/MLIR 22.1.4 维护版</strong>：补丁级别更新，是 Triton、CUDA Clang、MLIR 下游项目（Triton / IREE / XLA）的底座。涉及 MLIR 方向的同学可观察是否有 dialect / pass 相关回归。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">0/0</span>
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">6/6</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss5j2x/moonshot_opensourced_flashkda_cutlass_kernels_for/" target="_blank" rel="noopener">Moonshot 开源 FlashKDA：Kimi Delta Attention 的 CUTLASS 实现，H20 上 2.22x 超 Triton</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
           <span class="time">04-22 00:15 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          
+          <span class="rel rel-10">LLM 10/10</span>
           <span class="score">kw 13.0</span>
         </div>
       </div>
-      <div class="card-body"><p>github.com/MoonshotAI/FlashKDA Been comparing how different routing layers handle K2.6 this week, OpenRouter, Together, Orq, and while digging around I came across FlashKDA which Moonshot dropped alongside the K2.6 activity. Seems to be flying under the radar, sharing here because the kernel work is genuinely interesti…</p></div>
-      <div class="card-tags"><span class="tag">CUTLASS</span><span class="tag">triton</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
+      <div class="card-body"><p><strong>月之暗面 K2.6 配套放出 FlashKDA</strong>：用 CUTLASS C++ 实现 Kimi Linear 论文里的 Kimi Delta Attention 前向 kernel，作为 flash-linear-attention 的后端（FLA PR #852）。H20 基准 <code>T=8192 / H=96 / D=128</code> 下相对 FLA Triton 路径最高 2.22x。<strong>线性注意力工程落地的重要节点</strong>。</p></div>
+      <div class="card-tags"><span class="tag">CUTLASS</span><span class="tag">triton</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">H100</span><span class="tag">Kimi</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1sseh00/ultimate_list_best_open_models_for_coding_chat/" target="_blank" rel="noopener">Ultimate List: Best Open Models for Coding, Chat, Vision, Audio &amp; More</a>
-        <div class="card-meta">
-          <span class="src">r/LocalLLaMA</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 07:32 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          
-          <span class="score">kw 10.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Open-source AI is evolving insanely fast, but it’s hard to know which model is actually best for each use case. So I put together a list of the best open-source models across different categories Best Audio Generation Open Source Models Text-to-Speech (TTS) Qwen3-TTS → Best overall balance (quality + speed) Kimi-Audio …</p></div>
-      <div class="card-tags"><span class="tag">NeMo</span><span class="tag">attention</span><span class="tag">GPU</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/" target="_blank" rel="noopener">INT3 compression+fused metal kernels [R]</a>
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/" target="_blank" rel="noopener">INT3 压缩 + 2-bit KV Cache + Metal 融合 kernel（Mac M 系列）</a>
         <div class="card-meta">
           <span class="src">r/MachineLearning</span>
           <span class="dot">·</span>
           <span class="time">04-22 06:54 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          
+          <span class="rel rel-8">LLM 8/10</span>
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Hey guys, I am a researcher and solo founder. I compress models with INT3 at +0.14 nats and built a 2-bit KV cache for long-horizon tasks. I shipped both (INT3 model + INT2 KV) with custom fused Metal kernels for Mac (M-series). Currently Qwen 7B is available in preview. #install brew install reinforceai/spiral/spiral …</p></div>
+      <div class="card-body"><p><strong>端侧极限量化工具链 spiral</strong>：INT3 权重量化（+0.14 nats）+ INT2 KV cache（长上下文场景）+ 自研 Metal 融合 kernel，Qwen 7B 在 M 系 Mac 上预览可用；作者正移植 Triton 后端到 GPU。KV int2 + 权重 int3 的组合是近期量化推理前沿。</p></div>
       <div class="card-tags"><span class="tag">KV cache</span><span class="tag">triton</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">Qwen</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss9pku/running_qwen3635ba3b_locally_for_coding_agent_my/" target="_blank" rel="noopener">Running Qwen3.6-35B-A3B Locally for Coding Agent: My Setup &amp; Working Config</a>
-        <div class="card-meta">
-          <span class="src">r/LocalLLaMA</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 03:20 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          
-          <span class="score">kw 7.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Hardware Component Details Machine MacBook Pro (Mac14,6) Chip Apple M2 Max — 12-core CPU (8P + 4E) Memory 64 GB unified memory Storage 512 GB SSD OS macOS 15.7 (Sequoia) AI Agent Setup I&#x27;m using the pi coding agent as my primary development assistant. It&#x27;s a local-first AI coding agent that connects to local models via…</p></div>
-      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">quantization</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/" target="_blank" rel="noopener">We open-sourced Chaperone-Thinking-LQ-1.0 — a 4-bit GPTQ + QLoRA fine-tuned DeepSeek-R1-32B that hits 84% on MedQA in ~20GB[N]</a>
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/" target="_blank" rel="noopener">Chaperone-Thinking-LQ-1.0：DeepSeek-R1-32B 的 4-bit GPTQ + QLoRA</a>
         <div class="card-meta">
           <span class="src">r/MachineLearning</span>
           <span class="dot">·</span>
           <span class="time">04-21 20:07 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          
+          <span class="rel rel-7">LLM 7/10</span>
           <span class="score">kw 7.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Hey everyone, We just open-sourced our reasoning model, Chaperone-Thinking-LQ-1.0, on Hugging Face. It&#x27;s built on DeepSeek-R1-Distill-Qwen-32B but goes well beyond a simple quantization — here&#x27;s what we actually did: The pipeline: 4-bit GPTQ quantization — compressed the model from ~60GB down to ~20GB Quantization-awar…</p></div>
+      <div class="card-body"><p><strong>R1-Distill-Qwen-32B 60GB → 20GB</strong>：用 GPTQ 4-bit 量化 + 校准做量化感知训练（QAT），再 QLoRA 在医学语料上精调；MedQA 84%，MATH-500 91.9（原版 97.3）。GPTQ + QLoRA 组合在 reasoning 模型上的完整落地案例。</p></div>
       <div class="card-tags"><span class="tag">GPTQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssb61r/personal_eval_followup_gemma4_26b_moe_q8_vs/" target="_blank" rel="noopener">Personal Eval follow-up: Gemma4 26B MoE (Q8) vs Qwen3.5 27B Dense vs Gemma4 31B Dense Compared</a>
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss9pku/running_qwen3635ba3b_locally_for_coding_agent_my/" target="_blank" rel="noopener">Qwen3.6-35B-A3B 本地编程 Agent 部署（MacBook M2 Max 64GB）</a>
+        <div class="card-meta">
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 03:20 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 7.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>llama.cpp 跑 Qwen3.6-35B-A3B MoE</strong>：配置细节完整（llama-server OpenAI 兼容 API、128k 上下文、Unsloth 量化版本），在统一内存 64GB 的 M2 Max 上可用。MoE 小激活参数（A3B = 激活 3B）在端侧推理的代表场景。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">quantization</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssb61r/personal_eval_followup_gemma4_26b_moe_q8_vs/" target="_blank" rel="noopener">量化档位对比：Gemma4 26B MoE Q4/Q8 vs Qwen3.5 27B Dense vs Gemma4 31B Dense</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:30 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          
+          <span class="rel rel-6">LLM 6/10</span>
           <span class="score">kw 3.0</span>
         </div>
       </div>
-      <div class="card-body"><p>This is a follow-up update to my previous post comparing Qwen 3.6 35B vs Gemma 4 26B . I wanted to particularly follow-up with the following: 1. Gemma 4 26B could&#x27;ve suffered the quantization tax and perform drastically better with an 8-bit quant. So I wanted to put that to the test with UD&#x27;s Q8_K_XL this time 2. A lot…</p></div>
-      <div class="card-tags"><span class="tag">quantization</span><span class="tag">TPU</span><span class="tag">Qwen</span></div>
+      <div class="card-body"><p><strong>同场景 37 个 baseline 失败用例的修复率</strong>：Q4 Qwen3.6-35B 修复 86.5%、Q4 Gemma4-26B 75.7%、Q8 同款反而掉到 45.9%（作者怀疑 Q8_K_XL 实现问题）；Qwen3.5-27B Dense Q4 与 Gemma4-31B Dense Q4 均 100%。量化 tax 不是单调的。</p></div>
+      <div class="card-tags"><span class="tag">quantization</span><span class="tag">Qwen</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ss2zjc/cvpr_how_to_identify_if_an_accepted_paper_has/" target="_blank" rel="noopener">CVPR - How to identify if an accepted paper has ethical issues (plagiarism)? [D]</a>
-        <div class="card-meta">
-          <span class="src">r/MachineLearning</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 22:29 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          
-          <span class="score">kw 3.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>I recently found a paper accepted to CVPR 2026 reproduced many technical details from my paper submitted to arXiV on June 2025 (5 months before the CVPR 2026 submission deadline). Apart from technical similarities (they rephrased / reframed the term / key ideas), the CVPR paper uses exactly same equation without change…</p></div>
-      <div class="card-tags"><span class="tag">GRPO</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss23b8/claude_code_removed_from_claude_pro_plan_better/" target="_blank" rel="noopener">Claude Code removed from Claude Pro plan - better time than ever to switch to Local Models.</a>
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssgwcz/consider_running_a_bigger_quant_if_possible/" target="_blank" rel="noopener">大量化档优先：同 VRAM 下跑更大 quant 的实测体验</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
-          <span class="time">04-21 21:54 UTC</span>
+          <span class="time">04-22 09:54 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          
-          <span class="score">kw 2.0</span>
+          <span class="rel rel-5">LLM 5/10</span>
+          <span class="score">kw 1.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Time to switch to Kimi k2.6 guys if you haven&#x27;t already. For $20 a month you can buy the OpenCode Go coding plan (its actually $5 for the first month then $10) which gives you many more tokens on models like Kimi K2.6, and then you can pay for the rest of the usage. So for $20 a month of tokens of Kimi K2.6 you&#x27;re basi…</p></div>
-      <div class="card-tags"><span class="tag">Qwen</span><span class="tag">Kimi</span></div>
+      <div class="card-body"><p><strong>量化档选型经验贴</strong>：Qwen 3.6 IQ4_XS 在 128k 上下文下频繁 loop / 格式错乱；换 unsloth IQ4_NL_XL 后 agentic coding 大幅改善。结论：别死盯 tok/s，要看端到端任务完成时间，大 quant 一次过 &gt; 小 quant 反复重试。</p></div>
+      <div class="card-tags"><span class="tag">Qwen</span></div>
     </article>
     </div>
-      <p class="more">... 还有 8 条未显示（见 cache/today_raw.json）</p>
+      
     </section>
     
   <footer>
