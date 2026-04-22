@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-04-22 Wednesday</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-04-22 Wednesday · 回溯 36h · 共 13 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Generated: 2026-04-22 09:10:00 UTC</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+        <span class="count">5/5</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.19241" target="_blank" rel="noopener">UniEP: Unified Expert-Parallel MoE MegaKernel for LLM Training</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-10">LLM 10/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：把 MoE 训练里的 dispatch / GEMM / activation / combine 四段流水线熔到<strong>一个 MegaKernel</strong> 里，摒弃传统 EP 那种多 kernel 串联 + ad-hoc overlap 的实现模式。核心思路是<strong>统一调度</strong>——让通信原语（all-to-all dispatch/combine）和计算原语（group GEMM）在 SM 级别共享一份 scheduler，避免每段都过一次 kernel launch、global sync 和 shared memory 清零；同时显式处理了 EP 下长期被忽略的<strong>数值稳定性</strong>（权重放缩、reduce 顺序）。实现面向 Megatron-LM 生产栈，不依赖特殊 TMA 之外的硬件能力。</p><p><strong>效果</strong>：论文 claim 在多种 EP size（作者给出的配置）下都<strong>优于 Megatron + DeepEP + DeepGEMM 的手拼方案</strong>，但<strong>具体加速比、端到端 MFU 提升百分比需查原文 §5 实验表</strong>（arXiv abstract 没给数字，我不瞎凑）。</p><p><strong>对你</strong>：<strong>这篇和你手头的 DeepGemm 巨型 MoE 重叠分析几乎正面撞题</strong>——他们用 MegaKernel 解决你正在用「分段 + 手工 overlap」解决的同一个问题。建议今晚把 §5 和 MegaKernel scheduler 那节精读，看能否把他们的 scheduling invariant 移植到你的 ScaleUp 统一内存引擎里，或至少在面试里当对比 baseline 讨论。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.18616" target="_blank" rel="noopener">ARGUS: Agentic GPU Optimization Guided by Data-Flow Invariants</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-9">LLM 9/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：一个 agentic kernel 优化框架，专治「LLM coding agent 能写出功能正确但性能远低于手写库的 CUDA kernel」这个老毛病。关键创新是<strong>数据流不变式（data-flow invariants）</strong>——把 tiling、shared memory staging、software pipelining、instruction scheduling 这些紧耦合优化编码成<strong>编译期可验证的约束规范</strong>，让 agent 每次改动后都能被静态检查出哪条全局约束被违反了（而不是只能靠 pass/fail 稀疏反馈去盲试）。框架内部用 tile-based Python DSL 做策略搜索。</p><p><strong>效果</strong>：针对 matmul / attention / MoE 三类关键算子，ARGUS 生成的 kernel 声称能<strong>逼近手工优化库</strong>的性能——但<strong>具体百分比、对照的 baseline（是 CUTLASS 还是 cuBLAS？SM90 还是 SM100？）需查原文 §6</strong>，摘要没写死。</p><p><strong>对你</strong>：如果 ARGUS 的 invariant 框架够成熟，可以用它给<strong>你的 NURBS 光追求解器</strong>做 kernel 探索——光追求解器的 tile/warp 调度空间本来就大，人工调参吃力。另外面试 FlashAttention 候选人时可以问：「如果让你设计 ARGUS 那种约束系统来验证 attention kernel 的 correctness，你会定义哪些 invariant？」——是个很好的区分题。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2505.16968" target="_blank" rel="noopener">CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-7">LLM 7/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：首个支持<strong>源码级（CUDA→HIP）+ 汇编级（SASS→RDNA3）</strong>跨架构 GPU 翻译的数据集 + 模型套件。自动化流水线爬取、翻译、编译、对齐生成 <strong>60k 对 host-device 代码</strong>，在此之上训练领域专用翻译模型。汇编级翻译是真正硬骨头——涉及 ISA 差异、寄存器分配、调度槽位语义，此前没有可规模化的方案。</p><p><strong>效果</strong>：<code>CUDA → HIP</code> 准确率 <strong>88.2%</strong>，<code>SASS → RDNA3</code> 准确率 <strong>69.1%</strong>，<strong>超过 GPT-5.1、Claude-4.5、Hipify</strong> 的商业基线（gap 作者描述为 wide margins）。60k 代码对数据集本身对社区是公开资产。</p><p><strong>对你</strong>：ScaleUp 这类统一内存引擎迟早要面对 multi-vendor 适配问题——有这种 transpiler 意味着未来把成熟 CUDA kernel 迁到 ROCm/AMD 节点的成本可能大幅下降，影响你对「是否自己为 AMD 维护一套独立 kernel」的架构决策。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.18909" target="_blank" rel="noopener">ChipLight: Cross-Layer Optimization of Chiplet Design with Optical Interconnects for LLM Training</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-7">LLM 7/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：针对大规模 LLM 训练集群，提出 <strong>chiplet（scale-up）+ 光互联（scale-out）</strong>的跨层协同设计方法。抽象出一个联合架构模型，把 chiplet 拓扑、training 并行策略（TP/PP/EP/DP）、chiplet 内外的带宽/延迟预算一起作为优化变量，用多目标优化求解设计点。</p><p><strong>效果</strong>：论文 claim 在几个代表性训练工作负载上展示了设计空间探索的收益，但<strong>具体相比纯 copper NVLink + RoCE 的吞吐/功耗提升百分比需查原文实验章节</strong>，abstract 只给了方法论。</p><p><strong>对你</strong>：这是<strong>直接对标你 ScaleUp 统一内存引擎所处的物理层级</strong>的工作——如果未来 ScaleUp 要扩展到多 chiplet 域（超越单 NVLink domain），光互联是必选项。值得看看他们是怎么把 chiplet 内部的 unified memory 语义和跨 chiplet 的消息语义统一建模的。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.19004" target="_blank" rel="noopener">Ocean: Fast Estimation-Based Sparse GEMM on GPU</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：SpGEMM 传统两遍流程里，symbolic pass（精确算每行 non-zero 数）平均吃掉 <strong>28% 运行时</strong>。Ocean 用<strong>估计式 symbolic</strong>——不追求精确，用启发式快速预估每行非零数 + 渐进式 bucket 分配 + 失败回退机制，把 symbolic pass 做廉价。</p><p><strong>效果</strong>：相比精确 symbolic 的 baseline（作者列的是 cuSPARSE / nsparse 等），<strong>单次 SpGEMM 端到端有明显加速</strong>——<strong>具体倍数需查原文 Table</strong>，abstract 只说 significantly faster。</p><p><strong>对你</strong>：SpGEMM 的「估计+回退」思路和 FlashAttention 里「online softmax」那种「乐观执行 + 数值修正」的思路是同构的——可以当成面试题里讨论<strong>不精确计算换性能</strong>这一范式的好材料。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">3/3</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">[Inductor] Forward optimize_mem to combo kernel inductor_meta (#180790)</a>
+        <div class="card-meta">
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 01:41 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-8">LLM 8/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：修 Inductor combo kernel 的一个长期隐形 bug——<code>optimize_mem</code> 标志在 combo kernel 路径上<strong>没有被正确透传</strong>到 <code>inductor_meta</code>，导致 <code>cached_autotune</code> 永远默认当 <code>True</code>。修复方式：在 <code>jit_line()</code> 里显式设置 <code>inductor_meta[「optimize_mem」] = V.graph.is_inference or V.graph.is_backward</code>，对齐 <code>triton.py:codegen_kernel()</code> 的 standalone kernel 行为。</p><p><strong>效果</strong>：本质是<strong>修正一个潜藏的默认值错误</strong>——影响的是 combo kernel 的内存复用决策是否 honoring 图属性。不是性能优化 PR，是<strong>正确性对齐 PR</strong>，没有公开 benchmark 数字，但会让依赖 <code>optimize_mem=False</code> 语义的下游用户（如自定义 backend）行为变可预测。</p><p><strong>对你</strong>：如果你的团队在 fork Inductor 做 ScaleUp 后端，值得同步这个 patch——否则 combo kernel 的 memory planning 行为和主分支会偏离。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">v0.19.1（Transformers v5.5.3 + Gemma4 修复）</a>
+        <div class="card-meta">
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 00:46 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：patch release，主要做两件事：(1) 升级依赖到 <code>transformers v5.5.3</code>（#30566）；(2) 集中修 <strong>Gemma4</strong> 的一大串 streaming / tool-call / quantized-MoE / Eagle3 / LoRA 加载问题（#38992/39114/39045/39450/38844/39679 等）。这是新模型适配后的典型「堵漏」版本。</p><p><strong>效果</strong>：无性能数字发布，目标是<strong>消除已报告的正确性问题</strong>（streaming 时 JSON 损坏、token 重复、tool 调用把 <code>null</code> 当字符串等）。Gemma4 + vLLM 的部署稳定性应有明显提升。</p><p><strong>对你</strong>：如果你们的内部 serving 基于 vLLM 且计划上 Gemma4，<strong>最好跳过 v0.19.0 直接升 v0.19.1</strong>。但注意 <code>transformers v5</code> 是大版本跳跃，下游训练代码可能有 breaking change。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4" target="_blank" rel="noopener">LLVM 22.1.4</a>
+        <div class="card-meta">
+          <span class="src">LLVM/MLIR</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 13:55 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-7">LLM 7/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：LLVM 22.x 系列的 patch release，bug fix only（具体 fix 清单需看 release notes，abstract 只挂了下载链接）。</p><p><strong>效果</strong>：无性能 claim，稳定性修复为主。</p><p><strong>对你</strong>：<strong>面试 MLIR 方向候选人前可以问一句「最近跟过哪个 LLVM/MLIR release」</strong>——能答出 22.1 系列里具体哪些 pass / tblgen / dialect 改动的候选人，说明确实跟踪上游；答不出来的说明只是在用 MLIR 的下游 fork。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">2/2</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/run-high-throughput-reinforcement-learning-training-with-end-to-end-fp8-precision/" target="_blank" rel="noopener">Run High-Throughput Reinforcement Learning Training with End-to-End FP8 Precision</a>
+        <div class="card-meta">
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">04-20 22:52 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-8">LLM 8/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：端到端 FP8 跑 RL 训练（GRPO 等算法），覆盖 <strong>rollout + ref model forward + policy forward/backward + optimizer</strong> 全链路；不是只在前向用 FP8 那种半截子方案。关键技术：per-tensor scaling + stochastic rounding，以及 rollout 阶段 KV cache 的 FP8 存储。</p><p><strong>效果</strong>：博客通常会给 <strong>H100/H200 上相对 BF16 的吞吐倍数</strong>（NVIDIA 自家 blog 典型是 <strong>1.5-2× 左右</strong>），<strong>具体数字和收敛对齐曲线需要打开原文看</strong>，我不从通用印象里瞎凑数。</p><p><strong>对你</strong>：RL-on-FP8 是今年训练栈的热点方向，和你关心的 DeepGemm 内核重叠有直接交集（因为 FP8 tensor core 利用率依赖 dispatch/GEMM 的 overlap 质量）。面试时可作为「FP8 在 training 而不只是 inference」的一个切入话题。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/maximizing-memory-efficiency-to-run-bigger-models-on-nvidia-jetson/" target="_blank" rel="noopener">Maximizing Memory Efficiency to Run Bigger Models on NVIDIA Jetson</a>
+        <div class="card-meta">
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">04-20 23:01 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-5">LLM 5/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：面向 Jetson（边缘）平台的内存优化实践集合——量化（INT4/INT8）、KV cache 压缩、CPU-GPU 统一内存复用、模型 paging 等技术的组合拳，把本来塞不下的 gen-AI 模型塞进 Jetson 的有限 DRAM。</p><p><strong>效果</strong>：博客 claim 能<strong>跑原本跑不了的更大模型</strong>，<strong>具体内存节省百分比和延迟代价需看原文表格</strong>。</p><p><strong>对你</strong>：关联度中等——但 Jetson 上的 unified memory pattern（CPU/GPU 共享物理 DRAM）其实和你 ScaleUp 统一内存引擎的语义模型在某种程度上同构，可以借鉴他们的分页/迁移策略。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">3/3</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss5j2x/moonshot_opensourced_flashkda_cutlass_kernels_for/" target="_blank" rel="noopener">Moonshot 开源 FlashKDA：Kimi Delta Attention 的 CUTLASS kernel，H20 上相比 Triton 快最高 2.22×</a>
+        <div class="card-meta">
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 00:15 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-10">LLM 10/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：Moonshot 跟着 K2.6 一起开源了 <strong>FlashKDA</strong>——Kimi Delta Attention（Kimi Linear 那篇论文里的线性 attention 变体）前向 kernel 的 <strong>CUTLASS C++ 实现</strong>。通过 FLA pull request #852 作为后端插入 <code>flash-linear-attention</code>，已经在用 FLA 的 KDA 模型可以直接切换到 FlashKDA。底层是 WGMMA 调度 + shared memory staging 优化。</p><p><strong>效果</strong>：在 H20 benchmark 上，<code>T=8192, H=96, D=128</code> 固定配置下，相比 FLA 的 Triton baseline <strong>最高 2.22× 加速</strong>（这是讨论帖里晒的数字，其余配置趋势相同）。</p><p><strong>对你</strong>：<strong>这是 FlashAttention 方向候选人面试的现成热门题</strong>——可以让候选人讲「KDA vs 标准 attention vs FlashAttention 的 IO pattern 差异」，或者讲「为什么 CUTLASS 实现能比 Triton 快这么多（WGMMA epilogue fusion / TMA / pipeline stages）」。也可以直接拉源码做 code walkthrough 题。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/" target="_blank" rel="noopener">INT3 compression + fused Metal kernels（INT3 权重 + INT2 KV cache）</a>
+        <div class="card-meta">
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 06:54 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-8">LLM 8/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：独立研究者的量化工作——把模型权重压到 <strong>INT3</strong>，同时为长上下文任务做 <strong>INT2 KV cache</strong>；在 Mac（Apple M-series）上用<strong>手写 fused Metal kernel</strong> 把这两个低位宽格式的 dequant + matmul 融合到一个 kernel 里。Qwen 7B 已先出预览版，安装方式是 brew。</p><p><strong>效果</strong>：<strong>INT3 权重的 perplexity 代价仅 +0.14 nats</strong>（相对 FP16 baseline，非常低的一个代价）。权重压缩比 <code>16/3 ≈ 5.3×</code>，KV cache 压缩比 <code>16/2 = 8×</code>——这两项综合起来让长上下文任务在消费级 Mac 上可行。Triton 版（GPU 支持）作者说还在做。</p><p><strong>对你</strong>：<strong>PIM 面试题黄金素材</strong>——低位宽量化是 PIM 架构的天然好朋友（PIM 的 bandwidth 瓶颈在位宽而非 FLOPs），可以让候选人讨论「如何把 INT3 权重 + INT2 KV 映射到 PIM 的 row-buffer / 子阵列级计算单元上」。另外 <code>+0.14 nats</code> 这个数字本身就是候选人应该能定量解读的基础能力考点。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssb61r/personal_eval_followup_gemma4_26b_moe_q8_vs/" target="_blank" rel="noopener">Personal Eval: Gemma4 26B MoE (Q8) vs Qwen3.5 27B Dense vs Gemma4 31B Dense</a>
+        <div class="card-meta">
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:30 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain"></span>
+          <span class="rel rel-6">LLM 6/10</span>
+          <span class="score">kw 0</span>
+        </div>
+      </div>
+      <div class="card-body"><p><strong>方法</strong>：社区用户在 37 个「预先失败」的编程回归 case 上对比三种模型配置：<code>Gemma4 26B MoE (Q4 和 Q8_K_XL)</code>、<code>Qwen 3.6 35B Q4</code>、<code>Qwen 3.5 27B Dense Q4</code>、<code>Gemma4 31B Dense Q4</code>，看各自能修复多少个。</p><p><strong>效果</strong>：<strong>Gemma4 26B MoE Q4 修复 28/37（75.7%）、Q8 反而只修了 17/37（45.9%）——和「Q8 应该更准」的常识相反</strong>，作者怀疑是 Unsloth 的 Q8_K_XL 实现对 Gemma4 的 MoE routing 有问题。<code>Qwen 3.5 27B Dense Q4</code> 和 <code>Gemma4 31B Dense Q4</code> 双双达成 <strong>37/37（100%）</strong>。Qwen 3.6 35B Q4 修复 32/37（86.5%）。</p><p><strong>对你</strong>：<strong>「更高位宽反而更差」这种反直觉结果是量化面试题里的好钩子</strong>——可以让候选人推测原因（校准集偏差？对称/非对称量化与 MoE router 的交互？group size 问题？）。对你自己而言，<strong>Dense 模型在这个 eval 上完胜 MoE</strong> 也是个有趣的数据点，虽然 sample size 只有 37 要小心过度解读。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>

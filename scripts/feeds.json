@@ -1,0 +1,63 @@
+{
+  "keywords": {
+    "strong": [
+      "MoE", "expert parallel", "tensor parallel", "pipeline parallel",
+      "FlashAttention", "flash-attn", "KV cache", "speculative decoding",
+      "PIM", "processing-in-memory", "MLIR",
+      "scale-up", "scale up", "NVLink", "NVSwitch", "interconnect",
+      "collective comm", "all-to-all", "alltoall", "overlap",
+      "ray tracing", "NURBS", "ScaleUp",
+      "CUTLASS", "triton", "CUDA kernel", "GPU kernel",
+      "DeepGEMM", "DeepEP"
+    ],
+    "medium": [
+      "LLM inference", "vLLM", "SGLang", "TensorRT", "Megatron", "DeepSpeed",
+      "quantization", "FP8", "FP4", "attention", "transformer",
+      "distributed training", "GPU", "H100", "H200", "B200", "GB200",
+      "TPU", "compiler", "scheduling", "serving", "kernel"
+    ]
+  },
+
+  "sources": {
+    "papers": [
+      {"name": "arXiv cs.DC", "url": "http://export.arxiv.org/rss/cs.DC",  "weight": 1.0},
+      {"name": "arXiv cs.AR", "url": "http://export.arxiv.org/rss/cs.AR",  "weight": 1.0},
+      {"name": "arXiv cs.PF", "url": "http://export.arxiv.org/rss/cs.PF",  "weight": 1.0},
+      {"name": "arXiv cs.LG", "url": "http://export.arxiv.org/rss/cs.LG",  "weight": 0.6}
+    ],
+
+    "code": [
+      {"name": "vLLM",          "url": "https://github.com/vllm-project/vllm/releases.atom"},
+      {"name": "TensorRT-LLM",  "url": "https://github.com/NVIDIA/TensorRT-LLM/releases.atom"},
+      {"name": "Megatron-LM",   "url": "https://github.com/NVIDIA/Megatron-LM/releases.atom"},
+      {"name": "CUTLASS",       "url": "https://github.com/NVIDIA/cutlass/releases.atom"},
+      {"name": "DeepGEMM",      "url": "https://github.com/deepseek-ai/DeepGEMM/releases.atom"},
+      {"name": "DeepEP",        "url": "https://github.com/deepseek-ai/DeepEP/releases.atom"},
+      {"name": "FlashInfer",    "url": "https://github.com/flashinfer-ai/flashinfer/releases.atom"},
+      {"name": "SGLang",        "url": "https://github.com/sgl-project/sglang/releases.atom"},
+      {"name": "PyTorch",       "url": "https://github.com/pytorch/pytorch/releases.atom"},
+      {"name": "Triton",        "url": "https://github.com/triton-lang/triton/releases.atom"},
+      {"name": "LLVM/MLIR",     "url": "https://github.com/llvm/llvm-project/releases.atom"}
+    ],
+
+    "blogs": [
+      {"name": "NVIDIA Developer Blog", "url": "https://developer.nvidia.com/blog/feed"},
+      {"name": "PyTorch Blog",          "url": "https://pytorch.org/feed.xml"},
+      {"name": "Meta Engineering",      "url": "https://engineering.fb.com/feed/"},
+      {"name": "Google Research",       "url": "https://research.google/blog/rss/"},
+      {"name": "HuggingFace Blog",      "url": "https://huggingface.co/blog/feed.xml"}
+    ],
+
+    "community": [
+      {"name": "Hacker News",        "url": "https://hnrss.org/newest?q=LLM+OR+GPU+OR+inference+OR+CUDA+OR+MoE&count=30"},
+      {"name": "r/LocalLLaMA",       "url": "https://www.reddit.com/r/LocalLLaMA/.rss"},
+      {"name": "r/MachineLearning",  "url": "https://www.reddit.com/r/MachineLearning/.rss"}
+    ]
+  },
+
+  "limits": {
+    "per_source_max": 10,
+    "lookback_hours": 36,
+    "top_n_per_section": 8
+  }
+}

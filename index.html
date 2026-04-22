@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 · 看板</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", Roboto, sans-serif;
+        background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+.hero h1 { margin: 0 0 6px; font-size: 28px; }
+.hero p { margin: 0; opacity: .9; font-size: 14px; }
+.latest-card {
+  padding: 22px 26px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid #6366f1;
+  margin-bottom: 36px;
+}
+.latest-card h2 { margin: 0 0 6px; font-size: 14px; color: #94a3b8;
+  font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
+.latest-card a.big {
+  display: inline-block; font-size: 22px; color: #f1f5f9;
+  text-decoration: none; font-weight: 600; margin-bottom: 10px;
+}
+.latest-card a.big:hover { color: #a5b4fc; text-decoration: underline; }
+.latest-card .meta { color: #94a3b8; font-size: 13px; }
+.archive-title { margin: 0 0 16px; font-size: 18px; color: #cbd5e1; }
+.month { background: #1e293b; border-radius: 10px;
+  padding: 14px 20px; margin-bottom: 14px; border: 1px solid #334155; }
+.month h3 { margin: 0 0 10px; font-size: 15px; color: #a5b4fc;
+  font-family: ui-monospace, Consolas, monospace; }
+.month ul { list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 6px 14px; }
+.month li a { color: #93c5fd; text-decoration: none;
+  font-family: ui-monospace, Consolas, monospace; font-size: 13px; }
+.month li a:hover { color: #f472b6; }
+footer { margin-top: 48px; padding-top: 20px;
+  border-top: 1px solid #334155; color: #64748b;
+  font-size: 12px; text-align: center; }
+</style></head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>每日 09:00 自动更新 · 共 1 期 · powered by WorkBuddy</p>
+  </header>
+
+  <section class="latest-card">
+    <h2>最新一期</h2>
+    <a class="big" href="./2026/04/2026-04-22.html">2026-04-22</a>
+    <div class="meta">点击查看今日重点论文 / 代码更新 / 博客 / 社区热议</div>
+  </section>
+
+  <h2 class="archive-title">📚 历史归档</h2>
+  <section class="month"><h3>2026/04</h3><ul><li><a href="./2026/04/2026-04-22.html">2026-04-22</a></li></ul></section>
+
+  <footer>
+    Auto-published from <code>D:\workbuddy\daily_news</code> ·
+    <a href="./latest.html" style="color:#94a3b8">latest.html</a>
+  </footer>
+</div>
+</body></html>
