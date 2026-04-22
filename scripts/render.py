@@ -12,12 +12,16 @@ import json
 import re
 import html as html_mod
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 ROOT   = Path(__file__).resolve().parent.parent
 CACHE  = ROOT / "cache"
 ARCHIVE = ROOT / "archive"
 ARCHIVE.mkdir(parents=True, exist_ok=True)
+
+# curated 相比 raw 最多允许落后多少小时。超过则判定 curated 为 stale，
+# 回退使用 raw。防止历史遗留的 curated 文件永远覆盖最新 fetch 结果。
+CURATED_STALE_HOURS = 2
 
 SECTION_META = {
     "papers":    {"title": "📄 重点论文",     "icon": "📄", "color": "#6366f1"},
@@ -44,14 +48,61 @@ def md_inline(s: str) -> str:
     return out
 
 
+def _parse_ts(s: str) -> datetime | None:
+    """解析 ISO 时间戳，容错无时区（视为 UTC）。失败返回 None。"""
+    if not s or not isinstance(s, str):
+        return None
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except Exception:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
 def load_data() -> dict:
+    """按数据新鲜度选择 curated 或 raw：
+       - 只有 raw：用 raw
+       - 只有 curated：用 curated
+       - 两个都在：比较 generated_at，如果 curated 比 raw 老 > 2h，用 raw
+       这样避免 bootstrap/陈旧的 curated 文件永远覆盖最新 fetch 结果。
+    """
     curated = CACHE / "today_curated.json"
     raw     = CACHE / "today_raw.json"
-    path = curated if curated.exists() else raw
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+
+    reason = ""
+    if curated.exists() and raw.exists():
+        with open(curated, "r", encoding="utf-8") as f:
+            cd = json.load(f)
+        with open(raw, "r", encoding="utf-8") as f:
+            rd = json.load(f)
+        c_ts = _parse_ts(cd.get("generated_at", ""))
+        r_ts = _parse_ts(rd.get("generated_at", ""))
+        use_curated = True
+        if c_ts is None and r_ts is not None:
+            use_curated = False
+            reason = "curated 缺少 generated_at"
+        elif c_ts is not None and r_ts is not None:
+            if r_ts - c_ts > timedelta(hours=CURATED_STALE_HOURS):
+                use_curated = False
+                reason = f"curated stale (落后 raw {(r_ts - c_ts).total_seconds()/3600:.1f}h)"
+        if use_curated:
+            data, path, has_llm = cd, curated, True
+        else:
+            data, path, has_llm = rd, raw, False
+            print(f"[render] fallback to raw: {reason}")
+    elif curated.exists():
+        with open(curated, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        path, has_llm = curated, True
+    else:
+        with open(raw, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        path, has_llm = raw, False
+
     data["_source_file"] = path.name
-    data["_has_llm"] = curated.exists()
+    data["_has_llm"] = has_llm
     return data
 
 
@@ -295,6 +346,7 @@ footer a { color: #94a3b8; }
 
 def render(data: dict, out_path: Path):
     today = datetime.now().strftime("%Y-%m-%d %A")
+    rendered_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     gen_at = data.get("generated_at", "")
     hours  = data.get("lookback_hours", 36)
     has_llm = data.get("_has_llm", False)
@@ -308,6 +360,8 @@ def render(data: dict, out_path: Path):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - {today}</title>
+<!-- rendered_at: {rendered_at} UTC -->
+<!-- source: {esc(data.get('_source_file',''))} data_generated_at: {gen_at} -->
 <style>{CSS}</style>
 </head>
 <body>
@@ -317,7 +371,8 @@ def render(data: dict, out_path: Path):
     <p>{today} · 回溯 {hours}h · 共 {total} 条</p>
     <div class="badges">
       <span class="badge">{llm_badge}</span>
-      <span class="badge">Generated: {gen_at[:19].replace('T',' ')} UTC</span>
+      <span class="badge">Data: {gen_at[:19].replace('T',' ')} UTC</span>
+      <span class="badge">Rendered: {rendered_at} UTC</span>
       <span class="badge">Source: {esc(data.get('_source_file',''))}</span>
     </div>
   </header>
