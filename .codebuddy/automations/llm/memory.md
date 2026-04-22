@@ -14,3 +14,10 @@
 - publish: commit `975bcb4`，HEAD==origin/main，`git log -1 --stat` 含今日两份 HTML（各 267 行 diff）
 - 结果 URL: https://xmwen.github.io/daily-ai-infra/
 - 状态: ✅ 成功（真正中文 curated 首次完整落地）
+
+## 2026-04-22 22:00（执行于 21:09，domain_tag 版 prompt 第 2 跑）
+- fetch: 88 条 raw（papers 32 / code 16 / blogs 3 / community 37），无 RSS 源失败
+- curated: 20 条（papers 6 / code 6 / blogs 1 / community 7），domain_tag 分布 推理 9 / 训练 4 / agent 7
+- render: `LLM 摘要 ✓`，无 fallback
+- publish: commit `04b4ee7`，HEAD==origin/main，HTML diff 208 行 × 2
+- 状态: ✅ 成功。用一次性脚本 `scripts/_build_curated.py` 生成 curated，中文引号用「」避开双引号陷阱
