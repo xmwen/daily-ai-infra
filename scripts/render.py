@@ -35,6 +35,22 @@ SECTION_META = {
 
 SECTION_ORDER = ["papers", "code", "blogs", "community"]
 
+# 每个分区展示上限（papers 放宽到 8，其它保持 8）
+SECTION_TOP_N = {
+    "papers": 8,
+    "code": 8,
+    "blogs": 8,
+    "community": 8,
+}
+DEFAULT_TOP_N = 8
+
+# 领域标签：值域固定为 推理/训练/agent，配不同配色
+DOMAIN_TAG_META = {
+    "推理": {"label": "推理", "bg": "rgba(99,102,241,.22)",  "fg": "#c7d2fe", "border": "rgba(99,102,241,.55)"},
+    "训练": {"label": "训练", "bg": "rgba(16,185,129,.22)",  "fg": "#a7f3d0", "border": "rgba(16,185,129,.55)"},
+    "agent": {"label": "Agent", "bg": "rgba(236,72,153,.22)", "fg": "#fbcfe8", "border": "rgba(236,72,153,.55)"},
+}
+
 
 def esc(s: str) -> str:
     return html_mod.escape(s or "")
@@ -156,11 +172,29 @@ def render_card(item: dict, has_llm: bool) -> str:
         r = item["relevance"]
         relevance = f'<span class="rel rel-{r}">LLM {r}/10</span>'
 
+    # 领域标签：推理 / 训练 / agent
+    domain_tag_html = ""
+    dt_val = (item.get("domain_tag") or "").strip().lower()
+    # 兼容中英文写法
+    dt_key = {
+        "inference": "推理", "推理": "推理",
+        "training":  "训练", "训练": "训练",
+        "agent":    "agent", "agents": "agent",
+    }.get(dt_val, "")
+    if dt_key and dt_key in DOMAIN_TAG_META:
+        m = DOMAIN_TAG_META[dt_key]
+        domain_tag_html = (
+            f'<span class="domain-tag" '
+            f'style="background:{m["bg"]};color:{m["fg"]};'
+            f'border:1px solid {m["border"]};">{m["label"]}</span>'
+        )
+
     return f"""
     <article class="card">
       <div class="card-head">
         <a class="card-title" href="{link}" target="_blank" rel="noopener">{title}</a>
         <div class="card-meta">
+          {domain_tag_html}
           <span class="src">{source}</span>
           <span class="dot">·</span>
           <span class="time">{pub_display}</span>
@@ -308,6 +342,13 @@ header.hero .badge {
   padding: 1px 8px;
   border-radius: 999px;
 }
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
 .card-body {
   margin: 8px 0 10px;
   font-size: 14px;
@@ -396,7 +437,8 @@ def render(data: dict, out_path: Path):
     top_n = 8  # 每个分区展示上限（与 feeds.json 对齐）
     for sec in SECTION_ORDER:
         items = data.get("sections", {}).get(sec, [])
-        parts.append(render_section(sec, items, has_llm, top_n))
+        parts.append(render_section(sec, items, has_llm,
+                                    SECTION_TOP_N.get(sec, DEFAULT_TOP_N)))
 
     parts.append("""
   <footer>

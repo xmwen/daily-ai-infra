@@ -25,6 +25,7 @@ Python venv：`C:\Users\hughxmwen\.workbuddy\binaries\python\envs\default\Script
 - `publish.py` stdout "成功" ≠ 真的 push 了 HTML。必须用 `git log -1 --stat` 校验 `2026/MM/*.html` 与 `archive/*.html` 真实 diff，并比对 `git rev-parse HEAD` == `origin/main`。
 - `render.py` 有 `CURATED_STALE_HOURS=2` 兜底：curated 比 raw 老 >2h 会自动 fallback 到英文 raw —— 这是**错误信号**，说明 curated 没及时生成。
 - 每份 HTML 都注入 `rendered_at` 徽章和注释，保证字节级非幂等，便于核对 pipeline。
+- **时区约定（2026-04-22 起）**：看板所有展示时间统一用东八区（CST）。`render.py` 里 `CST = timezone(timedelta(hours=8))`，卡片 pub_display / hero 徽章 / HTML 注释都走 `astimezone(CST).strftime("... CST")`。`fetch.py` / `publish.py` 的 `today` 日期也按 CST 生成（跨零点机器时区漂移防护）。缓存里的 `generated_at` 仍保留 UTC ISO（机器可解析标准），只在渲染时转 CST。
 
 ## 用户工作关联（筛选偏好）
 重点保留：
