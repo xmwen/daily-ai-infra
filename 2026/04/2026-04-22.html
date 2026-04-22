@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - 2026-04-22 Wednesday</title>
-<!-- rendered_at: 2026-04-22 12:13:49 UTC -->
-<!-- source: today_curated.json data_generated_at: 2026-04-22T12:18:00+00:00 -->
+<!-- rendered_at: 2026-04-22 12:34:03 UTC -->
+<!-- source: today_curated.json data_generated_at: 2026-04-22T12:33:55.740921+00:00 -->
 <style>
 * { box-sizing: border-box; }
 body {
@@ -157,38 +157,20 @@ footer a { color: #94a3b8; }
 <div class="container">
   <header class="hero">
     <h1>🧠 AI Infra 每日动态</h1>
-    <p>2026-04-22 Wednesday · 回溯 36h · 共 21 条</p>
+    <p>2026-04-22 Wednesday · 回溯 36h · 共 17 条</p>
     <div class="badges">
       <span class="badge">LLM 摘要 ✓</span>
-      <span class="badge">Data: 2026-04-22 12:18:00 UTC</span>
-      <span class="badge">Rendered: 2026-04-22 12:13:49 UTC</span>
+      <span class="badge">Data: 2026-04-22 12:33:55 UTC</span>
+      <span class="badge">Rendered: 2026-04-22 12:34:03 UTC</span>
       <span class="badge">Source: today_curated.json</span>
     </div>
   </header>
 
     <section class="section" style="--accent:#6366f1">
       <h2 class="sec-title">📄 重点论文
-        <span class="count">7/7</span>
+        <span class="count">5/5</span>
       </h2>
       <div class="cards">
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19241" target="_blank" rel="noopener">UniEP: Unified Expert-Parallel MoE MegaKernel for LLM Training</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          <span class="rel rel-9">LLM 9/10</span>
-          <span class="score">kw 11.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>面向 MoE 训练的统一 Expert Parallel 巨核</strong>：针对 Megatron-LM 中 EP 实现零散、kernel 难复用、数值不稳定的问题，把通信压缩与 comp/comm overlap 统一到单个 MegaKernel 里，并兼容多种 EP 配置。<strong>与 DeepGemm 巨型 MoE kernel 重叠分析方向高度一致</strong>，值得精读。</p></div>
-      <div class="card-tags"><span class="tag">expert parallel</span><span class="tag">Megatron-LM</span><span class="tag">kernel</span></div>
-    </article>
-    
-
     <article class="card">
       <div class="card-head">
         <a class="card-title" href="https://arxiv.org/abs/2604.18616" target="_blank" rel="noopener">ARGUS: Agentic GPU Optimization Guided by Data-Flow Invariants</a>
@@ -198,102 +180,84 @@ footer a { color: #94a3b8; }
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          <span class="rel rel-8">LLM 8/10</span>
-          <span class="score">kw 12.0</span>
+          
+          <span class="score">kw 13.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>把 LLM Coding Agent 升级成 GPU Kernel 优化器</strong>：用编译期的 data-flow invariants（tiling、shared memory staging、software pipelining、指令调度）做约束，替代传统 pass/fail 的稀疏反馈，在 <code>matmul/attention/MoE</code> 关键算子上拉近手写库水平。</p></div>
-      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU kernel</span><span class="tag">attention</span><span class="tag">MoE</span><span class="tag">compiler</span></div>
+      <div class="card-body"><p>用 data-flow 不变式做编译期规约，让 LLM coding agent 生成的 GPU kernel 在 GEMM/Attention/MoE 上逼近手工库；补齐了传统 agent 只有 pass/fail 反馈、无法诊断全局约束的短板。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU kernel</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.18655" target="_blank" rel="noopener">Edge deployment of multi-LoRA foundational LLM on Snapdragon</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.19241" target="_blank" rel="noopener">UniEP: Unified Expert-Parallel MoE MegaKernel for LLM Training</a>
         <div class="card-meta">
           <span class="src">arXiv cs.DC</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          <span class="rel rel-7">LLM 7/10</span>
+          
+          <span class="score">kw 11.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>把 MoE 训练的 EP 通信与计算融成一个统一 MegaKernel，解决 Megatron-LM 里 ad-hoc EP kernel 适配差、数值不稳定的问题，目标是生产级框架可直接吃下计算-通信 overlap。</p></div>
+      <div class="card-tags"><span class="tag">expert parallel</span><span class="tag">Megatron-LM</span><span class="tag">veRL</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.18655" target="_blank" rel="noopener">Unlocking the Edge deployment and ondevice acceleration of multi-LoRA enabled one-for-all foundational LLM</a>
+        <div class="card-meta">
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 04:00 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>端侧多 LoRA 共享推理图 + 多流解码</strong>：在三星 S24/S25（Snapdragon SM8650/SM8750）上把多个应用层 LoRA 挂载到同一 frozen 推理图做运行时切换，避免重编译与显存膨胀；另提出多流解码并行产出风格变体，INT4 量化下可跑。</p></div>
-      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">INT4</span><span class="tag">quantization</span><span class="tag">LLaMA</span></div>
+      <div class="card-body"><p>在 Galaxy S24/S25（骁龙 SM8650/8750）上落地 LLaMA 基座+多 LoRA 边缘推理：单冻结图里 LoRA 作为运行时输入实现无重编译任务切换，再叠 multi-stream decoding 并发出多风格输出，INT4 量化。</p></div>
+      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">INT4</span><span class="tag">quantization</span><span class="tag">decoding</span><span class="tag">LLaMA</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2505.16968" target="_blank" rel="noopener">CASS: NVIDIA→AMD GPU 代码 transpile 数据集与模型</a>
+        <a class="card-title" href="https://arxiv.org/abs/2505.16968" target="_blank" rel="noopener">CASS: Nvidia to AMD Transpilation with Data, Models, and Benchmark</a>
         <div class="card-meta">
           <span class="src">arXiv cs.AR</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          <span class="rel rel-7">LLM 7/10</span>
+          
           <span class="score">kw 4.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>CUDA→HIP、SASS→RDNA3 源码与汇编级翻译</strong>：60k 对已验证 host-device 代码对，训练专用小模型拿到 CUDA→HIP 88.2%、SASS→RDNA3 69.1%，大幅超过 GPT-5.1 / Claude-4.5 / Hipify。国产卡迁移与 MI300X 适配的基础设施向工作。</p></div>
-      <div class="card-tags"><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
+      <div class="card-body"><p>首个源码级（CUDA→HIP）+ 汇编级（SASS→RDNA3）GPU 跨架构转译数据集与模型，60k 配对样本，CUDA→HIP 88.2% / SASS→RDNA3 69.1%，直接面向 kernel 移植工程。</p></div>
+      <div class="card-tags"><span class="tag">serving</span><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19004" target="_blank" rel="noopener">Ocean: 基于估计的稀疏 SpGEMM 快速实现</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.19181" target="_blank" rel="noopener">YAIFS: Yet (not) Another Intelligent Fog Simulator: A Framework for Agent-Driven Computing Continuum Modeling &amp; Simulation</a>
         <div class="card-meta">
           <span class="src">arXiv cs.DC</span>
           <span class="dot">·</span>
           <span class="time">04-22 04:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
-          <span class="rel rel-5">LLM 5/10</span>
-          <span class="score">kw 4.0</span>
+          
+          <span class="score">kw 2.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>绕开 SpGEMM 的 symbolic pass</strong>：现有 GPU SpGEMM 两遍流程里 symbolic 占 ~28% 运行时，Ocean 用估计法替代精确计数，H100 上显著加速。与 MoE sparse gather、attention sparse mask kernel 的底层优化思路相通。</p></div>
-      <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2603.04445" target="_blank" rel="noopener">Dynamic Model Routing and Cascading for Efficient LLM Inference (Survey)</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.PF</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          <span class="rel rel-5">LLM 5/10</span>
-          <span class="score">kw 3.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>推理层多模型路由/级联系统综述</strong>：区别于 MoE 单模型内部路由，系统性梳理「请求→小模型先跑→必要时升级大模型」这类 serving 调度策略，覆盖路由器设计、成本/质量权衡、在线评估等。serving side 的工程参考。</p></div>
-      <div class="card-tags"><span class="tag">LLM inference</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.18909" target="_blank" rel="noopener">ChipLight: 面向 LLM 训练的 chiplet + 光互联跨层优化</a>
-        <div class="card-meta">
-          <span class="src">arXiv cs.AR</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:00 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          <span class="rel rel-6">LLM 6/10</span>
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>Chiplet 做 scale-up + 光互联做 scale-out</strong>：建模大规模训练集群，联合优化 chiplet 架构、训练并行策略（TP/PP/EP）、光互联拓扑，针对通信瓶颈做跨层折衷。NVLink/UALink/CXL 之外的另一条路径。</p></div>
-      <div class="card-tags"></div>
+      <div class="card-body"><p>分布式仿真器集成 MCP 作为标准化交互层：异构 agent 通过 MCP 读写状态、触发动作、协同控制，是把 Model Context Protocol 放到系统仿真 runtime 层的早期工程尝试。</p></div>
+      <div class="card-tags"><span class="tag">MCP</span><span class="tag">Model Context Protocol</span></div>
     </article>
     </div>
       
@@ -301,149 +265,113 @@ footer a { color: #94a3b8; }
     
     <section class="section" style="--accent:#10b981">
       <h2 class="sec-title">🚀 代码更新
-        <span class="count">8/8</span>
+        <span class="count">6/6</span>
       </h2>
       <div class="cards">
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">vLLM v0.19.1 发布（Gemma4 系列修复 + Transformers v5.5.3）</a>
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">v0.19.1</a>
         <div class="card-meta">
           <span class="src">vLLM</span>
           <span class="dot">·</span>
           <span class="time">04-21 00:46 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-8">LLM 8/10</span>
+          
           <span class="score">kw 2.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>v0.19.0 基础上的补丁版本</strong>：升级到 transformers v5.5.3；集中修 Gemma4 的流式 tool calls、bool/number 值被截断、LoRA 适配器加载、Eagle3 投机解码支持、quantized MoE 支持；修正 BOS 注入导致的 token 重复。生产部署 Gemma4 必升。</p></div>
-      <div class="card-tags"><span class="tag">transformer</span></div>
+      <div class="card-body"><p>vLLM 0.19.1 补丁发布：升级到 transformers v5，修 Gemma4 流式 tool call 的 JSON 截断/HTML 重复/bool/null 破坏等一串工具调用 corner case，并补 Gemma4 Eagle3 投机解码与量化 MoE 支持。</p></div>
+      <div class="card-tags"><span class="tag">transformer</span><span class="tag">Kimi</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">vLLM v0.20.0rc1</a>
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">v0.20.0rc1</a>
         <div class="card-meta">
           <span class="src">vLLM</span>
           <span class="dot">·</span>
           <span class="time">04-22 09:00 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-7">LLM 7/10</span>
+          
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>v0.20 预发布</strong>：正式版即将到来的 RC，版本号跃进通常意味着调度器 / 分离式 serving / 新模型支持等较大改动，生产环境可关注但不建议直接上。</p></div>
+      <div class="card-body"><p>vLLM 0.20.0 首个 RC，进入下一主版本周期；目前 tag 内容精简，主要是依赖回滚收尾，正式版内容待观察。</p></div>
       <div class="card-tags"></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439" target="_blank" rel="noopener">DeepGEMM 新提交 nv_dev_c491439</a>
+        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/1.1.9" target="_blank" rel="noopener">langgraph==1.1.9</a>
         <div class="card-meta">
-          <span class="src">DeepGEMM</span>
+          <span class="src">LangGraph</span>
           <span class="dot">·</span>
-          <span class="time">04-22 08:26 UTC</span>
+          <span class="time">04-21 13:43 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-9">LLM 9/10</span>
-          <span class="score">kw 0.0</span>
+          
+          <span class="score">kw 1.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>DeepSeek DeepGEMM nv_dev 分支新 tag</strong>：DeepGEMM 是 DeepSeek 的 FP8 GEMM 库，nv_dev 分支持续迭代 H100/H800 FP8 kernel 性能。<strong>与 DeepGemm MoE 巨型 kernel 工作直接相关，建议拉下来 diff 看改动</strong>。</p></div>
-      <div class="card-tags"></div>
+      <div class="card-body"><p>LangGraph 1.1.9：修复 plain resume 时 ReplayState 被错误传播到子图的问题——这是多 agent 图执行 runtime 的状态隔离 bug，关系到 subagent 正确恢复。</p></div>
+      <div class="card-tags"><span class="tag">LangGraph</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/nightly-v0.6.8-20260421" target="_blank" rel="noopener">FlashInfer Nightly v0.6.8-20260421</a>
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.14.4" target="_blank" rel="noopener">v0.14.4</a>
         <div class="card-meta">
-          <span class="src">FlashInfer</span>
+          <span class="src">OpenAI Agents</span>
           <span class="dot">·</span>
-          <span class="time">04-21 06:54 UTC</span>
+          <span class="time">04-21 21:37 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-7">LLM 7/10</span>
+          
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>FlashInfer 每日构建</strong>：面向 LLM serving 的 attention / MoE / 采样 kernel 库，vLLM、SGLang 的后端之一。nightly 用于跟踪最新 API 与 kernel 优化，生产请用 stable。</p></div>
+      <div class="card-body"><p>OpenAI Agents Python SDK 0.14.4：围绕 sandbox 执行生命周期做了多项 refactor，新增 BoxMount 挂载、共享 ephemeral mount 与 tar exclude，是 coding/computer-use agent 工具沙箱化的基础设施打磨。</p></div>
       <div class="card-tags"></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">PyTorch Inductor: combo kernel 打通 optimize_mem（#180790）</a>
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">trunk/0274ad69c3effaef66b5776db5f752b6cf7d8154: [Inductor] Forward optimize_mem to combo kernel inductor_meta (#180790)</a>
         <div class="card-meta">
           <span class="src">PyTorch</span>
           <span class="dot">·</span>
           <span class="time">04-22 01:41 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-6">LLM 6/10</span>
+          
           <span class="score">kw 7.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>Inductor combo kernel 元信息修复</strong>：把 <code>optimize_mem</code> 正确透传到 combo kernel 的 <code>inductor_meta</code>（之前丢失后被 <code>cached_autotune</code> 默认设 True），让 combo 路径和独立 kernel 行为一致。推理/训练编译栈常见 corner case。</p></div>
+      <div class="card-body"><p>PyTorch Inductor：把 optimize_mem 正确透传到 combo kernel 的 inductor_meta，之前被丢弃只能回退默认 True，修正后 combo kernel 行为与独立 kernel codegen 一致，影响融合推理/训练 kernel 的显存峰值。</p></div>
       <div class="card-tags"><span class="tag">MLA</span><span class="tag">triton</span><span class="tag">kernel</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F4c9b9c34341249955f056a6df3296b0cc044393f" target="_blank" rel="noopener">PyTorch: vLLM pinned hash 更新（#181048）</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 05:47 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          <span class="rel rel-6">LLM 6/10</span>
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>PyTorch CI 里 vLLM 固定 hash 的 nightly 自动刷新</strong>：说明 PyTorch 主干开始把 vLLM 作为必测后端持续 CI，两边 API 耦合度升级，对 vLLM 用户意味着 torch 主线变化能更快被验证。</p></div>
-      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">PyTorch</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F50294ed45005ceb3b8669c68b408236e3f06d6b1" target="_blank" rel="noopener">PyTorch MPS: BatchNorm3d 展平到 4D 提速 2.4x</a>
-        <div class="card-meta">
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 03:08 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          <span class="rel rel-5">LLM 5/10</span>
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>Apple Silicon 上 BN3d 性能修复</strong>：MPSGraph 对 rank-5 tensor 的 normalization 明显慢于 rank-4，把 <code>[N,C,D,H,W]</code> reshape 成 <code>[N,C,D*H,W]</code> 后复用 4D 路径，M4 Pro 上前向+反向从 8.7ms → 3.5ms。</p></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4" target="_blank" rel="noopener">LLVM 22.1.4 发布</a>
+        <a class="card-title" href="https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4" target="_blank" rel="noopener">LLVM 22.1.4</a>
         <div class="card-meta">
           <span class="src">LLVM/MLIR</span>
           <span class="dot">·</span>
           <span class="time">04-21 13:55 UTC</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
-          <span class="rel rel-5">LLM 5/10</span>
+          
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>LLVM/MLIR 22.1.4 维护版</strong>：补丁级别更新，是 Triton、CUDA Clang、MLIR 下游项目（Triton / IREE / XLA）的底座。涉及 MLIR 方向的同学可观察是否有 dialect / pass 相关回归。</p></div>
+      <div class="card-body"><p>LLVM 22.1.4 点版本发布，全平台二进制齐；对 Triton/MLIR/CUDA 下游工具链是一次常规 rebase 点。</p></div>
       <div class="card-tags"></div>
     </article>
     </div>
@@ -452,122 +380,121 @@ footer a { color: #94a3b8; }
     
     <section class="section" style="--accent:#f59e0b">
       <h2 class="sec-title">📝 技术博客
-        <span class="count">0/0</span>
+        <span class="count">1/1</span>
       </h2>
-      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://research.google/blog/reasoningbank-enabling-agents-to-learn-from-experience/" target="_blank" rel="noopener">ReasoningBank: Enabling agents to learn from experience</a>
+        <div class="card-meta">
+          <span class="src">Google Research</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 16:42 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">research.google</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Google Research 提出 ReasoningBank：把 agent 过往任务的推理轨迹抽成可复用策略条目并按需检索，是 agent 长时记忆系统（memory store）在 runtime 层的工程化方案。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
       
     </section>
     
     <section class="section" style="--accent:#ec4899">
       <h2 class="sec-title">💬 社区热议
-        <span class="count">6/6</span>
+        <span class="count">5/5</span>
       </h2>
       <div class="cards">
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss5j2x/moonshot_opensourced_flashkda_cutlass_kernels_for/" target="_blank" rel="noopener">Moonshot 开源 FlashKDA：Kimi Delta Attention 的 CUTLASS 实现，H20 上 2.22x 超 Triton</a>
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss5j2x/moonshot_opensourced_flashkda_cutlass_kernels_for/" target="_blank" rel="noopener">Moonshot open-sourced FlashKDA, CUTLASS kernels for Kimi Delta Attention, up to 2.22x over the Triton baseline on H20</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
           <span class="time">04-22 00:15 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          <span class="rel rel-10">LLM 10/10</span>
+          
           <span class="score">kw 13.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>月之暗面 K2.6 配套放出 FlashKDA</strong>：用 CUTLASS C++ 实现 Kimi Linear 论文里的 Kimi Delta Attention 前向 kernel，作为 flash-linear-attention 的后端（FLA PR #852）。H20 基准 <code>T=8192 / H=96 / D=128</code> 下相对 FLA Triton 路径最高 2.22x。<strong>线性注意力工程落地的重要节点</strong>。</p></div>
-      <div class="card-tags"><span class="tag">CUTLASS</span><span class="tag">triton</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">H100</span><span class="tag">Kimi</span></div>
+      <div class="card-body"><p>Moonshot 开源 FlashKDA：Kimi Delta Attention 前向的 CUTLASS C++ kernel，作为 FLA 后端，H20 上比 FLA 现有 Triton 路径最高快 2.22×，线性注意力首次有了可用的生产级 CUTLASS 实现。</p></div>
+      <div class="card-tags"><span class="tag">CUTLASS</span><span class="tag">triton</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/" target="_blank" rel="noopener">INT3 压缩 + 2-bit KV Cache + Metal 融合 kernel（Mac M 系列）</a>
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/" target="_blank" rel="noopener">INT3 compression+fused metal kernels [R]</a>
         <div class="card-meta">
           <span class="src">r/MachineLearning</span>
           <span class="dot">·</span>
           <span class="time">04-22 06:54 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          <span class="rel rel-8">LLM 8/10</span>
+          
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>端侧极限量化工具链 spiral</strong>：INT3 权重量化（+0.14 nats）+ INT2 KV cache（长上下文场景）+ 自研 Metal 融合 kernel，Qwen 7B 在 M 系 Mac 上预览可用；作者正移植 Triton 后端到 GPU。KV int2 + 权重 int3 的组合是近期量化推理前沿。</p></div>
+      <div class="card-body"><p>个人项目 Spiral：Qwen 7B INT3 权重压缩（+0.14 nats）+ INT2 长程 KV cache，配套 Metal 融合 kernel 跑 Apple M 系列，在端侧把极低比特推理的 kernel 基建补齐，后续会加 Triton GPU 支持。</p></div>
       <div class="card-tags"><span class="tag">KV cache</span><span class="tag">triton</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">Qwen</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/" target="_blank" rel="noopener">Chaperone-Thinking-LQ-1.0：DeepSeek-R1-32B 的 4-bit GPTQ + QLoRA</a>
-        <div class="card-meta">
-          <span class="src">r/MachineLearning</span>
-          <span class="dot">·</span>
-          <span class="time">04-21 20:07 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          <span class="rel rel-7">LLM 7/10</span>
-          <span class="score">kw 7.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>R1-Distill-Qwen-32B 60GB → 20GB</strong>：用 GPTQ 4-bit 量化 + 校准做量化感知训练（QAT），再 QLoRA 在医学语料上精调；MedQA 84%，MATH-500 91.9（原版 97.3）。GPTQ + QLoRA 组合在 reasoning 模型上的完整落地案例。</p></div>
-      <div class="card-tags"><span class="tag">GPTQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss9pku/running_qwen3635ba3b_locally_for_coding_agent_my/" target="_blank" rel="noopener">Qwen3.6-35B-A3B 本地编程 Agent 部署（MacBook M2 Max 64GB）</a>
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss9pku/running_qwen3635ba3b_locally_for_coding_agent_my/" target="_blank" rel="noopener">Running Qwen3.6-35B-A3B Locally for Coding Agent: My Setup &amp; Working Config</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
           <span class="time">04-22 03:20 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          <span class="rel rel-6">LLM 6/10</span>
+          
+          <span class="score">kw 8.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>M2 Max 64GB 上用 llama.cpp 本地跑 Qwen3.6-35B-A3B 做 coding agent 的完整配方：131k context、32k max tokens、OpenAI 兼容 API 接入 pi agent——典型的 coding agent 本地 runtime 接线参考。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">quantization</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span><span class="tag">coding agent</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/" target="_blank" rel="noopener">We open-sourced Chaperone-Thinking-LQ-1.0 — a 4-bit GPTQ + QLoRA fine-tuned DeepSeek-R1-32B that hits 84% on MedQA in ~20GB[N]</a>
+        <div class="card-meta">
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-21 20:07 UTC</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
           <span class="score">kw 7.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>llama.cpp 跑 Qwen3.6-35B-A3B MoE</strong>：配置细节完整（llama-server OpenAI 兼容 API、128k 上下文、Unsloth 量化版本），在统一内存 64GB 的 M2 Max 上可用。MoE 小激活参数（A3B = 激活 3B）在端侧推理的代表场景。</p></div>
-      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">quantization</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+      <div class="card-body"><p>DeepSeek-R1-32B 走 4bit GPTQ + 量化感知校准 + QLoRA 医疗域微调，60GB→20GB，MedQA 84%。工程上是把 QAT/GPTQ/QLoRA 三件套串通做推理侧落地的完整 pipeline。</p></div>
+      <div class="card-tags"><span class="tag">GPTQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssb61r/personal_eval_followup_gemma4_26b_moe_q8_vs/" target="_blank" rel="noopener">量化档位对比：Gemma4 26B MoE Q4/Q8 vs Qwen3.5 27B Dense vs Gemma4 31B Dense</a>
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssilc3/qwen3635b_becomes_competitive_with_cloud_models/" target="_blank" rel="noopener">Qwen3.6-35B becomes competitive with cloud models when paired with the right agent</a>
         <div class="card-meta">
           <span class="src">r/LocalLLaMA</span>
           <span class="dot">·</span>
-          <span class="time">04-22 04:30 UTC</span>
+          <span class="time">04-22 11:22 UTC</span>
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
-          <span class="rel rel-6">LLM 6/10</span>
-          <span class="score">kw 3.0</span>
+          
+          <span class="score">kw 2.0</span>
         </div>
       </div>
-      <div class="card-body"><p><strong>同场景 37 个 baseline 失败用例的修复率</strong>：Q4 Qwen3.6-35B 修复 86.5%、Q4 Gemma4-26B 75.7%、Q8 同款反而掉到 45.9%（作者怀疑 Q8_K_XL 实现问题）；Qwen3.5-27B Dense Q4 与 Gemma4-31B Dense Q4 均 100%。量化 tax 不是单调的。</p></div>
-      <div class="card-tags"><span class="tag">quantization</span><span class="tag">Qwen</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssgwcz/consider_running_a_bigger_quant_if_possible/" target="_blank" rel="noopener">大量化档优先：同 VRAM 下跑更大 quant 的实测体验</a>
-        <div class="card-meta">
-          <span class="src">r/LocalLLaMA</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 09:54 UTC</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          <span class="rel rel-5">LLM 5/10</span>
-          <span class="score">kw 1.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p><strong>量化档选型经验贴</strong>：Qwen 3.6 IQ4_XS 在 128k 上下文下频繁 loop / 格式错乱；换 unsloth IQ4_NL_XL 后 agentic coding 大幅改善。结论：别死盯 tok/s，要看端到端任务完成时间，大 quant 一次过 &gt; 小 quant 反复重试。</p></div>
-      <div class="card-tags"><span class="tag">Qwen</span></div>
+      <div class="card-body"><p>同一 Qwen3.6-35B 换 little-coder scaffold 直接把 Polyglot 从 19% 拉到 78.7%；说明本地 coding 模型差距很大程度在 agent harness 层，而不是模型本身，对 coding agent 系统设计是有力佐证。</p></div>
+      <div class="card-tags"><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
     </article>
     </div>
       

@@ -25,7 +25,12 @@
       "Ascend", "昇腾", "寒武纪", "摩尔线程", "燧原",
       "distributed training", "3D parallelism", "ZeRO",
       "Qwen", "DeepSeek", "LLaMA", "Mixtral", "GLM", "Kimi",
-      "MLIR", "PyTorch", "CUDA"
+      "MLIR", "PyTorch", "CUDA",
+      "agent framework", "agent runtime", "agent system", "LangGraph", "AutoGen", "CrewAI",
+      "MCP", "Model Context Protocol", "A2A", "tool use", "function calling",
+      "structured output", "constrained decoding", "XGrammar", "Outlines", "lm-format-enforcer",
+      "agent memory", "context compaction", "subagent", "tool sandbox",
+      "coding agent", "computer use", "browser-use", "OpenDevin", "Claude Code", "Cursor"
     ]
   },
 
@@ -48,7 +53,13 @@
       {"name": "SGLang",        "url": "https://github.com/sgl-project/sglang/releases.atom"},
       {"name": "PyTorch",       "url": "https://github.com/pytorch/pytorch/releases.atom"},
       {"name": "Triton",        "url": "https://github.com/triton-lang/triton/releases.atom"},
-      {"name": "LLVM/MLIR",     "url": "https://github.com/llvm/llvm-project/releases.atom"}
+      {"name": "LLVM/MLIR",     "url": "https://github.com/llvm/llvm-project/releases.atom"},
+      {"name": "LangGraph",     "url": "https://github.com/langchain-ai/langgraph/releases.atom"},
+      {"name": "AutoGen",       "url": "https://github.com/microsoft/autogen/releases.atom"},
+      {"name": "OpenAI Agents", "url": "https://github.com/openai/openai-agents-python/releases.atom"},
+      {"name": "MCP Python",    "url": "https://github.com/modelcontextprotocol/python-sdk/releases.atom"},
+      {"name": "XGrammar",      "url": "https://github.com/mlc-ai/xgrammar/releases.atom"},
+      {"name": "Outlines",      "url": "https://github.com/dottxt-ai/outlines/releases.atom"}
     ],
 
     "blogs": [
@@ -56,11 +67,14 @@
       {"name": "PyTorch Blog",          "url": "https://pytorch.org/feed.xml"},
       {"name": "Meta Engineering",      "url": "https://engineering.fb.com/feed/"},
       {"name": "Google Research",       "url": "https://research.google/blog/rss/"},
-      {"name": "HuggingFace Blog",      "url": "https://huggingface.co/blog/feed.xml"}
+      {"name": "HuggingFace Blog",      "url": "https://huggingface.co/blog/feed.xml"},
+      {"name": "LangChain Blog",        "url": "https://blog.langchain.com/rss/"},
+      {"name": "Anthropic News",        "url": "https://www.anthropic.com/news/rss.xml"}
     ],
 
     "community": [
-      {"name": "Hacker News",        "url": "https://hnrss.org/newest?q=LLM+OR+vLLM+OR+SGLang+OR+inference+OR+FlashAttention+OR+KV+cache+OR+quantization+OR+MoE+OR+CUDA+OR+Megatron&count=30"},
+      {"name": "HN LLM infra",       "url": "https://hnrss.org/newest?q=LLM+OR+vLLM+OR+SGLang+OR+inference+OR+FlashAttention+OR+KV+cache+OR+quantization+OR+MoE+OR+CUDA+OR+Megatron&count=30"},
+      {"name": "HN Agent infra",     "url": "https://hnrss.org/newest?q=%22MCP%22+OR+%22Model+Context+Protocol%22+OR+LangGraph+OR+AutoGen+OR+%22agent+framework%22+OR+%22tool+use%22+OR+%22function+calling%22+OR+%22Claude+Code%22&count=20"},
       {"name": "r/LocalLLaMA",       "url": "https://www.reddit.com/r/LocalLLaMA/.rss"},
       {"name": "r/MachineLearning",  "url": "https://www.reddit.com/r/MachineLearning/.rss"}
     ]

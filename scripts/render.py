@@ -481,7 +481,7 @@ footer {{ margin-top: 48px; padding-top: 20px;
 <div class="wrap">
   <header class="hero">
     <h1>🧠 AI Infra 每日动态</h1>
-    <p>每日 09:00 自动更新 · 共 {len(files)} 期 · powered by WorkBuddy</p>
+    <p>每日 22:00 自动更新 · 共 {len(files)} 期 · powered by WorkBuddy</p>
   </header>
 
   <section class="latest-card">
