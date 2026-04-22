@@ -1,20 +1,31 @@
 {
   "keywords": {
     "strong": [
-      "MoE", "expert parallel", "tensor parallel", "pipeline parallel",
-      "FlashAttention", "flash-attn", "KV cache", "speculative decoding",
-      "PIM", "processing-in-memory", "MLIR",
-      "scale-up", "scale up", "NVLink", "NVSwitch", "interconnect",
-      "collective comm", "all-to-all", "alltoall", "overlap",
-      "ray tracing", "NURBS", "ScaleUp",
-      "CUTLASS", "triton", "CUDA kernel", "GPU kernel",
-      "DeepGEMM", "DeepEP"
+      "LLM inference", "LLM serving", "inference engine",
+      "vLLM", "SGLang", "TensorRT-LLM", "LMDeploy", "llama.cpp", "MLC-LLM", "Mooncake",
+      "PagedAttention", "continuous batching", "prefix caching", "radix attention",
+      "speculative decoding", "chunked prefill", "prefill decode",
+      "FlashAttention", "flash-attn", "FlashInfer", "MLA", "multi-head latent attention",
+      "KV cache", "KV compression", "KV quantization",
+      "FP8", "FP4", "INT4", "W4A16", "W8A8", "GPTQ", "AWQ", "SmoothQuant",
+      "MoE inference", "expert parallel", "token dropping",
+      "long context", "ring attention", "context parallel",
+      "tensor parallel", "pipeline parallel", "sequence parallel",
+      "Megatron-LM", "Megatron-Core", "DeepSpeed", "FSDP", "NeMo",
+      "veRL", "OpenRLHF", "RLHF infra", "GRPO",
+      "activation checkpointing", "selective recompute",
+      "CUTLASS", "triton", "CUDA kernel", "GPU kernel", "ThunderKittens",
+      "DeepGEMM", "DeepEP",
+      "NVLink", "NVSwitch", "UALink", "RDMA", "InfiniBand", "HBM3", "HBM4"
     ],
     "medium": [
-      "LLM inference", "vLLM", "SGLang", "TensorRT", "Megatron", "DeepSpeed",
-      "quantization", "FP8", "FP4", "attention", "transformer",
-      "distributed training", "GPU", "H100", "H200", "B200", "GB200",
-      "TPU", "compiler", "scheduling", "serving", "kernel"
+      "transformer", "attention", "quantization", "decoding",
+      "batching", "scheduler", "serving", "kernel", "compiler",
+      "GPU", "H100", "H200", "B200", "GB200", "MI300X", "TPU", "Gaudi",
+      "Ascend", "昇腾", "寒武纪", "摩尔线程", "燧原",
+      "distributed training", "3D parallelism", "ZeRO",
+      "Qwen", "DeepSeek", "LLaMA", "Mixtral", "GLM", "Kimi",
+      "MLIR", "PyTorch", "CUDA"
     ]
   },
 
@@ -49,7 +60,7 @@
     ],
 
     "community": [
-      {"name": "Hacker News",        "url": "https://hnrss.org/newest?q=LLM+OR+GPU+OR+inference+OR+CUDA+OR+MoE&count=30"},
+      {"name": "Hacker News",        "url": "https://hnrss.org/newest?q=LLM+OR+vLLM+OR+SGLang+OR+inference+OR+FlashAttention+OR+KV+cache+OR+quantization+OR+MoE+OR+CUDA+OR+Megatron&count=30"},
       {"name": "r/LocalLLaMA",       "url": "https://www.reddit.com/r/LocalLLaMA/.rss"},
       {"name": "r/MachineLearning",  "url": "https://www.reddit.com/r/MachineLearning/.rss"}
     ]
