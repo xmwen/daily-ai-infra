@@ -176,8 +176,8 @@ def main():
         result["sections"][section] = items
         print(f"   -> {len(items)} items", flush=True)
 
-    # 今日 raw 快照
-    today = datetime.now().strftime("%Y-%m-%d")
+    # 今日 raw 快照（按北京时间日期归档）
+    today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
     raw_path = CACHE / f"raw_{today}.json"
     with open(raw_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)

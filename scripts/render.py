@@ -23,6 +23,9 @@ ARCHIVE.mkdir(parents=True, exist_ok=True)
 # 回退使用 raw。防止历史遗留的 curated 文件永远覆盖最新 fetch 结果。
 CURATED_STALE_HOURS = 2
 
+# 看板统一使用北京时间（东八区）展示
+CST = timezone(timedelta(hours=8))
+
 SECTION_META = {
     "papers":    {"title": "📄 重点论文",     "icon": "📄", "color": "#6366f1"},
     "code":      {"title": "🚀 代码更新",     "icon": "🚀", "color": "#10b981"},
@@ -117,7 +120,9 @@ def render_card(item: dict, has_llm: bool) -> str:
     if pub:
         try:
             dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
-            pub_display = dt.strftime("%m-%d %H:%M UTC")
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            pub_display = dt.astimezone(CST).strftime("%m-%d %H:%M CST")
         except Exception:
             pub_display = pub[:16]
     else:
@@ -345,9 +350,19 @@ footer a { color: #94a3b8; }
 
 
 def render(data: dict, out_path: Path):
-    today = datetime.now().strftime("%Y-%m-%d %A")
-    rendered_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
-    gen_at = data.get("generated_at", "")
+    now_cst = datetime.now(CST)
+    today = now_cst.strftime("%Y-%m-%d %A")
+    rendered_at = now_cst.strftime("%Y-%m-%d %H:%M:%S")
+    gen_at_raw = data.get("generated_at", "")
+    # 数据生成时间：尝试转换为 CST 展示
+    gen_at_display = gen_at_raw[:19].replace("T", " ")
+    try:
+        _g = datetime.fromisoformat(gen_at_raw.replace("Z", "+00:00"))
+        if _g.tzinfo is None:
+            _g = _g.replace(tzinfo=timezone.utc)
+        gen_at_display = _g.astimezone(CST).strftime("%Y-%m-%d %H:%M:%S")
+    except Exception:
+        pass
     hours  = data.get("lookback_hours", 36)
     has_llm = data.get("_has_llm", False)
     llm_badge = "LLM 摘要 ✓" if has_llm else "关键词打分"
@@ -360,8 +375,8 @@ def render(data: dict, out_path: Path):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - {today}</title>
-<!-- rendered_at: {rendered_at} UTC -->
-<!-- source: {esc(data.get('_source_file',''))} data_generated_at: {gen_at} -->
+<!-- rendered_at: {rendered_at} CST -->
+<!-- source: {esc(data.get('_source_file',''))} data_generated_at: {gen_at_raw} -->
 <style>{CSS}</style>
 </head>
 <body>
@@ -371,8 +386,8 @@ def render(data: dict, out_path: Path):
     <p>{today} · 回溯 {hours}h · 共 {total} 条</p>
     <div class="badges">
       <span class="badge">{llm_badge}</span>
-      <span class="badge">Data: {gen_at[:19].replace('T',' ')} UTC</span>
-      <span class="badge">Rendered: {rendered_at} UTC</span>
+      <span class="badge">Data: {gen_at_display} CST</span>
+      <span class="badge">Rendered: {rendered_at} CST</span>
       <span class="badge">Source: {esc(data.get('_source_file',''))}</span>
     </div>
   </header>
@@ -512,7 +527,7 @@ footer {{ margin-top: 48px; padding-top: 20px;
 
 def main():
     data = load_data()
-    now = datetime.now()
+    now = datetime.now(CST)
     today = now.strftime("%Y-%m-%d")
     year = now.strftime("%Y")
     month = now.strftime("%m")  # 零填充两位月份

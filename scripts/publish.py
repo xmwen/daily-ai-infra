@@ -13,7 +13,7 @@
 from __future__ import annotations
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # 在 Windows GBK 控制台下也能正常打印 emoji / 中文
@@ -50,7 +50,7 @@ def main():
     if not (ROOT / ".git").exists():
         raise SystemExit("❌ 当前目录不是 git 仓库，请先运行 bootstrap_repo.ps1")
 
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
 
     # 1) 添加所有待入库改动
     run(["git", "add", "-A"])
