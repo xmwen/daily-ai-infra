@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - 2026-04-22 Wednesday</title>
-<!-- rendered_at: 2026-04-22 20:56:18 CST -->
-<!-- source: today_curated.json data_generated_at: 2026-04-22T12:50:14.869536+00:00 -->
+<!-- rendered_at: 2026-04-22 21:09:09 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-22T13:08:51.825012+00:00 -->
 <style>
 * { box-sizing: border-box; }
 body {
@@ -167,22 +167,22 @@ footer a { color: #94a3b8; }
     <p>2026-04-22 Wednesday · 回溯 36h · 共 20 条</p>
     <div class="badges">
       <span class="badge">LLM 摘要 ✓</span>
-      <span class="badge">Data: 2026-04-22 20:50:14 CST</span>
-      <span class="badge">Rendered: 2026-04-22 20:56:18 CST</span>
+      <span class="badge">Data: 2026-04-22 21:08:51 CST</span>
+      <span class="badge">Rendered: 2026-04-22 21:09:09 CST</span>
       <span class="badge">Source: today_curated.json</span>
     </div>
   </header>
 
     <section class="section" style="--accent:#6366f1">
       <h2 class="sec-title">📄 重点论文
-        <span class="count">8/8</span>
+        <span class="count">6/6</span>
       </h2>
       <div class="cards">
     <article class="card">
       <div class="card-head">
         <a class="card-title" href="https://arxiv.org/abs/2604.18616" target="_blank" rel="noopener">ARGUS: Agentic GPU Optimization Guided by Data-Flow Invariants</a>
         <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
           <span class="src">arXiv cs.DC</span>
           <span class="dot">·</span>
           <span class="time">04-22 12:00 CST</span>
@@ -192,7 +192,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 13.0</span>
         </div>
       </div>
-      <div class="card-body"><p>用 data-flow 不变式做编译期规约，让 LLM coding agent 生成的 GPU kernel 在 GEMM/Attention/MoE 上逼近手工库；补齐了传统 agent 只有 pass/fail 反馈、无法诊断全局约束的短板。</p></div>
+      <div class="card-body"><p>Argus：用 data-flow invariant 作为编译期规约约束 LLM agent 生成 GPU kernel，针对 matmul/attention/MoE 做 tile+shared memory+软流水协同优化，补齐 pass/fail 反馈不足的短板。</p></div>
       <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU kernel</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span></div>
     </article>
     
@@ -211,7 +211,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 11.0</span>
         </div>
       </div>
-      <div class="card-body"><p>把 MoE 训练的 EP 通信与计算融成一个统一 MegaKernel，解决 Megatron-LM 里 ad-hoc EP kernel 适配差、数值不稳定的问题，目标是生产级框架可直接吃下计算-通信 overlap。</p></div>
+      <div class="card-body"><p>UniEP：面向 Megatron-LM 的 MoE MegaKernel，把 expert parallel 的通信压缩与计算-通信重叠收进统一 kernel，解决现有 EP 方案适配差、易牺牲数值稳定的老问题。</p></div>
       <div class="card-tags"><span class="tag">expert parallel</span><span class="tag">Megatron-LM</span><span class="tag">veRL</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
     </article>
     
@@ -230,7 +230,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p>在 Galaxy S24/S25（骁龙 SM8650/8750）上落地 LLaMA 基座+多 LoRA 边缘推理：单冻结图里 LoRA 作为运行时输入实现无重编译任务切换，再叠 multi-stream decoding 并发出多风格输出，INT4 量化。</p></div>
+      <div class="card-body"><p>高通 SM8650/8750 上 LLaMA 端侧推理方案：多 LoRA 作为运行时输入共享冻结计算图，任务切换无需重编译；配合多流解码并发生成风格变体，工程化很扎实。</p></div>
       <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">INT4</span><span class="tag">quantization</span><span class="tag">decoding</span><span class="tag">LLaMA</span></div>
     </article>
     
@@ -249,46 +249,8 @@ footer a { color: #94a3b8; }
           <span class="score">kw 4.0</span>
         </div>
       </div>
-      <div class="card-body"><p>首个源码级（CUDA→HIP）+ 汇编级（SASS→RDNA3）GPU 跨架构转译数据集与模型，60k 配对样本，CUDA→HIP 88.2% / SASS→RDNA3 69.1%，直接面向 kernel 移植工程。</p></div>
+      <div class="card-body"><p>CASS：首个 CUDA↔HIP、SASS↔RDNA3 源码/汇编双层翻译的数据集与模型套件，6 万对已验证代码，CUDA→HIP 准确率 88.2%，显著优于 GPT-5.1/Claude-4.5/Hipify，对国产 GPU 生态迁移有参考意义。</p></div>
       <div class="card-tags"><span class="tag">serving</span><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19181" target="_blank" rel="noopener">YAIFS: Yet (not) Another Intelligent Fog Simulator: A Framework for Agent-Driven Computing Continuum Modeling &amp; Simulation</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 2.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>分布式仿真器集成 MCP 作为标准化交互层：异构 agent 通过 MCP 读写状态、触发动作、协同控制，是把 Model Context Protocol 放到系统仿真 runtime 层的早期工程尝试。</p></div>
-      <div class="card-tags"><span class="tag">MCP</span><span class="tag">Model Context Protocol</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.19337" target="_blank" rel="noopener">POLAR-PIC: A Holistic Framework for Matrixized PIC with Co-Designed Compute, Layout, and Communication</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 4.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>PIM 架构的矩阵化粒子模拟全栈 co-design：计算单元、数据布局、跨片通信一起优化。对 PIM 编程模型和存算一体软件栈有参考价值。</p></div>
-      <div class="card-tags"><span class="tag">veRL</span><span class="tag">GPU</span></div>
     </article>
     
 
@@ -306,7 +268,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 4.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Ocean：基于估算的 GPU 稀疏矩阵乘（SpGEMM），提前估计输出非零元分布避免两遍扫描，kernel 吞吐明显优于 cuSPARSE/NSparse。</p></div>
+      <div class="card-body"><p>Ocean：GPU SpGEMM 用估算代替两遍 symbolic pass（原本占 28% 耗时），直接基于估值分配输出空间，H100 实测明显提速；稀疏算子走向「估算优先」的新范式。</p></div>
       <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span><span class="tag">TPU</span></div>
     </article>
     
@@ -325,7 +287,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p>ChipLight：面向 LLM 训练的 chiplet + 光互连跨层协同设计框架，把片上光通信链路纳入架构搜索空间，降低大模型训练通信开销。</p></div>
+      <div class="card-body"><p>ChipLight：chiplet + 光互联协同设计，把 scale-up die 间带宽与 scale-out 长距链路统一建模，跨层优化 LLM 训练集群的并行策略与互联拓扑，思路和 ScaleUp 统一内存同源。</p></div>
       <div class="card-tags"></div>
     </article>
     </div>
@@ -339,39 +301,39 @@ footer a { color: #94a3b8; }
       <div class="cards">
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.19.1" target="_blank" rel="noopener">v0.19.1</a>
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">trunk/0274ad69c3effaef66b5776db5f752b6cf7d8154: [Inductor] Forward optimize_mem to combo kernel inductor_meta (#180790)</a>
         <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">vLLM</span>
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
           <span class="dot">·</span>
-          <span class="time">04-21 08:46 CST</span>
+          <span class="time">04-22 09:41 CST</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
           
-          <span class="score">kw 2.0</span>
+          <span class="score">kw 7.0</span>
         </div>
       </div>
-      <div class="card-body"><p>vLLM 0.19.1 补丁发布：升级到 transformers v5，修 Gemma4 流式 tool call 的 JSON 截断/HTML 重复/bool/null 破坏等一串工具调用 corner case，并补 Gemma4 Eagle3 投机解码与量化 MoE 支持。</p></div>
-      <div class="card-tags"><span class="tag">transformer</span><span class="tag">Kimi</span></div>
+      <div class="card-body"><p>PyTorch Inductor 修复 combo kernel 的 optimize_mem 传递链：之前该标志被 cached_autotune 默认改写为 True，现已显式透传 is_inference/is_backward，保持与独立 kernel 行为一致。</p></div>
+      <div class="card-tags"><span class="tag">MLA</span><span class="tag">triton</span><span class="tag">kernel</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">v0.20.0rc1</a>
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F89ed986a77847a4cec520920f6d27baa72102995" target="_blank" rel="noopener">trunk/89ed986a77847a4cec520920f6d27baa72102995</a>
         <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">vLLM</span>
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
           <span class="dot">·</span>
-          <span class="time">04-22 17:00 CST</span>
+          <span class="time">04-22 19:00 CST</span>
           <span class="dot">·</span>
           <span class="domain">github.com</span>
           
-          <span class="score">kw 0.0</span>
+          <span class="score">kw 4.0</span>
         </div>
       </div>
-      <div class="card-body"><p>vLLM 0.20.0 首个 RC，进入下一主版本周期；目前 tag 内容精简，主要是依赖回滚收尾，正式版内容待观察。</p></div>
-      <div class="card-tags"></div>
+      <div class="card-body"><p>PyTorch Inductor：combo kernel 的 jit_line 改用统一的 triton_meta_common()，消除 codegen 路径分叉，后续 Inductor 元信息调整只需改一处。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">kernel</span></div>
     </article>
     
 
@@ -389,8 +351,27 @@ footer a { color: #94a3b8; }
           <span class="score">kw 1.0</span>
         </div>
       </div>
-      <div class="card-body"><p>LangGraph 1.1.9：修复 plain resume 时 ReplayState 被错误传播到子图的问题——这是多 agent 图执行 runtime 的状态隔离 bug，关系到 subagent 正确恢复。</p></div>
+      <div class="card-body"><p>LangGraph 1.1.9：修复普通 resume 场景下 ReplayState 错误传递给子图的 bug，回退了一处不必要的 stream handler 改动；影响状态机回放正确性，生产用户建议升级。</p></div>
       <div class="card-tags"><span class="tag">LangGraph</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0rc1" target="_blank" rel="noopener">v0.20.0rc1</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 17:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.20.0rc1：本轮 RC 主要是 revert 「把 pyav/soundfile 挪到通用依赖」 的改动，说明新版对多模态栈的依赖边界还在调整，升级前先看清依赖面。</p></div>
+      <div class="card-tags"></div>
     </article>
     
 
@@ -408,27 +389,8 @@ footer a { color: #94a3b8; }
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p>OpenAI Agents Python SDK 0.14.4：围绕 sandbox 执行生命周期做了多项 refactor，新增 BoxMount 挂载、共享 ephemeral mount 与 tar exclude，是 coding/computer-use agent 工具沙箱化的基础设施打磨。</p></div>
+      <div class="card-body"><p>OpenAI Agents SDK 0.14.4：沙箱子系统重构——BoxMount、ephemeral mount 生命周期共享、tar exclude 复用、session helper 抽离，computer-use agent 运行时更接近生产级。</p></div>
       <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154" target="_blank" rel="noopener">trunk/0274ad69c3effaef66b5776db5f752b6cf7d8154: [Inductor] Forward optimize_mem to combo kernel inductor_meta (#180790)</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 09:41 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 7.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>PyTorch Inductor：把 optimize_mem 正确透传到 combo kernel 的 inductor_meta，之前被丢弃只能回退默认 True，修正后 combo kernel 行为与独立 kernel codegen 一致，影响融合推理/训练 kernel 的显存峰值。</p></div>
-      <div class="card-tags"><span class="tag">MLA</span><span class="tag">triton</span><span class="tag">kernel</span></div>
     </article>
     
 
@@ -446,7 +408,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p>LLVM 22.1.4 点版本发布，全平台二进制齐；对 Triton/MLIR/CUDA 下游工具链是一次常规 rebase 点。</p></div>
+      <div class="card-body"><p>LLVM 22.1.4 发布：MLIR/编译器栈上游稳定版推进，Triton/Inductor/vLLM 等生态升级的上游依赖基线跟进点。</p></div>
       <div class="card-tags"></div>
     </article>
     </div>
@@ -472,7 +434,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 0.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Google Research 提出 ReasoningBank：把 agent 过往任务的推理轨迹抽成可复用策略条目并按需检索，是 agent 长时记忆系统（memory store）在 runtime 层的工程化方案。</p></div>
+      <div class="card-body"><p>Google ReasoningBank：把 agent 的成功/失败轨迹抽象成可复用「推理记忆条目」供后续任务检索，属于 agent memory 工程化的又一范式尝试，和 MemFactory 形成对照。</p></div>
       <div class="card-tags"></div>
     </article>
     </div>
@@ -481,7 +443,7 @@ footer a { color: #94a3b8; }
     
     <section class="section" style="--accent:#ec4899">
       <h2 class="sec-title">💬 社区热议
-        <span class="count">5/5</span>
+        <span class="count">7/7</span>
       </h2>
       <div class="cards">
     <article class="card">
@@ -498,7 +460,7 @@ footer a { color: #94a3b8; }
           <span class="score">kw 13.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Moonshot 开源 FlashKDA：Kimi Delta Attention 前向的 CUTLASS C++ kernel，作为 FLA 后端，H20 上比 FLA 现有 Triton 路径最高快 2.22×，线性注意力首次有了可用的生产级 CUTLASS 实现。</p></div>
+      <div class="card-body"><p>Moonshot 开源 FlashKDA：Kimi Delta Attention 的 CUTLASS C++ 前向 kernel，H20 上相对 FLA 的 Triton 基线最高 2.22× 加速，并作为 FLA 后端集成；线性注意力落到生产 kernel 的典型案例。</p></div>
       <div class="card-tags"><span class="tag">CUTLASS</span><span class="tag">triton</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
     </article>
     
@@ -517,65 +479,103 @@ footer a { color: #94a3b8; }
           <span class="score">kw 9.0</span>
         </div>
       </div>
-      <div class="card-body"><p>个人项目 Spiral：Qwen 7B INT3 权重压缩（+0.14 nats）+ INT2 长程 KV cache，配套 Metal 融合 kernel 跑 Apple M 系列，在端侧把极低比特推理的 kernel 基建补齐，后续会加 Triton GPU 支持。</p></div>
+      <div class="card-body"><p>Spiral：Qwen 7B 的 INT3 权重（+0.14 nats）+ INT2 KV cache，配 Apple Metal 融合 kernel，在 M 系列 Mac 上端到端跑通；极端量化配专用 kernel 的工程实践。</p></div>
       <div class="card-tags"><span class="tag">KV cache</span><span class="tag">triton</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">Qwen</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ss9pku/running_qwen3635ba3b_locally_for_coding_agent_my/" target="_blank" rel="noopener">Running Qwen3.6-35B-A3B Locally for Coding Agent: My Setup &amp; Working Config</a>
+        <a class="card-title" href="https://arxiv.org/abs/2603.29493" target="_blank" rel="noopener">Show HN: MemFactory: Unified Inference and Training Framework for Agent Memory</a>
         <div class="card-meta">
           <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">r/LocalLLaMA</span>
+          <span class="src">HN LLM infra</span>
           <span class="dot">·</span>
-          <span class="time">04-22 11:20 CST</span>
+          <span class="time">04-22 10:26 CST</span>
           <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
+          <span class="domain">arxiv.org</span>
           
-          <span class="score">kw 8.0</span>
+          <span class="score">kw 5.0</span>
         </div>
       </div>
-      <div class="card-body"><p>M2 Max 64GB 上用 llama.cpp 本地跑 Qwen3.6-35B-A3B 做 coding agent 的完整配方：131k context、32k max tokens、OpenAI 兼容 API 接入 pi agent——典型的 coding agent 本地 runtime 接线参考。</p></div>
-      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">quantization</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span><span class="tag">coding agent</span></div>
+      <div class="card-body"><p>MemFactory：首个面向「记忆增强 agent」的统一训练/推理框架，把 memory 提取/更新/检索抽成原子可插拔组件，支持在其上跑 RL（含 GRPO）；对标 LLaMA-Factory 的 agent memory 版。</p></div>
+      <div class="card-tags"><span class="tag">GRPO</span><span class="tag">LLaMA</span><span class="tag">agent memory</span></div>
     </article>
     
 
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/" target="_blank" rel="noopener">We open-sourced Chaperone-Thinking-LQ-1.0 — a 4-bit GPTQ + QLoRA fine-tuned DeepSeek-R1-32B that hits 84% on MedQA in ~20GB[N]</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">r/MachineLearning</span>
-          <span class="dot">·</span>
-          <span class="time">04-22 04:07 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
-          
-          <span class="score">kw 7.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>DeepSeek-R1-32B 走 4bit GPTQ + 量化感知校准 + QLoRA 医疗域微调，60GB→20GB，MedQA 84%。工程上是把 QAT/GPTQ/QLoRA 三件套串通做推理侧落地的完整 pipeline。</p></div>
-      <div class="card-tags"><span class="tag">GPTQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ssilc3/qwen3635b_becomes_competitive_with_cloud_models/" target="_blank" rel="noopener">Qwen3.6-35B becomes competitive with cloud models when paired with the right agent</a>
+        <a class="card-title" href="https://burnish-demo.fly.dev" target="_blank" rel="noopener">Show HN: Burnish, a UI for any MCP server (no LLM, no chat)</a>
         <div class="card-meta">
           <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">r/LocalLLaMA</span>
+          <span class="src">HN LLM infra</span>
           <span class="dot">·</span>
-          <span class="time">04-22 19:22 CST</span>
+          <span class="time">04-22 19:13 CST</span>
           <span class="dot">·</span>
-          <span class="domain">www.reddit.com</span>
+          <span class="domain">burnish-demo.fly.dev</span>
           
           <span class="score">kw 2.0</span>
         </div>
       </div>
-      <div class="card-body"><p>同一 Qwen3.6-35B 换 little-coder scaffold 直接把 Polyglot 从 19% 拉到 78.7%；说明本地 coding 模型差距很大程度在 agent harness 层，而不是模型本身，对 coding agent 系统设计是有力佐证。</p></div>
-      <div class="card-tags"><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+      <div class="card-body"><p>Burnish：通用 MCP 服务器 UI，从 tool JSON schema 自动渲染表单并按响应结构渲染卡片/表格/图表，无需 LLM 或 chat 客户端——适合调试任意 MCP server 暴露的工具。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span><span class="tag">MCP</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/panpeter/sift-skill" target="_blank" rel="noopener">Show HN: Sift – save AI tokens in Codex/Claude by summarizing command output</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN Agent infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 20:34 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Sift：agentic coding 场景的「子 agent 日志压缩」脚手架，cargo test/pytest 等长输出先喂给便宜模型总结再回注主 thread，作者自测某工作流总 token 成本约降 45%。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://zainhas.github.io/blog/2026/inside-claude-code-architecture/" target="_blank" rel="noopener">Claude Code: An Architecture Deep Dive</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN Agent infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 20:14 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">zainhas.github.io</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Claude Code 架构深度解析：工具调度、context 管理、子任务编排等 coding agent 关键 runtime 设计被系统整理，是研究 Claude Code/Cursor/Codex 这类系统的必读参考。</p></div>
+      <div class="card-tags"><span class="tag">Claude Code</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/NVlabs/parrot" target="_blank" rel="noopener">Parrot is a C++ library for fused array operations using CUDA/Thrust</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 05:41 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVlabs Parrot：C++ 库，把一串 Thrust/CUDA 数组操作融合成单 kernel，避免中间落地；适合做数据预处理/后处理管线融合，思路和 CUB 的 device-wide 原语互补。</p></div>
+      <div class="card-tags"><span class="tag">CUDA</span></div>
     </article>
     </div>
       
