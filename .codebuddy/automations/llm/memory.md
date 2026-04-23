@@ -21,3 +21,10 @@
 - render: `LLM 摘要 ✓`，无 fallback
 - publish: commit `04b4ee7`，HEAD==origin/main，HTML diff 208 行 × 2
 - 状态: ✅ 成功。用一次性脚本 `scripts/_build_curated.py` 生成 curated，中文引号用「」避开双引号陷阱
+
+## 2026-04-22 22:00（执行于 22:00，domain_tag 版 prompt 第 3 跑）
+- fetch: 70 条 raw（papers 32 / code 16 / blogs 3 / community 19），无 RSS 源失败
+- curated: 19 条（papers 7 / code 8 / blogs 1 / community 3），domain_tag 分布 推理 10 / 训练 3 / agent 6
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳 22 处
+- publish: commit `e48a9ae`，HEAD==origin/main，HTML diff 231 行 × 2
+- 状态: ✅ 成功。agent 方向命中较多（ARGUS GPU agent、UniEP MoE EP、ReasoningBank agent memory、LangGraph fix、OpenAI Agents sandbox、harness mismatch 讨论）

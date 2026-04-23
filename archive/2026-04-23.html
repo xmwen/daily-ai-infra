@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-04-23 Thursday</title>
+<!-- rendered_at: 2026-04-23 22:05:51 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-23T14:05:39.417072+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-04-23 Thursday · 回溯 36h · 共 19 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-04-23 22:05:39 CST</span>
+      <span class="badge">Rendered: 2026-04-23 22:05:51 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+        <span class="count">6/6</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.20503" target="_blank" rel="noopener">FASER: Fine-Grained Phase Management for Speculative Decoding in Dynamic LLM Serving</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 18.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FASER 提出面向动态 LLM serving 的细粒度投机解码阶段管理，解耦 draft/verify 并按请求调整 spec 长度，低负载减尾延迟、高负载减浪费。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">LLM serving</span><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">veRL</span><span class="tag">decoding</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.19767" target="_blank" rel="noopener">Accelerating PayPal&#x27;s Commerce Agent with Speculative Decoding: An Empirical Study on EAGLE3 with Fine-Tuned Nemotron Models</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PayPal 在 2×H100 上用 EAGLE3+vLLM 对比 NVIDIA NIM，gamma=3 时吞吐涨 22-49%、延迟降 18-33%，给工业界投机解码选参提供基准。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">NeMo</span><span class="tag">decoding</span><span class="tag">GPU</span><span class="tag">H100</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.19877" target="_blank" rel="noopener">Super Apriel: One Checkpoint, Many Speeds</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.8</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Super Apriel：15B supernet 每层提供 FA/SWA/KDA/GDN 四种 mixer，单 checkpoint 通过切换 placement 在请求级动态换档，decode 吞吐覆盖 2.9×-10.7×。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.20105" target="_blank" rel="noopener">EnergAIzer: Fast and Accurate GPU Power Estimation Framework for AI Workloads</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>EnergAIzer：GPU 功耗估算框架，用轻量模型预测 kernel 利用率输入，把预估从小时级压到秒级，为数据中心功耗管理提供实用工具。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.20032" target="_blank" rel="noopener">LEO: Tracing GPU Stall Root Causes via Cross-Vendor Backward Slicing</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LEO 跨 NVIDIA/AMD/Intel GPU 做 stall 根因分析，通过 backward slicing 把停顿指令归因到源代码，给多厂商 GPU 性能调优提供统一工具链。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.19835" target="_blank" rel="noopener">Expert Upcycling: Shifting the Compute-Efficient Frontier of Mixture-of-Experts</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 1.2</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Expert Upcycling：在继续预训练阶段把已训 E-expert MoE 扩展到 mE-expert，降低 MoE 扩容的通信与显存开销，属于 MoE 训练可用的工程方法。</p></div>
+      <div class="card-tags"><span class="tag">serving</span><span class="tag">GPU</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">8/8</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0" target="_blank" rel="noopener">v0.20.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 15:52 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.20.0 正式版：默认 CUDA 切到 13.0 并更新 CUDA 架构列表，部署端需同步升级构建工具链与镜像。</p></div>
+      <div class="card-tags"><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/NVIDIA/Megatron-LM/releases/tag/26.04-alpha.rc1" target="_blank" rel="noopener">26.04-alpha.rc1</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">Megatron-LM</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 16:22 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Megatron-LM 26.04-alpha：新增高优先级 all-to-all 通信流选项和 HybridEP 预处理 SM 配置，面向 MoE 大规模训练的 EP 通信优化。</p></div>
+      <div class="card-tags"><span class="tag">A2A</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F4918ae2275816ece67672c0dc4891889cda297f0" target="_blank" rel="noopener">trunk/4918ae2275816ece67672c0dc4891889cda297f0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 13:26 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch Inductor 新增 _FastCudaLauncher：基于 vectorcall 的 C 扩展，为预绑定 CUDA kernel 降低 Python 侧启动开销。</p></div>
+      <div class="card-tags"><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F54995bf85913f90777eace2ced0d2c7854d083a6" target="_blank" rel="noopener">trunk/54995bf85913f90777eace2ced0d2c7854d083a6: [DeviceMesh] Enforce 2-level Layouts (#181223)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 20:40 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch DeviceMesh 强制 2 级 Layouts：顶层分离 mesh 逻辑维度、内层走 canonical 扁平形式，消除递归 IntTuple 的歧义，提升分布式代码鲁棒性。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F3646a5df996c7ed344fbaba6b35ecd6164181e48" target="_blank" rel="noopener">trunk/3646a5df996c7ed344fbaba6b35ecd6164181e48: Centralize FX graph cacheability validation (#180795)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 16:52 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch Inductor 引入 CacheabilityValidator：统一 FX 图缓存可用性判定，把 FxGraphCache、AOTAutograd、pickler 全路由到同一校验器。</p></div>
+      <div class="card-tags"><span class="tag">compiler</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439" target="_blank" rel="noopener">nv_dev_c491439</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">DeepGEMM</span>
+          <span class="dot">·</span>
+          <span class="time">04-22 16:26 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>DeepGEMM nv_dev 分支新快照：DeepSeek 自研 FP8 GEMM kernel 库持续迭代，是 DeepSeek 推理栈核心算子组件。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.14.5" target="_blank" rel="noopener">v0.14.5</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">OpenAI Agents</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 10:20 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>OpenAI Agents Python v0.14.5：新增 Modal sandbox idle timeout 选项，修复 HITL 恢复时 tool output 的 serve 问题，以及流式终端输出回填。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.24" target="_blank" rel="noopener">langgraph-cli==0.4.24</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">LangGraph</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 02:49 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LangGraph CLI 0.4.24：小版本发布，主要是 CLI 格式化和 pip 依赖组升级，面向本地 graph 开发与部署流程稳定性。</p></div>
+      <div class="card-tags"><span class="tag">LangGraph</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">1/1</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/advancing-emerging-optimizers-for-accelerated-llm-training-with-nvidia-megatron/" target="_blank" rel="noopener">Advancing Emerging Optimizers for Accelerated LLM Training with NVIDIA Megatron</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 04:01 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">developer.nvidia.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA 在 Megatron 里集成 Shampoo 等高阶优化器用于加速 LLM 训练，讨论工程落地与收敛质量权衡，是 MoE/超大模型训练优化器选型参考。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">4/4</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1ste9zs/deepseek_has_released_deepep_v2_and_tilekernels/" target="_blank" rel="noopener">Deepseek has released DeepEP V2 and TileKernels.</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 17:57 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>DeepSeek 发布 DeepEP V2 与 TileKernels：MoE EP 通信与 tile 级 kernel 两个核心组件同步迭代，是 DeepSeek 推理/训练栈的关键工程产出。</p></div>
+      <div class="card-tags"><span class="tag">DeepEP</span><span class="tag">kernel</span><span class="tag">DeepSeek</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1stcer1/qwen3627b_llamacpp_speculative_decoding/" target="_blank" rel="noopener">Qwen-3.6-27B, llamacpp, speculative decoding - appreciation post</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 16:05 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>llama.cpp 上用 Qwen3.6-27B 开投机解码，decode 速度从 13.6 t/s 翻到 25.5 t/s，本地部署开 spec 基本是白嫖收益的真实案例。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">speculative decoding</span><span class="tag">decoding</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1stfk9y/optimizing_transformer_model_size_inference/" target="_blank" rel="noopener">Optimizing Transformer model size &amp; inference beyond FP16 + ONNX (pruning/graph opt didn’t help much) [P]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 19:06 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 18.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>工程讨论：FP16+ONNX+剪枝瓶颈后接下来的路线，涉及 GPTQ/AWQ/SmoothQuant INT8-INT4 量化、低秩分解、蒸馏、TensorRT/FlashAttention 等推理优化栈选型。</p></div>
+      <div class="card-tags"><span class="tag">FlashAttention</span><span class="tag">INT4</span><span class="tag">GPTQ</span><span class="tag">AWQ</span><span class="tag">SmoothQuant</span><span class="tag">transformer</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.band.ai/blog/dags-wrong-abstraction-multi-agent-systems" target="_blank" rel="noopener">Dags are the wrong abstraction for multi-agent systems</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN Agent infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-23 21:28 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.band.ai</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>band.ai 观点文：DAG 不是多 agent 系统的正确抽象，讨论 agent 运行时需要动态拓扑、事件驱动和环状反馈，属于 agent runtime 设计层面的讨论。</p></div>
+      <div class="card-tags"><span class="tag">agent system</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>

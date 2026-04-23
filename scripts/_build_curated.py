@@ -1,134 +1,143 @@
-"""一次性脚本：读取 today_raw.json，按筛选偏好生成 today_curated.json。
-每条补 tldr（≤80 字中文）与 domain_tag（推理/训练/agent）。
-"""
+# -*- coding: utf-8 -*-
+"""一次性脚本：基于 today_raw.json 构建中文 curated。"""
+from __future__ import annotations
 import json
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "cache" / "today_raw.json"
 OUT = ROOT / "cache" / "today_curated.json"
 
-raw = json.loads(RAW.read_text(encoding="utf-8"))
+with RAW.open("r", encoding="utf-8") as f:
+    raw = json.load(f)
 
-# 按 link 匹配，给每条补 tldr + domain_tag
-CURATED = {
-    # ======= papers =======
-    "https://arxiv.org/abs/2604.18616": {
-        "tldr": "ARGUS 用 data-flow invariants 作为编译期规范，让 coding agent 协同优化 tiling/shared-mem/流水线，弥补 GPU kernel 生成的稀疏 pass/fail 反馈；给 MoE/attention 等关键算子提供结构化诊断信号。",
-        "domain_tag": "agent",
-    },
-    "https://arxiv.org/abs/2604.19241": {
-        "tldr": "UniEP 把 MoE expert parallel 拆散的通信压缩、计算通信 overlap 统一到一个 megakernel 里，兼顾数值稳定性，目标是让 Megatron-LM 能产品级接入，而不是堆 ad-hoc kernel。",
-        "domain_tag": "训练",
-    },
-    "https://arxiv.org/abs/2604.19004": {
-        "tldr": "Ocean 质疑 SpGEMM 两趟 workflow 里 symbolic pass（占 28% 时间）的必要性，用估算取代精确符号阶段，在 H100 上加速稀疏矩阵乘；对稀疏 MoE/GNN kernel 有直接参考价值。",
-        "domain_tag": "推理",
-    },
-    "https://arxiv.org/abs/2505.16968": {
-        "tldr": "CASS 放出 6 万对 CUDA↔HIP、SASS↔RDNA3 验证过的 host-device 代码对，训出跨架构转译模型，CUDA→HIP 88.2% 正确率，显著优于 GPT-5.1 / Claude-4.5 / Hipify。",
-        "domain_tag": "推理",
-    },
-    "https://arxiv.org/abs/2604.19337": {
-        "tldr": "POLAR-PIC 针对 Matrix Processing Unit 重构 PIC 场插值为外积形式，物理有序粒子布局减少不规则访存；是 MPU 类硬件（PIM 近亲）做 co-design 的范式参考。",
-        "domain_tag": "推理",
-    },
-    "https://arxiv.org/abs/2604.18909": {
-        "tldr": "ChipLight 协同设计 chiplet + 光互连集群：package 内高带宽 scale-up、package 间光链路 scale-out，联合优化架构/并行/拓扑，面向大规模 LLM 训练通信瓶颈。",
-        "domain_tag": "训练",
-    },
-    "https://arxiv.org/abs/2604.19181": {
-        "tldr": "YAIFS 把 MCP（Model Context Protocol）作为 agent 与仿真环境的标准交互层，让异构 agent 能统一 observe/control 分布式仿真；对 MCP 在 runtime 侧的集成模式有参考意义。",
-        "domain_tag": "agent",
-    },
+# 用 link 作为唯一键从 raw 里找回完整 item
+def find(section: str, link: str) -> dict | None:
+    for it in raw["sections"].get(section, []):
+        if it.get("link") == link:
+            return it
+    return None
 
-    # ======= code =======
-    "https://github.com/pytorch/pytorch/releases/tag/trunk%2F0274ad69c3effaef66b5776db5f752b6cf7d8154": {
-        "tldr": "PyTorch Inductor 修复 combo kernel 的 optimize_mem 未透传 bug：之前被 cached_autotune 默认设为 True，现在按 is_inference/is_backward 正确传入，和独立 kernel 的行为对齐。",
-        "domain_tag": "推理",
-    },
-    "https://github.com/pytorch/pytorch/releases/tag/trunk%2F89ed986a77847a4cec520920f6d27baa72102995": {
-        "tldr": "PyTorch Inductor combo kernel 的 jit_line 改用 triton_meta_common() 统一生成 disabled 元信息，减少 combo/standalone kernel 之间 Triton meta 生成路径的分叉。",
-        "domain_tag": "推理",
-    },
-    "https://github.com/pytorch/pytorch/releases/tag/trunk%2F9c406e3429630d5c45ba57d2fd987177e12bb676": {
-        "tldr": "PyTorch 为 Tag.out 自定义算子自动生成 fake kernel：按声明顺序返回 out= 参数，省掉用户手写 meta kernel；对做自定义算子接入 Inductor/torch.compile 的同学省事。",
-        "domain_tag": "推理",
-    },
-    "https://github.com/pytorch/pytorch/releases/tag/trunk%2F50294ed45005ceb3b8669c68b408236e3f06d6b1": {
-        "tldr": "PyTorch MPS 后端把 BatchNorm3d 的 5D 张量 reshape 成 4D 再调 MPSGraph normalization，M4 Pro 上 fwd+bwd 从 8.7ms 降到 3.5ms（2.4x），吃的就是 MPSGraph 对高维张量不友好这个坑。",
-        "domain_tag": "推理",
-    },
-    "https://github.com/langchain-ai/langgraph/releases/tag/1.1.9": {
-        "tldr": "LangGraph 1.1.9 修了一个 bug：plain resume 场景下 ReplayState 不该传播到 subgraph，否则会串状态。属于 agent runtime 里 checkpoint/resume 语义边界的清理。",
-        "domain_tag": "agent",
-    },
-    "https://github.com/openai/openai-agents-python/releases/tag/v0.14.4": {
-        "tldr": "OpenAI Agents SDK 0.14.4 加 BoxMount 支持，重构 sandbox 临时 mount 生命周期 / tar exclude 参数 / session helper；对 computer-use agent 的沙箱 runtime 细节有直接影响。",
-        "domain_tag": "agent",
-    },
-    "https://github.com/flashinfer-ai/flashinfer/releases/tag/nightly-v0.6.8-20260421": {
-        "tldr": "FlashInfer v0.6.8 nightly：vLLM/SGLang 主用的注意力 kernel 库持续迭代，关注最新 paged-KV / MLA / FP8 路径的性能回归基线。",
-        "domain_tag": "推理",
-    },
-    "https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.4": {
-        "tldr": "LLVM 22.1.4 发布：下游 Triton/MLIR/CUDA-Clang 依赖的编译器底座补丁更新，做 GPU kernel DSL 的同学升级前按惯例看下 release note。",
-        "domain_tag": "推理",
-    },
+# (section, link, tldr, domain_tag)
+picks = [
+    # ===== papers =====
+    ("papers",
+     "https://arxiv.org/abs/2604.20503",
+     "FASER 提出面向动态 LLM serving 的细粒度投机解码阶段管理，解耦 draft/verify 并按请求调整 spec 长度，低负载减尾延迟、高负载减浪费。",
+     "推理"),
+    ("papers",
+     "https://arxiv.org/abs/2604.19767",
+     "PayPal 在 2×H100 上用 EAGLE3+vLLM 对比 NVIDIA NIM，gamma=3 时吞吐涨 22-49%、延迟降 18-33%，给工业界投机解码选参提供基准。",
+     "推理"),
+    ("papers",
+     "https://arxiv.org/abs/2604.19877",
+     "Super Apriel：15B supernet 每层提供 FA/SWA/KDA/GDN 四种 mixer，单 checkpoint 通过切换 placement 在请求级动态换档，decode 吞吐覆盖 2.9×-10.7×。",
+     "推理"),
+    ("papers",
+     "https://arxiv.org/abs/2604.20105",
+     "EnergAIzer：GPU 功耗估算框架，用轻量模型预测 kernel 利用率输入，把预估从小时级压到秒级，为数据中心功耗管理提供实用工具。",
+     "推理"),
+    ("papers",
+     "https://arxiv.org/abs/2604.20032",
+     "LEO 跨 NVIDIA/AMD/Intel GPU 做 stall 根因分析，通过 backward slicing 把停顿指令归因到源代码，给多厂商 GPU 性能调优提供统一工具链。",
+     "推理"),
+    ("papers",
+     "https://arxiv.org/abs/2604.19835",
+     "Expert Upcycling：在继续预训练阶段把已训 E-expert MoE 扩展到 mE-expert，降低 MoE 扩容的通信与显存开销，属于 MoE 训练可用的工程方法。",
+     "训练"),
+    # ===== code =====
+    ("code",
+     "https://github.com/vllm-project/vllm/releases/tag/v0.20.0",
+     "vLLM v0.20.0 正式版：默认 CUDA 切到 13.0 并更新 CUDA 架构列表，部署端需同步升级构建工具链与镜像。",
+     "推理"),
+    ("code",
+     "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.04-alpha.rc1",
+     "Megatron-LM 26.04-alpha：新增高优先级 all-to-all 通信流选项和 HybridEP 预处理 SM 配置，面向 MoE 大规模训练的 EP 通信优化。",
+     "训练"),
+    ("code",
+     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F4918ae2275816ece67672c0dc4891889cda297f0",
+     "PyTorch Inductor 新增 _FastCudaLauncher：基于 vectorcall 的 C 扩展，为预绑定 CUDA kernel 降低 Python 侧启动开销。",
+     "推理"),
+    ("code",
+     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F54995bf85913f90777eace2ced0d2c7854d083a6",
+     "PyTorch DeviceMesh 强制 2 级 Layouts：顶层分离 mesh 逻辑维度、内层走 canonical 扁平形式，消除递归 IntTuple 的歧义，提升分布式代码鲁棒性。",
+     "训练"),
+    ("code",
+     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F3646a5df996c7ed344fbaba6b35ecd6164181e48",
+     "PyTorch Inductor 引入 CacheabilityValidator：统一 FX 图缓存可用性判定，把 FxGraphCache、AOTAutograd、pickler 全路由到同一校验器。",
+     "推理"),
+    ("code",
+     "https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439",
+     "DeepGEMM nv_dev 分支新快照：DeepSeek 自研 FP8 GEMM kernel 库持续迭代，是 DeepSeek 推理栈核心算子组件。",
+     "推理"),
+    ("code",
+     "https://github.com/openai/openai-agents-python/releases/tag/v0.14.5",
+     "OpenAI Agents Python v0.14.5：新增 Modal sandbox idle timeout 选项，修复 HITL 恢复时 tool output 的 serve 问题，以及流式终端输出回填。",
+     "agent"),
+    ("code",
+     "https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.24",
+     "LangGraph CLI 0.4.24：小版本发布，主要是 CLI 格式化和 pip 依赖组升级，面向本地 graph 开发与部署流程稳定性。",
+     "agent"),
+    # ===== blogs =====
+    ("blogs",
+     "https://developer.nvidia.com/blog/advancing-emerging-optimizers-for-accelerated-llm-training-with-nvidia-megatron/",
+     "NVIDIA 在 Megatron 里集成 Shampoo 等高阶优化器用于加速 LLM 训练，讨论工程落地与收敛质量权衡，是 MoE/超大模型训练优化器选型参考。",
+     "训练"),
+    # ===== community =====
+    ("community",
+     "https://www.reddit.com/r/LocalLLaMA/comments/1ste9zs/deepseek_has_released_deepep_v2_and_tilekernels/",
+     "DeepSeek 发布 DeepEP V2 与 TileKernels：MoE EP 通信与 tile 级 kernel 两个核心组件同步迭代，是 DeepSeek 推理/训练栈的关键工程产出。",
+     "推理"),
+    ("community",
+     "https://www.reddit.com/r/LocalLLaMA/comments/1stcer1/qwen3627b_llamacpp_speculative_decoding/",
+     "llama.cpp 上用 Qwen3.6-27B 开投机解码，decode 速度从 13.6 t/s 翻到 25.5 t/s，本地部署开 spec 基本是白嫖收益的真实案例。",
+     "推理"),
+    ("community",
+     "https://www.reddit.com/r/MachineLearning/comments/1stfk9y/optimizing_transformer_model_size_inference/",
+     "工程讨论：FP16+ONNX+剪枝瓶颈后接下来的路线，涉及 GPTQ/AWQ/SmoothQuant INT8-INT4 量化、低秩分解、蒸馏、TensorRT/FlashAttention 等推理优化栈选型。",
+     "推理"),
+    ("community",
+     "https://www.band.ai/blog/dags-wrong-abstraction-multi-agent-systems",
+     "band.ai 观点文：DAG 不是多 agent 系统的正确抽象，讨论 agent 运行时需要动态拓扑、事件驱动和环状反馈，属于 agent runtime 设计层面的讨论。",
+     "agent"),
+]
 
-    # ======= blogs =======
-    "https://research.google/blog/reasoningbank-enabling-agents-to-learn-from-experience/": {
-        "tldr": "Google 提出 ReasoningBank，让 agent 把成功/失败轨迹沉淀成可检索的推理记忆，下次遇到同类任务直接召回策略；属于 agent memory 的工程化方案。",
-        "domain_tag": "agent",
-    },
+# 构建 curated 结构
+curated_sections: dict[str, list[dict]] = {"papers": [], "code": [], "blogs": [], "community": []}
+missing = []
+for section, link, tldr, tag in picks:
+    item = find(section, link)
+    if item is None:
+        missing.append((section, link))
+        continue
+    new_item = dict(item)
+    new_item["tldr"] = tldr
+    new_item["domain_tag"] = tag
+    curated_sections[section].append(new_item)
 
-    # ======= community =======
-    "https://www.reddit.com/r/MachineLearning/comments/1ssdt0z/int3_compressionfused_metal_kernels_r/": {
-        "tldr": "独立作者放出 INT3 权重压缩 + INT2 KV cache + 自写 Metal fused kernel，Mac M 系列端侧跑 Qwen 7B；做 Apple Silicon 端侧推理可关注其 Triton GPU 版本跟进。",
-        "domain_tag": "推理",
-    },
-    "https://www.reddit.com/r/MachineLearning/comments/1srz54u/we_opensourced_chaperonethinkinglq10_a_4bit_gptq/": {
-        "tldr": "Chaperone-Thinking-LQ-1.0 在 DeepSeek-R1-Distill-Qwen-32B 上跑 4bit GPTQ + QAT 校准 + QLoRA 医学微调，把 60GB 压到 20GB，MedQA 84%；是一条完整量化训练 pipeline 示例。",
-        "domain_tag": "训练",
-    },
-    "https://www.reddit.com/r/LocalLLaMA/comments/1ssilc3/qwen3635b_becomes_competitive_with_cloud_models/": {
-        "tldr": "实证：同一个 9B Qwen 模型，只换 agent scaffold（harness）benchmark 就从 19% 拉到 45%；35B 换对 harness 冲进 Polyglot 前十。本地 coding agent 差距可能是 harness mismatch，不是模型本身。",
-        "domain_tag": "agent",
-    },
-}
+if missing:
+    raise SystemExit(f"missing items: {missing}")
 
-# 按分区遍历 raw，选出有 tldr 的条目，保留原字段并补 tldr/domain_tag
-out_sections = {}
-counts = {"papers": 0, "code": 0, "blogs": 0, "community": 0}
-domain_counts = {"推理": 0, "训练": 0, "agent": 0}
-
-for sec, items in raw["sections"].items():
-    picked = []
-    for it in items:
-        info = CURATED.get(it["link"])
-        if not info:
-            continue
-        new_item = dict(it)
-        new_item["tldr"] = info["tldr"]
-        new_item["domain_tag"] = info["domain_tag"]
-        picked.append(new_item)
-        counts[sec] += 1
-        domain_counts[info["domain_tag"]] += 1
-    out_sections[sec] = picked
-
-result = {
+out = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "lookback_hours": raw.get("lookback_hours", 36),
-    "source": "curated",
-    "sections": out_sections,
+    "sections": curated_sections,
+    "source": "agent_curated",
 }
 
-OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+with OUT.open("w", encoding="utf-8") as f:
+    json.dump(out, f, ensure_ascii=False, indent=2)
 
-total = sum(counts.values())
-print(f"[curated] 总 {total} 条 | papers {counts['papers']} / code {counts['code']} / blogs {counts['blogs']} / community {counts['community']}")
-print(f"[curated] domain_tag: 推理 {domain_counts['推理']} / 训练 {domain_counts['训练']} / agent {domain_counts['agent']}")
-print(f"[curated] generated_at = {result['generated_at']}")
-print(f"[curated] raw generated_at = {raw['generated_at']}")
-print(f"[curated] saved: {OUT}")
+# 打印统计
+total = sum(len(v) for v in curated_sections.values())
+by_tag: dict[str, int] = {}
+for section_items in curated_sections.values():
+    for it in section_items:
+        by_tag[it["domain_tag"]] = by_tag.get(it["domain_tag"], 0) + 1
+print(f"curated total={total}")
+for s, items in curated_sections.items():
+    print(f"  {s}: {len(items)}")
+print(f"by_tag: {by_tag}")
+print(f"generated_at={out['generated_at']}")
+print(f"raw.generated_at={raw['generated_at']}")
