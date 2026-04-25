@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-04-25 Saturday</title>
+<!-- rendered_at: 2026-04-25 22:02:31 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-25T14:02:25.666139+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-04-25 Saturday · 回溯 36h · 共 12 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-04-25 22:02:25 CST</span>
+      <span class="badge">Rendered: 2026-04-25 22:02:31 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+        <span class="count">0/0</span>
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">8/9</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/v0.6.9" target="_blank" rel="noopener">Release v0.6.9</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">04-24 22:20 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 17.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashInfer v0.6.9 发布：为 SM120 Blackwell 新增 b12x 后端的 mm_fp4 与 CuTe DSL fused MoE、FP4 GEMM heuristic；MoE kernel 加 routing_replay_out、SM89 预过滤零占用 tactic，推理端 FP4 落地加速。</p></div>
+      <div class="card-tags"><span class="tag">FlashInfer</span><span class="tag">MLA</span><span class="tag">FP8</span><span class="tag">FP4</span><span class="tag">attention</span><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.0.11" target="_blank" rel="noopener">langgraph-prebuilt==1.0.11</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">LangGraph</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 02:18 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LangGraph prebuilt 1.0.11：ToolNode 现在允许工具直接返回 list[Command|ToolMessage]，ToolRuntime 暴露当前可用工具清单，agent runtime 的工具调用协议更贴近 tool use 底层语义。</p></div>
+      <div class="card-tags"><span class="tag">LangGraph</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.14.6" target="_blank" rel="noopener">v0.14.6</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">OpenAI Agents</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 10:31 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>OpenAI Agents Python v0.14.6：默认模型升级到 GPT-5.5、放宽 websockets 上限到 &lt;17、收紧 uv 依赖解析、新增 MongoDB 作为 agent session 后端的文档，agent SDK 持久化选项扩展。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F3e4bb17451a6e7fd45147e3b5f4fca2bd03103f9" target="_blank" rel="noopener">trunk/3e4bb17451a6e7fd45147e3b5f4fca2bd03103f9</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 17:50 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 主干回滚 Inductor 按 metadata 指纹更新 group combo 子 kernel 的改动，说明该策略在 combo kernel 场景下引入了回归，combo 调度仍在快速迭代。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F57e7ded57bc36ffe709c2fdf5704b558b23b44c2" target="_blank" rel="noopener">trunk/57e7ded57bc36ffe709c2fdf5704b558b23b44c2</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 17:21 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch Inductor：combo 内 per-subkernel blocks 模式下跳过 max_persistent_rblock 约束，避免 combo kernel 在持久化 reduction 上被误裁剪，提升融合 kernel 的可调度性。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F45e9db74900da0ac0549ab69533cfadc74db0c40" target="_blank" rel="noopener">trunk/45e9db74900da0ac0549ab69533cfadc74db0c40</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 16:52 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch Inductor 为 ROCm 的 FlexAttention 引入 target-dependent 默认 forward config，AMD GPU 上的 attention 编译路径不再沿用 NV 的调度参数，跨后端性能收敛。</p></div>
+      <div class="card-tags"><span class="tag">attention</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F7de21d5cf22abd13bfa388da3811a1afcaf8f4e3" target="_blank" rel="noopener">trunk/7de21d5cf22abd13bfa388da3811a1afcaf8f4e3: Auto-generate fake kernels for Tag.out custom operators (#180987)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 09:11 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch：为打了 Tag.out 的 custom operator 自动生成 fake/meta kernel（out= 参数按序返回），用户不再需要手写平凡的 meta 实现，export/编译路径的自定义算子接入成本下降。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F68535d0c7ffbfb8e2094315241b9b84f364734ad" target="_blank" rel="noopener">trunk/68535d0c7ffbfb8e2094315241b9b84f364734ad</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 20:52 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 主干回滚 cuBLAS/cuBLASLt 线程局部 workspace map 改动，多线程推理/训练里 cuBLAS workspace 的共享策略仍在权衡 OOM 与正确性。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      <p class="more">... 还有 1 条未显示（见 cache/today_raw.json）</p>
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">1/1</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/build-with-deepseek-v4-using-nvidia-blackwell-and-gpu-accelerated-endpoints/" target="_blank" rel="noopener">Build with DeepSeek V4 Using NVIDIA Blackwell and GPU-Accelerated Endpoints</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 07:29 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">developer.nvidia.com</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA 在 Blackwell 和 GPU 加速 endpoint 上适配 DeepSeek-V4-Pro / V4-Flash：聚焦 Blackwell 上 MoE 推理的 kernel/调度栈与 NIM endpoint 部署路径，是推理部署侧的一手工程参考。</p></div>
+      <div class="card-tags"><span class="tag">GPU</span><span class="tag">DeepSeek</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">2/2</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1sv8eua/qwen3627b_at_80_tps_with_218k_context_window_on/" target="_blank" rel="noopener">Qwen3.6-27B at ~80 tps with 218k context window on 1x RTX 5090 served by vllm 0.19</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 18:21 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 8.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Qwen3.6-27B NVFP4+MTP 在单张 RTX 5090 上用 vLLM 0.19.1rc1 跑出 ~80 tps、218k 上下文：NVFP4 量化 + MTP 投机解码 + vLLM 长上下文 paged attention 的组合在消费级 Blackwell 上的实测配方。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">FP4</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1sucjwp/new_optimizer_rose_low_vram_easy_to_use_great/" target="_blank" rel="noopener">[New Optimizer] 🌹 Rose: low VRAM, easy to use, great results, Apache 2.0 [P]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-24 19:05 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Rose 优化器开源：声称无状态、显存低于 8bit AdamW、接近裸 SGD，PyTorch 接口 Apache 2.0。对大模型训练而言是 optimizer state 显存压缩的又一路线候选（需独立验证收敛质量）。</p></div>
+      <div class="card-tags"><span class="tag">attention</span><span class="tag">TPU</span><span class="tag">PyTorch</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>

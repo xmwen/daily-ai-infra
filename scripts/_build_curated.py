@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-"""一次性脚本：基于 today_raw.json 构建中文 curated。"""
-from __future__ import annotations
+"""一次性生成 cache/today_curated.json。Agent 手写中文 tldr + domain_tag。"""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,135 +8,163 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "cache" / "today_raw.json"
 OUT = ROOT / "cache" / "today_curated.json"
 
-with RAW.open("r", encoding="utf-8") as f:
-    raw = json.load(f)
+raw = json.loads(RAW.read_text(encoding="utf-8"))
 
-# 用 link 作为唯一键从 raw 里找回完整 item
-def find(section: str, link: str) -> dict | None:
-    for it in raw["sections"].get(section, []):
-        if it.get("link") == link:
-            return it
+
+def pick(section, source_pred, title_pred, tldr, tag):
+    """从 raw.sections[section] 里按 source+title 匹配挑一条，加上中文 tldr 和 domain_tag。"""
+    for item in raw["sections"].get(section, []):
+        if source_pred(item.get("source", "")) and title_pred(item.get("title", "")):
+            item = dict(item)
+            item["tldr"] = tldr
+            item["domain_tag"] = tag
+            return item
     return None
 
-# (section, link, tldr, domain_tag)
-picks = [
-    # ===== papers =====
-    ("papers",
-     "https://arxiv.org/abs/2604.20503",
-     "FASER 提出面向动态 LLM serving 的细粒度投机解码阶段管理，解耦 draft/verify 并按请求调整 spec 长度，低负载减尾延迟、高负载减浪费。",
-     "推理"),
-    ("papers",
-     "https://arxiv.org/abs/2604.19767",
-     "PayPal 在 2×H100 上用 EAGLE3+vLLM 对比 NVIDIA NIM，gamma=3 时吞吐涨 22-49%、延迟降 18-33%，给工业界投机解码选参提供基准。",
-     "推理"),
-    ("papers",
-     "https://arxiv.org/abs/2604.19877",
-     "Super Apriel：15B supernet 每层提供 FA/SWA/KDA/GDN 四种 mixer，单 checkpoint 通过切换 placement 在请求级动态换档，decode 吞吐覆盖 2.9×-10.7×。",
-     "推理"),
-    ("papers",
-     "https://arxiv.org/abs/2604.20105",
-     "EnergAIzer：GPU 功耗估算框架，用轻量模型预测 kernel 利用率输入，把预估从小时级压到秒级，为数据中心功耗管理提供实用工具。",
-     "推理"),
-    ("papers",
-     "https://arxiv.org/abs/2604.20032",
-     "LEO 跨 NVIDIA/AMD/Intel GPU 做 stall 根因分析，通过 backward slicing 把停顿指令归因到源代码，给多厂商 GPU 性能调优提供统一工具链。",
-     "推理"),
-    ("papers",
-     "https://arxiv.org/abs/2604.19835",
-     "Expert Upcycling：在继续预训练阶段把已训 E-expert MoE 扩展到 mE-expert，降低 MoE 扩容的通信与显存开销，属于 MoE 训练可用的工程方法。",
-     "训练"),
-    # ===== code =====
-    ("code",
-     "https://github.com/vllm-project/vllm/releases/tag/v0.20.0",
-     "vLLM v0.20.0 正式版：默认 CUDA 切到 13.0 并更新 CUDA 架构列表，部署端需同步升级构建工具链与镜像。",
-     "推理"),
-    ("code",
-     "https://github.com/NVIDIA/Megatron-LM/releases/tag/26.04-alpha.rc1",
-     "Megatron-LM 26.04-alpha：新增高优先级 all-to-all 通信流选项和 HybridEP 预处理 SM 配置，面向 MoE 大规模训练的 EP 通信优化。",
-     "训练"),
-    ("code",
-     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F4918ae2275816ece67672c0dc4891889cda297f0",
-     "PyTorch Inductor 新增 _FastCudaLauncher：基于 vectorcall 的 C 扩展，为预绑定 CUDA kernel 降低 Python 侧启动开销。",
-     "推理"),
-    ("code",
-     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F54995bf85913f90777eace2ced0d2c7854d083a6",
-     "PyTorch DeviceMesh 强制 2 级 Layouts：顶层分离 mesh 逻辑维度、内层走 canonical 扁平形式，消除递归 IntTuple 的歧义，提升分布式代码鲁棒性。",
-     "训练"),
-    ("code",
-     "https://github.com/pytorch/pytorch/releases/tag/trunk%2F3646a5df996c7ed344fbaba6b35ecd6164181e48",
-     "PyTorch Inductor 引入 CacheabilityValidator：统一 FX 图缓存可用性判定，把 FxGraphCache、AOTAutograd、pickler 全路由到同一校验器。",
-     "推理"),
-    ("code",
-     "https://github.com/deepseek-ai/DeepGEMM/releases/tag/nv_dev_c491439",
-     "DeepGEMM nv_dev 分支新快照：DeepSeek 自研 FP8 GEMM kernel 库持续迭代，是 DeepSeek 推理栈核心算子组件。",
-     "推理"),
-    ("code",
-     "https://github.com/openai/openai-agents-python/releases/tag/v0.14.5",
-     "OpenAI Agents Python v0.14.5：新增 Modal sandbox idle timeout 选项，修复 HITL 恢复时 tool output 的 serve 问题，以及流式终端输出回填。",
-     "agent"),
-    ("code",
-     "https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.24",
-     "LangGraph CLI 0.4.24：小版本发布，主要是 CLI 格式化和 pip 依赖组升级，面向本地 graph 开发与部署流程稳定性。",
-     "agent"),
-    # ===== blogs =====
-    ("blogs",
-     "https://developer.nvidia.com/blog/advancing-emerging-optimizers-for-accelerated-llm-training-with-nvidia-megatron/",
-     "NVIDIA 在 Megatron 里集成 Shampoo 等高阶优化器用于加速 LLM 训练，讨论工程落地与收敛质量权衡，是 MoE/超大模型训练优化器选型参考。",
-     "训练"),
-    # ===== community =====
-    ("community",
-     "https://www.reddit.com/r/LocalLLaMA/comments/1ste9zs/deepseek_has_released_deepep_v2_and_tilekernels/",
-     "DeepSeek 发布 DeepEP V2 与 TileKernels：MoE EP 通信与 tile 级 kernel 两个核心组件同步迭代，是 DeepSeek 推理/训练栈的关键工程产出。",
-     "推理"),
-    ("community",
-     "https://www.reddit.com/r/LocalLLaMA/comments/1stcer1/qwen3627b_llamacpp_speculative_decoding/",
-     "llama.cpp 上用 Qwen3.6-27B 开投机解码，decode 速度从 13.6 t/s 翻到 25.5 t/s，本地部署开 spec 基本是白嫖收益的真实案例。",
-     "推理"),
-    ("community",
-     "https://www.reddit.com/r/MachineLearning/comments/1stfk9y/optimizing_transformer_model_size_inference/",
-     "工程讨论：FP16+ONNX+剪枝瓶颈后接下来的路线，涉及 GPTQ/AWQ/SmoothQuant INT8-INT4 量化、低秩分解、蒸馏、TensorRT/FlashAttention 等推理优化栈选型。",
-     "推理"),
-    ("community",
-     "https://www.band.ai/blog/dags-wrong-abstraction-multi-agent-systems",
-     "band.ai 观点文：DAG 不是多 agent 系统的正确抽象，讨论 agent 运行时需要动态拓扑、事件驱动和环状反馈，属于 agent runtime 设计层面的讨论。",
-     "agent"),
-]
 
-# 构建 curated 结构
-curated_sections: dict[str, list[dict]] = {"papers": [], "code": [], "blogs": [], "community": []}
-missing = []
-for section, link, tldr, tag in picks:
-    item = find(section, link)
-    if item is None:
-        missing.append((section, link))
-        continue
-    new_item = dict(item)
-    new_item["tldr"] = tldr
-    new_item["domain_tag"] = tag
-    curated_sections[section].append(new_item)
+curated_sections = {"papers": [], "code": [], "blogs": [], "community": []}
 
-if missing:
-    raise SystemExit(f"missing items: {missing}")
+# ===== code =====
+# FlashInfer v0.6.9: SM120 Blackwell fused MoE + FP4 GEMM + MoE routing replay
+c1 = pick(
+    "code",
+    lambda s: s == "FlashInfer",
+    lambda t: t == "Release v0.6.9",
+    "FlashInfer v0.6.9 发布：为 SM120 Blackwell 新增 b12x 后端的 mm_fp4 与 CuTe DSL fused MoE、FP4 GEMM heuristic；MoE kernel 加 routing_replay_out、SM89 预过滤零占用 tactic，推理端 FP4 落地加速。",
+    "推理",
+)
+if c1: curated_sections["code"].append(c1)
 
-out = {
+# LangGraph prebuilt 1.0.11: ToolNode 返回 list[Command|ToolMessage]，ToolRuntime 暴露可用 tools
+c2 = pick(
+    "code",
+    lambda s: s == "LangGraph",
+    lambda t: "prebuilt==1.0.11" in t,
+    "LangGraph prebuilt 1.0.11：ToolNode 现在允许工具直接返回 list[Command|ToolMessage]，ToolRuntime 暴露当前可用工具清单，agent runtime 的工具调用协议更贴近 tool use 底层语义。",
+    "agent",
+)
+if c2: curated_sections["code"].append(c2)
+
+# OpenAI Agents v0.14.6: 示例默认 GPT-5.5、uv 依赖收紧、MongoDB session 文档
+c3 = pick(
+    "code",
+    lambda s: s == "OpenAI Agents",
+    lambda t: t == "v0.14.6",
+    "OpenAI Agents Python v0.14.6：默认模型升级到 GPT-5.5、放宽 websockets 上限到 <17、收紧 uv 依赖解析、新增 MongoDB 作为 agent session 后端的文档，agent SDK 持久化选项扩展。",
+    "agent",
+)
+if c3: curated_sections["code"].append(c3)
+
+# PyTorch [Inductor] update group combo sub-kernels by metadata fingerprint (revert)
+c4 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "3e4bb17451a6e7fd45147e3b5f4fca2bd03103f9" in t,
+    "PyTorch 主干回滚 Inductor 按 metadata 指纹更新 group combo 子 kernel 的改动，说明该策略在 combo kernel 场景下引入了回归，combo 调度仍在快速迭代。",
+    "训练",
+)
+if c4: curated_sections["code"].append(c4)
+
+# PyTorch Skip max_persistent_rblock for combo per_subkernel_blocks
+c5 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "57e7ded57bc36ffe709c2fdf5704b558b23b44c2" in t,
+    "PyTorch Inductor：combo 内 per-subkernel blocks 模式下跳过 max_persistent_rblock 约束，避免 combo kernel 在持久化 reduction 上被误裁剪，提升融合 kernel 的可调度性。",
+    "训练",
+)
+if c5: curated_sections["code"].append(c5)
+
+# PyTorch ROCm FlexAttention target-dependent default forward config
+c6 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "45e9db74900da0ac0549ab69533cfadc74db0c40" in t,
+    "PyTorch Inductor 为 ROCm 的 FlexAttention 引入 target-dependent 默认 forward config，AMD GPU 上的 attention 编译路径不再沿用 NV 的调度参数，跨后端性能收敛。",
+    "推理",
+)
+if c6: curated_sections["code"].append(c6)
+
+# PyTorch Auto-generate fake kernels for Tag.out custom operators
+c7 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "7de21d5cf22abd13bfa388da3811a1afcaf8f4e3" in t,
+    "PyTorch：为打了 Tag.out 的 custom operator 自动生成 fake/meta kernel（out= 参数按序返回），用户不再需要手写平凡的 meta 实现，export/编译路径的自定义算子接入成本下降。",
+    "训练",
+)
+if c7: curated_sections["code"].append(c7)
+
+# PyTorch Revert cuBLAS(Lt) thread-local workspace maps
+c8 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "68535d0c7ffbfb8e2094315241b9b84f364734ad" in t,
+    "PyTorch 主干回滚 cuBLAS/cuBLASLt 线程局部 workspace map 改动，多线程推理/训练里 cuBLAS workspace 的共享策略仍在权衡 OOM 与正确性。",
+    "推理",
+)
+if c8: curated_sections["code"].append(c8)
+
+# PyTorch PGNCCL Symmetric Memory IntraNodeComm parameterization
+c9 = pick(
+    "code",
+    lambda s: s == "PyTorch",
+    lambda t: "0869b243fa8dc23db93d86ca97215b744c3f33b9" in t,
+    "PyTorch PGNCCL × Symmetric Memory × IntraNodeComm 测试参数化扩展，节点内对称内存通信（NVL domain 内 allreduce/scatter）的覆盖率提升，分布式训练通信栈稳定性工程。",
+    "训练",
+)
+if c9: curated_sections["code"].append(c9)
+
+# ===== blogs =====
+# NVIDIA DeepSeek V4 + Blackwell（偏推理部署基础设施，勉强收）
+b1 = pick(
+    "blogs",
+    lambda s: s == "NVIDIA Developer Blog",
+    lambda t: "DeepSeek V4" in t and "Blackwell" in t,
+    "NVIDIA 在 Blackwell 和 GPU 加速 endpoint 上适配 DeepSeek-V4-Pro / V4-Flash：聚焦 Blackwell 上 MoE 推理的 kernel/调度栈与 NIM endpoint 部署路径，是推理部署侧的一手工程参考。",
+    "推理",
+)
+if b1: curated_sections["blogs"].append(b1)
+
+# ===== community =====
+# Qwen3.6-27B NVFP4+MTP on RTX 5090 via vLLM 0.19 ~80 tps @ 218k ctx
+cm1 = pick(
+    "community",
+    lambda s: s == "r/LocalLLaMA",
+    lambda t: "Qwen3.6-27B" in t and "vllm 0.19" in t,
+    "Qwen3.6-27B NVFP4+MTP 在单张 RTX 5090 上用 vLLM 0.19.1rc1 跑出 ~80 tps、218k 上下文：NVFP4 量化 + MTP 投机解码 + vLLM 长上下文 paged attention 的组合在消费级 Blackwell 上的实测配方。",
+    "推理",
+)
+if cm1: curated_sections["community"].append(cm1)
+
+# Rose optimizer: stateless, 比 8bit AdamW 还省显存（训练基础设施里的优化器）
+cm2 = pick(
+    "community",
+    lambda s: s == "r/MachineLearning",
+    lambda t: "Rose" in t and "Optimizer" in t,
+    "Rose 优化器开源：声称无状态、显存低于 8bit AdamW、接近裸 SGD，PyTorch 接口 Apache 2.0。对大模型训练而言是 optimizer state 显存压缩的又一路线候选（需独立验证收敛质量）。",
+    "训练",
+)
+if cm2: curated_sections["community"].append(cm2)
+
+
+# 统计
+counts = {k: len(v) for k, v in curated_sections.items()}
+total = sum(counts.values())
+tags = {"推理": 0, "训练": 0, "agent": 0}
+for v in curated_sections.values():
+    for it in v:
+        tags[it["domain_tag"]] = tags.get(it["domain_tag"], 0) + 1
+
+curated = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "lookback_hours": raw.get("lookback_hours", 36),
     "sections": curated_sections,
-    "source": "agent_curated",
 }
 
-with OUT.open("w", encoding="utf-8") as f:
-    json.dump(out, f, ensure_ascii=False, indent=2)
-
-# 打印统计
-total = sum(len(v) for v in curated_sections.values())
-by_tag: dict[str, int] = {}
-for section_items in curated_sections.values():
-    for it in section_items:
-        by_tag[it["domain_tag"]] = by_tag.get(it["domain_tag"], 0) + 1
-print(f"curated total={total}")
-for s, items in curated_sections.items():
-    print(f"  {s}: {len(items)}")
-print(f"by_tag: {by_tag}")
-print(f"generated_at={out['generated_at']}")
-print(f"raw.generated_at={raw['generated_at']}")
+OUT.write_text(
+    json.dumps(curated, ensure_ascii=False, indent=2),
+    encoding="utf-8",
+)
+print(f"[curated] total={total} counts={counts} tags={tags}")
+print(f"[curated] saved -> {OUT}")

@@ -28,3 +28,12 @@
 - render: `LLM 摘要 ✓`，无 fallback，CST 时间戳 22 处
 - publish: commit `e48a9ae`，HEAD==origin/main，HTML diff 231 行 × 2
 - 状态: ✅ 成功。agent 方向命中较多（ARGUS GPU agent、UniEP MoE EP、ReasoningBank agent memory、LangGraph fix、OpenAI Agents sandbox、harness mismatch 讨论）
+
+## 2026-04-23 22:00（domain_tag 版 prompt 第 4 跑）
+- 前置：python shim 指向 3.13.12 但只有 `.installing.*` 目录，用 install_binary 重装 3.13.12 后恢复
+- fetch: 97 条 raw（papers 36 / code 16 / blogs 5 / community 40），无 RSS 源失败
+- curated: 19 条（papers 6 / code 8 / blogs 1 / community 4），domain_tag 分布 推理 12 / 训练 4 / agent 3
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳正常
+- publish: commit `872ae56`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +571 行
+- 亮点：FASER 动态投机解码、PayPal EAGLE3 H100 benchmark、Super Apriel 多 mixer supernet、Megatron 26.04-alpha HybridEP+a2a 高优先级流、PyTorch _FastCudaLauncher、DeepEP V2+TileKernels、OpenAI Agents v0.14.5 Modal sandbox timeout
+- 状态: ✅ 成功
