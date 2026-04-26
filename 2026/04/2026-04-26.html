@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-04-26 Sunday</title>
+<!-- rendered_at: 2026-04-26 22:02:38 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-26T14:02:32.370863+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-04-26 Sunday · 回溯 36h · 共 13 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-04-26 22:02:32 CST</span>
+      <span class="badge">Rendered: 2026-04-26 22:02:38 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+        <span class="count">0/0</span>
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">6/6</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F8f248fd2c0ad6ddc5d16e6ea17f3739bcc75d88f" target="_blank" rel="noopener">trunk/8f248fd2c0ad6ddc5d16e6ea17f3739bcc75d88f: FakeTensor C++ Migration: Modifying TensorImpl (#181387)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 20:45 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 把 FakeTensorMode 下沉到 C++ TensorImpl：新增 fake_device_/fake_tensor_mode_ 与 is_fake() 接口，meta tensor 可原地变成 fake tensor，Dynamo/Inductor 追踪路径将摆脱 Python 层开销。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F911dcb37b9ceb1e0e39572328784e7a3199d38a3" target="_blank" rel="noopener">trunk/911dcb37b9ceb1e0e39572328784e7a3199d38a3: Add nn.LinearCrossEntropyLoss (#172446)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 17:38 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 合入 nn.LinearCrossEntropyLoss 融合算子：线性投影+交叉熵一步算完，避免显式物化 [B,T,V] logits，LLM 训练末端 head 显存与带宽压力显著下降。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1777189969" target="_blank" rel="noopener">viable/strict/1777189969: [CI] Migrate 12.8 CI jobs to 13.0 (#180052)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 10:45 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 把 CI 从 CUDA 12.8 全量切到 13.0，作为 2.11 稳定版的 1/2 步；意味着下一版 wheel 将默认 CUDA 13，下游 vLLM/SGLang 镜像需要同步升级。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1777192959" target="_blank" rel="noopener">viable/strict/1777192959: Reenable XPU workflows (#181437)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 11:45 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 恢复 XPU（Intel GPU）workflows，意味着 oneAPI/SYCL 后端重新进入主干 CI 保护，多硬件后端竞争格局继续维持。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/nightly-v0.6.9-20260425" target="_blank" rel="noopener">Nightly Release v0.6.9-20260425</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 14:45 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashInfer v0.6.9 nightly 滚动发布：持续跟进 Blackwell SM120 融合 MoE、FP4 GEMM 与 routing_replay 等昨日已合入的大特性，供 vLLM/SGLang 拉取验证。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.14.6" target="_blank" rel="noopener">v0.14.6</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">OpenAI Agents</span>
+          <span class="dot">·</span>
+          <span class="time">04-25 10:31 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>OpenAI Agents Python SDK v0.14.6：放宽 websockets 版本上限至 &lt;17、示例默认模型切到 GPT-5.5、新增 MongoDB session 文档，agent runtime 持续小步迭代。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">0/0</span>
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">7/7</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1sw21op/qwen3627bint4_clocking_100_tps_with_256k_context/" target="_blank" rel="noopener">Qwen3.6-27B-INT4 clocking 100 tps with 256k context length on 1x RTX 5090 via vllm 0.19</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 16:37 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 19.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Qwen3.6-27B INT4 (AutoRound) 在单卡 5090 上通过 vLLM 0.19 跑出 100+ tps 的 TG 吞吐，并能吃下原生 256k 上下文；MTP 推测解码 + 小权重，是当前单卡推理性价比新标杆。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">FlashInfer</span><span class="tag">FP8</span><span class="tag">FP4</span><span class="tag">INT4</span><span class="tag">attention</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1svzlog/the_exact_kv_cache_usage_of_deepseek_v4/" target="_blank" rel="noopener">The exact KV cache usage of DeepSeek V4</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 14:19 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 18.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>社区根据 vLLM 官方 blog 推算 DSV4 在 1M 上下文下 KV cache 仅 6.72 GiB（Flash）/9.62 GiB（Pro），较 V3.2 省约 7.9×；KV 占比降到 0.3%，几乎抹平 Transformer-SSM 混合架构的显存优势。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">llama.cpp</span><span class="tag">MLA</span><span class="tag">KV cache</span><span class="tag">transformer</span><span class="tag">attention</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.lmsys.org/blog/2026-04-25-deepseek-v4/" target="_blank" rel="noopener">DeepSeek-V4 on Day 0: From Fast Inference to Verified RL with SGLang and Miles</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 07:44 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.lmsys.org</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>lmsys 放出 SGLang+Miles 对 DSV4 的 Day0 支持：推理侧接入新 MLA/稀疏 MoE 路由，并打通 Verified RL 训练回路；开源栈首个端到端跑通 DSV4 inference+post-training 的方案。</p></div>
+      <div class="card-tags"><span class="tag">SGLang</span><span class="tag">DeepSeek</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1svw92f/introducing_automuon_a_one_line_drop_in_for_adamw/" target="_blank" rel="noopener">Introducing AutoMuon, a one line drop in for AdamW [P]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 11:23 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>AutoMuon 封装 Muon 优化器为 AdamW 的一行替换：自动识别 2D 权重矩阵用 Muon、embedding/norm/bias 仍走 AdamW，降低 Muon 在任意 PyTorch pipeline 的落地门槛。</p></div>
+      <div class="card-tags"><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/labiium/routiium" target="_blank" rel="noopener">Show HN: Routiium – self-hosted LLM gateway with a tool-result guard</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 04:30 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Routiium 是自托管 OpenAI 兼容 LLM 网关，核心亮点是 tool_result_guard：把 MCP/web-fetch/shell 返回内容独立扫一遍，防止 prompt injection 从工具返回通道污染模型上下文——补上 agent runtime 的经典缺口。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span><span class="tag">MCP</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/Donnyb369/mcp-spine" target="_blank" rel="noopener">MCP Spine – Middleware proxy for LLM tool calls with security and token control</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 05:38 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>MCP Spine 是 LLM tool call 的中间件代理，面向 agent 场景做安全校验与 token 额度控制；当 MCP server 直接暴露给模型不安全时，这种网关式拦截层正在成为工程刚需。</p></div>
+      <div class="card-tags"><span class="tag">MCP</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1sw5b44/going_from_3b7b_dense_to_nemotron_3_nano_hybrid/" target="_blank" rel="noopener">Going from 3B/7B dense to Nemotron 3 Nano (hybrid Mamba-MoE) for multi-task reasoning — what changes in the fine-tuning playbook? [D]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">04-26 19:42 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 8.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>讨论：Nemotron 3 Nano（23 Mamba-2 + 23 MoE + 6 GQA 混合架构）下 LoRA 该怎么贴——不同层类型权重形状迥异，标准 LoRA recipe 需拆分处理，是混合架构训练工程化的新挑战。</p></div>
+      <div class="card-tags"><span class="tag">NeMo</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">H100</span><span class="tag">TPU</span><span class="tag">Mixtral</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>
