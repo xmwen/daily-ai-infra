@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-04-27 Monday</title>
+<!-- rendered_at: 2026-04-27 22:02:58 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-27T14:02:51.055215+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-04-27 Monday · 回溯 36h · 共 17 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-04-27 22:02:51 CST</span>
+      <span class="badge">Rendered: 2026-04-27 22:02:58 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+        <span class="count">8/8</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22312" target="_blank" rel="noopener">Guess-Verify-Refine: Data-Aware Top-K for Sparse-Attention Decoding on Blackwell via Temporal Correlation</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 15.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA Blackwell 上的 data-aware 精确 Top-K：利用连续 decode 步之间的时间相关性做预测，1-2 轮全局扫描定阈值+ballot-free 收集，专治 sparse-attention decoding 里 Top-K 这段 serving 延迟瓶颈。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">TensorRT-LLM</span><span class="tag">speculative decoding</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22126" target="_blank" rel="noopener">GICC: A High-Performance Runtime for GPU-Initiated Communication and Coordination in Modern HPC Systems</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 11.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>GPU kernel 直接驱动跨节点通信的 runtime：针对 Slingshot OFI（Top500 前三都在用）给出 bounded NIC 工作回收机制，消除 host-driven 进度和 IB 路径上的多余锁，降 launch 开销+提高 compute/communication overlap。</p></div>
+      <div class="card-tags"><span class="tag">veRL</span><span class="tag">GPU kernel</span><span class="tag">InfiniBand</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2508.15919" target="_blank" rel="noopener">HFX: Joint Design of Algorithms and Systems for Multi-SLO Serving and Fast Scaling</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>生产级 LLM serving 系统：把请求调度和副本弹性扩缩联合优化，按 SLO 做主动预算估计+优先级排队，同时处理异构请求/变长 prompt/弹性伸缩，主打多任务/多 SLO 场景。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">scheduler</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22032" target="_blank" rel="noopener">Kernel Contracts: A Specification Language for ML Kernel Correctness Across Heterogeneous Silicon</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 3.6</span>
+        </div>
+      </div>
+      <div class="card-body"><p>给 ML kernel 写「合约」的规约语言：8 段式（scope/前后置/容差/reference oracle/测量协议/违约签名）形式化描述算子语义，专治跨 AMD/NVIDIA/Ascend 同算子结果不一致时没有仲裁依据的问题。</p></div>
+      <div class="card-tags"><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">Ascend</span><span class="tag">ZeRO</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22050" target="_blank" rel="noopener">LayerBoost: Layer-Aware Attention Reduction for Efficient LLMs</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 1.8</span>
+        </div>
+      </div>
+      <div class="card-body"><p>层感知的 attention 替换：先做敏感度分析找出对性能关键的层，只对不敏感层替换成线性/混合 attention，避免整模型一刀切 linear 化导致的精度大跌或需要大规模重训。</p></div>
+      <div class="card-tags"><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22092" target="_blank" rel="noopener">FlashSpread: IO-Aware GPU Simulation of Non-Markovian Epidemic Dynamics via Kernel Fusion</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>把 non-Markov 传染病模拟整条 pipeline（CSR 遍历+erfcx hazard+Bernoulli tau-leaping+状态转移+下一步感染力回写）融进单个 Triton kernel，全部中间量驻留 SM 寄存器+保 CUDA Graph 捕获，属于 Triton fused-kernel 工程范式的好案例。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.22228" target="_blank" rel="noopener">Accelerating Intra-Node GPU-to-GPU Communication Through Multi-Path Transfers with CUDA Graphs</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>把 CUDA Graphs 集成进 UCX：节点内 NVLink+PCIe 多路径 GPU-GPU 点对点通信用 CUDA Graph 统一调度，显著降通信开销，号称首个把 CUDA Graph 无缝接入 UCX 的工作。</p></div>
+      <div class="card-tags"><span class="tag">NVLink</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.21952" target="_blank" rel="noopener">Focus Session: Hardware and Software Techniques for Accelerating Multimodal Foundation Models</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>多模态基础模型硬软协同加速方法学综述：transformer block 硬软协设计+hierarchy-aware 混精度量化+结构化剪枝+speculative decoding+model cascading 路由，是一份系统性的 MFM 推理优化工程清单。</p></div>
+      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">quantization</span><span class="tag">decoding</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+        <span class="count">5/5</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.20.0" target="_blank" rel="noopener">v0.20.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 21:20 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 82.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.20.0：752 commits/320 贡献者。CUDA 13.0 成默认（跟 PyTorch 2.11 同步），XPU 也升到 torch 2.11，新增 Python 3.14 支持，跑 HuggingFace Transformers v5。AI Infra 大版本号大迁徙信号。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">FlashAttention</span><span class="tag">FlashInfer</span><span class="tag">MLA</span><span class="tag">KV cache</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1777298193" target="_blank" rel="noopener">viable/strict/1777298193: [Inductor] Add kernel_num_gb kernel_flop for combo kernels (#180813)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 16:18 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Inductor combo kernel 现在也能把 kernel_num_gb/kernel_flop 带进 inductor_meta：在 benchmark_kernel/profile_bandwidth 开启时，对每个 sub-kernel 调 estimate_kernel_num_bytes/estimate_flops 汇总。此前 combo kernel 在 profiler 和 autotune 带宽日志里没这俩字段。</p></div>
+      <div class="card-tags"><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F8418e216f95f375701a58d631d72d7fa7b817187" target="_blank" rel="noopener">trunk/8418e216f95f375701a58d631d72d7fa7b817187: Revert &quot;Add naive nn.linear_cross_entropy. (#172286)&quot;</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 20:52 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch 昨日新增的 nn.linear_cross_entropy 融合算子（LLM head 省显存+带宽）今天被 autorevert。意味着这个高关注度算子还需要一轮修复才能重新 land，值得追踪它的下一次 PR。</p></div>
+      <div class="card-tags"><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F23357daba5cbd9991f4043e11f47a7fa4312fed2" target="_blank" rel="noopener">trunk/23357daba5cbd9991f4043e11f47a7fa4312fed2: [CD] Remove cu132-&gt;cu130 wheel install fallback in Dockerfile  (#181513)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 20:51 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch Dockerfile 删掉 cu132→cu130 的 wheel 回退：CUDA 13.2 nightly 已于 2026-04-20 上架，之前留的临时 fallback 反而让 cuda13.2 镜像装上了 cu130 wheel，导致 smoke_test 报版本不匹配。CUDA 13.x 版本线逐步稳定。</p></div>
+      <div class="card-tags"><span class="tag">GPU</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F22790c5da3d534b53281c0866537154a47b6a1cf" target="_blank" rel="noopener">trunk/22790c5da3d534b53281c0866537154a47b6a1cf</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">PyTorch</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 08:20 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PyTorch AOTI 给 _scaled_dot_product_attention_math_for_cpu 加 BC-safe c_shim v2：AOTI 生成的 C++ 产物升级到 v2 ABI 后，math SDPA fallback 也有了向后兼容的 C shim，保证 AOTI 编译出的模型跨版本运行时链接稳定。</p></div>
+      <div class="card-tags"><span class="tag">attention</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+        <span class="count">0/0</span>
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+      
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+        <span class="count">4/4</span>
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1sx2vxp/skymizer_taiwan_inc_unveils_breakthrough/" target="_blank" rel="noopener">Skymizer Taiwan Inc. Unveils Breakthrough Architecture Enabling Ultra-Large LLM Inference on a Single Card</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 20:56 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Skymizer HTX301：单 PCIe 卡 6 颗芯片+384GB 内存，240W 本地跑 700B decode，prefill 继续丢给 GPU 做计算密集段、HTX301 专攻带宽密集的 decode 阶段——prefill/decode 分芯设计的又一具象落地，6 月 Computex 见真章。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">decoding</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1swpsv0/amd_hipfire_a_new_inference_engine_optimized_for/" target="_blank" rel="noopener">AMD Hipfire - a new inference engine optimized for AMD GPU&#x27;s</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 09:36 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>AMD Hipfire：社区新出的面向全系 AMD GPU 的推理引擎（非官方），自研 mq4 量化格式，Localmaxxing benchmark 显示对 RDNA3 有明显加速。ROCm 生态里罕见的社区向推理栈补充。</p></div>
+      <div class="card-tags"><span class="tag">inference engine</span><span class="tag">attention</span><span class="tag">quantization</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1swzjnu/to_16gb_vram_users_plug_in_your_old_gpu/" target="_blank" rel="noopener">To 16GB VRAM users, plug in your old GPU</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 18:20 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>消费级多卡 infra trick：5070 Ti 16GB + 2060 6GB 混插跑 30B 稠密模型。重点是双卡都必须放 VRAM（哪怕第二张弱 PCIe x4），llama-server 分层映射即可，揭示个人工作站「凑 VRAM」比「对称双卡」更实用。</p></div>
+      <div class="card-tags"><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1swjxjx/thoughts_on_using_an_amd_alveo_v80_fpga_pci_card/" target="_blank" rel="noopener">Thoughts on using an AMD Alveo V80 FPGA PCI card as a poor man’s Taalas HC1 (LLM-burned-onto-a-chip).</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 05:18 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 24.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>社区讨论用 AMD Alveo V80 FPGA（~9500 美元）模拟 Taalas HC1「LLM 烧进芯片」思路：Gemini 预估用 speculative decoding 架构跑 Qwen3.5-4B Q4 可达 3200 tk/s、9B ≈1400 tk/s。LLM 专用硬件/FPGA 推理路线的持续探讨。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">inference engine</span><span class="tag">speculative decoding</span><span class="tag">FP8</span><span class="tag">INT4</span><span class="tag">transformer</span></div>
+    </article>
+    </div>
+      
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>

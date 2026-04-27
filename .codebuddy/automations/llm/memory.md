@@ -45,3 +45,11 @@
 - publish: commit `f89fa68`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +420 行
 - 亮点：FlashInfer v0.6.9 SM120 Blackwell fused MoE+FP4 GEMM+routing_replay、LangGraph prebuilt 1.0.11 ToolNode 返回 Command+ToolMessage、OpenAI Agents v0.14.6、PyTorch Inductor combo kernel 迭代（revert+fix）、PyTorch ROCm FlexAttention target-dependent forward config、PGNCCL×SymmetricMemory×IntraNodeComm 测试参数化、NVIDIA DeepSeek-V4 Blackwell 部署、Qwen3.6-27B NVFP4+MTP vLLM 0.19 单卡 5090 80tps@218k
 - 状态: ✅ 成功。周末条数天然少，严格执行「宁缺毋滥」，排除大量水贴/商业讨论/AGI 梗图
+
+## 2026-04-26 22:00（周日跑）
+- fetch: 41 条 raw（papers 0 / code 12 / blogs 0 / community 29），无 RSS 源失败；周日 papers+blogs 双 0 是常态
+- curated: 13 条（papers 0 / code 6 / blogs 0 / community 7），domain_tag 分布 推理 6 / 训练 4 / agent 3
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳正常
+- publish: commit `001d722`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +459 行
+- 亮点：Qwen3.6-27B INT4 单卡 5090 100+ tps + 256k ctx、DSV4 KV cache 1M ctx 0.3% 占比（vs V3.2 降 7.9×）、lmsys×SGLang×Miles DSV4 Day0 推理+Verified RL、PyTorch FakeTensor C++ 迁移到 TensorImpl、PyTorch nn.LinearCrossEntropyLoss 融合算子、PyTorch CI CUDA 12.8→13.0、AutoMuon 一行替换 AdamW、Routiium tool_result_guard 防 tool-return prompt injection、Nemotron 3 Nano 混合 Mamba+MoE LoRA 讨论
+- 状态: ✅ 成功。周日水贴比例高，严格排除 paper-lantern bench/VLA 综述/金融应用/rebuttal 投诉/abliteration 抄袭事件等应用层内容
