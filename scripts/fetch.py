@@ -6,9 +6,19 @@ AI Infra Daily News - Fetcher
 2. 拉取 RSS/Atom feed
 3. 基于关键词做粗打分
 4. 过滤时间窗口（默认 36 小时内）
-5. 输出 today_raw.json 供后续 LLM 处理 / HTML 渲染
+5. 按分区 / 按 source 做最小分数门槛 + 负向黑名单 + 标题正则过滤
+6. 输出 today_raw.json 供后续 LLM 处理 / HTML 渲染
 
 设计原则：零运行时 LLM 依赖；LLM 摘要由 WorkBuddy Automation 的 Agent 回读 JSON 后完成。
+
+feeds.json 约定（向后兼容）：
+- `keywords.strong` / `keywords.medium`：打分词表
+- `keywords.deny`：负向黑名单，命中直接丢（大小写不敏感）
+- `section_min_score`：{section: int} 分区级最低分数门槛
+- 每个 source 可选字段：
+    - `min_score`：source 级最低分数（覆盖 section_min_score）
+    - `title_regex`：标题必须匹配的正则（不匹配则丢）
+    - `weight`：分数乘子（仅影响排序）
 """
 
 from __future__ import annotations
@@ -46,7 +56,6 @@ def load_config() -> dict:
 def strip_html(s: str) -> str:
     if not s:
         return ""
-    # 去 html 标签
     s = re.sub(r"<[^>]+>", " ", s)
     s = html.unescape(s)
     s = re.sub(r"\s+", " ", s).strip()
@@ -81,6 +90,17 @@ def score_entry(title: str, summary: str, kw: dict) -> tuple[int, list[str]]:
     return score, hits
 
 
+def hit_deny(title: str, summary: str, deny: list[str]) -> str | None:
+    """命中任一黑名单关键词返回该词，否则返回 None"""
+    if not deny:
+        return None
+    text = f"{title}\n{summary}".lower()
+    for k in deny:
+        if k.lower() in text:
+            return k
+    return None
+
+
 # --------------------------- 抓取 ---------------------------
 
 def fetch_feed(url: str, timeout: int = 15) -> list[dict]:
@@ -110,34 +130,67 @@ def fetch_feed(url: str, timeout: int = 15) -> list[dict]:
 
 
 def collect_section(section: str, sources: list[dict], cfg: dict,
-                    cutoff: datetime) -> list[dict]:
+                    cutoff: datetime) -> tuple[list[dict], dict]:
+    """返回 (items, stats)。stats 记录每个 source 的抓取/丢弃原因。"""
     kw        = cfg["keywords"]
+    deny      = kw.get("deny", [])
     per_max   = cfg["limits"]["per_source_max"]
+    section_min = cfg.get("section_min_score", {}).get(section, 0)
     items     = []
+    stats     = {}
 
     for src in sources:
         name   = src["name"]
         url    = src["url"]
         weight = src.get("weight", 1.0)
-        print(f"  [{section}] fetching {name} ...", flush=True)
+        src_min = src.get("min_score", section_min)
+        title_re = src.get("title_regex")
+        title_re_compiled = re.compile(title_re) if title_re else None
+
+        print(f"  [{section}] fetching {name} (min_score={src_min}"
+              + (f", regex={title_re}" if title_re else "")
+              + ") ...", flush=True)
         try:
             entries = fetch_feed(url)
         except Exception as ex:
             print(f"    ! failed: {ex}", flush=True)
+            stats[name] = {"fetched": 0, "kept": 0, "reason": f"failed: {ex}"}
             continue
 
+        fetched = len(entries)
+        kept = 0
+        drop_time = drop_deny = drop_regex = drop_score = 0
         picked = 0
+
         for e in entries:
             if picked >= per_max:
                 break
+
+            # 1. 时间窗口
             pub = to_utc(e["published"])
-            # 如果没有时间戳，也给条机会（GitHub releases 一般有）
             if pub and pub < cutoff:
+                drop_time += 1
                 continue
 
+            # 2. 标题正则（常用于 code 区滤掉 ciflow/trunk）
+            if title_re_compiled and not title_re_compiled.search(e["title"]):
+                drop_regex += 1
+                continue
+
+            # 3. 负向黑名单
+            denied = hit_deny(e["title"], e["summary"], deny)
+            if denied:
+                drop_deny += 1
+                continue
+
+            # 4. 关键词打分
             score, hits = score_entry(e["title"], e["summary"], kw)
-            # 论文/社区/博客：只要拿到就保留；打分只是排序依据
             adjusted = score * weight
+
+            # 5. 分数门槛
+            if adjusted < src_min:
+                drop_score += 1
+                continue
 
             items.append({
                 "section":   section,
@@ -151,8 +204,21 @@ def collect_section(section: str, sources: list[dict], cfg: dict,
                 "domain":    urlparse(e["link"]).netloc,
             })
             picked += 1
+            kept += 1
 
-    return items
+        stats[name] = {
+            "fetched": fetched,
+            "kept":    kept,
+            "drop_time":  drop_time,
+            "drop_regex": drop_regex,
+            "drop_deny":  drop_deny,
+            "drop_score": drop_score,
+        }
+        print(f"    -> kept {kept}/{fetched} "
+              f"(time={drop_time} regex={drop_regex} deny={drop_deny} score={drop_score})",
+              flush=True)
+
+    return items, stats
 
 
 # --------------------------- 主流程 ---------------------------
@@ -165,15 +231,16 @@ def main():
     result = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "lookback_hours": hours,
-        "sections": {}
+        "sections": {},
+        "fetch_stats": {},
     }
 
     for section, sources in cfg["sources"].items():
         print(f"== Section: {section} ({len(sources)} sources) ==", flush=True)
-        items = collect_section(section, sources, cfg, cutoff)
-        # 按分数降序
+        items, stats = collect_section(section, sources, cfg, cutoff)
         items.sort(key=lambda x: (x["score"], x["published"]), reverse=True)
         result["sections"][section] = items
+        result["fetch_stats"][section] = stats
         print(f"   -> {len(items)} items", flush=True)
 
     # 今日 raw 快照（按北京时间日期归档）
