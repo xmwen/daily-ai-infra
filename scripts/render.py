@@ -35,14 +35,14 @@ SECTION_META = {
 
 SECTION_ORDER = ["papers", "code", "blogs", "community"]
 
-# 每个分区展示上限（papers 放宽到 8，其它保持 8）
+# 每个分区展示上限（设 1000 确保全量显示）
 SECTION_TOP_N = {
-    "papers": 8,
-    "code": 8,
-    "blogs": 8,
-    "community": 8,
+    "papers": 1000,
+    "code": 1000,
+    "blogs": 1000,
+    "community": 1000,
 }
-DEFAULT_TOP_N = 8
+DEFAULT_TOP_N = 1000
 
 # 领域标签：值域固定为 推理/训练/agent，配不同配色
 DOMAIN_TAG_META = {
@@ -227,10 +227,8 @@ def render_section(section: str, items: list[dict], has_llm: bool,
     return f"""
     <section class="section" style="--accent:{meta['color']}">
       <h2 class="sec-title">{meta['title']}
-        <span class="count">{len(shown)}/{len(items)}</span>
       </h2>
       <div class="cards">{cards}</div>
-      {more}
     </section>
     """
 

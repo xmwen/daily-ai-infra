@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - 2026-04-28 Tuesday</title>
-<!-- rendered_at: 2026-04-28 14:52:36 CST -->
+<!-- rendered_at: 2026-04-28 15:00:40 CST -->
 <!-- source: today_curated.json data_generated_at: 2026-04-28T06:52:00.871049+00:00 -->
 <style>
 * { box-sizing: border-box; }
@@ -168,14 +168,13 @@ footer a { color: #94a3b8; }
     <div class="badges">
       <span class="badge">LLM 摘要 ✓</span>
       <span class="badge">Data: 2026-04-28 14:52:00 CST</span>
-      <span class="badge">Rendered: 2026-04-28 14:52:36 CST</span>
+      <span class="badge">Rendered: 2026-04-28 15:00:40 CST</span>
       <span class="badge">Source: today_curated.json</span>
     </div>
   </header>
 
     <section class="section" style="--accent:#6366f1">
       <h2 class="sec-title">📄 重点论文
-        <span class="count">8/12</span>
       </h2>
       <div class="cards">
     <article class="card">
@@ -328,13 +327,87 @@ footer a { color: #94a3b8; }
       <div class="card-body"><p>Coverage-Based PTQ 校准选样：观察到 INT4 PTQ 质量很大程度取决于 calibration sample 有没有「激活 outlier channel」，未激活就会低估 dynamic range 产生 per-channel 误差。把选样建模成 outlier channel 上的加权集合覆盖问题，目标单调次模，用贪心逼近。给 AWQ/GPTQ 之前的数据选择环节提供了理论化框架——和 AWQ 的 salient channel 思路一脉相承但视角放在数据侧。</p></div>
       <div class="card-tags"><span class="tag">INT4</span><span class="tag">GPTQ</span><span class="tag">AWQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">LLaMA</span></div>
     </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.23798" target="_blank" rel="noopener">ELSA: Exact Linear-Scan Attention for Fast and Memory-Light Vision Transformers</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.6</span>
+        </div>
+      </div>
+      <div class="card-body"><p>ELSA 精确线性扫描 attention：把 online softmax 重写为 $(m, S, W)$ 结合律 monoid 上的 prefix scan，拿到 O(n) 额外显存 + O(log n) 并行深度 + 可证 O(u log n) FP32 误差上界。最大卖点是 tensor-core independent（用 Triton/CUDA C++ 实现），作为 drop-in 替换不改权重。对没有 TC 或 TC 资源紧张场景（如某些国产芯片）的 exact attention 很有价值。</p></div>
+      <div class="card-tags"><span class="tag">FlashAttention</span><span class="tag">triton</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.23553" target="_blank" rel="noopener">ClusterFusion++: Expanding Cluster-Level Fusion to Full Transformer-Block Decoding</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>ClusterFusion++ 把 thread-block cluster 级融合从「QKV projection+attention+output projection」扩到完整 Transformer decoder block：LayerNorm → QKV → RoPE → decode attention → output projection → Post-LN → MLP → residual 一个 kernel 跑完。并做了 CUDA-Graph 兼容的执行模式配 persistent TMA descriptor 降低 per-step 开销。对延迟敏感的 decode 是直接打法。</p></div>
+      <div class="card-tags"><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">GPU</span><span class="tag">TPU</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2407.09577" target="_blank" rel="noopener">FlashNorm: Fast Normalization for Transformers</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashNorm 对 RMSNorm + linear 组合的精确重写：(1) 把 norm weight 吸进后续 linear，消掉 norm weights；(2) 利用 RMS 标度不变性把 scalar RMS 归一化推迟到 matmul 输出端，让 vector 单元的 RMS 计算和 tensor core 的 matmul 并行执行，不再阻塞。对 vector+matrix 单元解耦的硬件（含某些国产 NPU）很直接地解掉「normalization 卡 GEMM」的串行链。</p></div>
+      <div class="card-tags"><span class="tag">MLA</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">GPU</span><span class="tag">TPU</span><span class="tag">ZeRO</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2505.02922" target="_blank" rel="noopener">RetroInfer: A Vector Storage Engine for Scalable Long-Context LLM Inference</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>RetroInfer 把长上下文 LLM 推理的 KV cache 当作向量存储引擎：利用 attention 稀疏性，把 KV offload 到 CPU memory、只按需检索 per-step 的关键 token。解决已有 sparse attention 方案在 accuracy 和 retrieval cost 之间不好平衡、GPU-CPU 显存搬运效率差两个痛点，面向长上下文 serving。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">KV cache</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">serving</span><span class="tag">GPU</span></div>
+    </article>
     </div>
-      <p class="more">... 还有 4 条未显示（见 cache/today_raw.json）</p>
     </section>
     
     <section class="section" style="--accent:#10b981">
       <h2 class="sec-title">🚀 代码更新
-        <span class="count">4/4</span>
       </h2>
       <div class="cards">
     <article class="card">
@@ -412,20 +485,16 @@ footer a { color: #94a3b8; }
       <div class="card-tags"><span class="tag">LangGraph</span></div>
     </article>
     </div>
-      
     </section>
     
     <section class="section" style="--accent:#f59e0b">
       <h2 class="sec-title">📝 技术博客
-        <span class="count">0/0</span>
       </h2>
       <div class="cards"><p class="empty">今日无新条目。</p></div>
-      
     </section>
     
     <section class="section" style="--accent:#ec4899">
       <h2 class="sec-title">💬 社区热议
-        <span class="count">4/4</span>
       </h2>
       <div class="cards">
     <article class="card">
@@ -503,7 +572,6 @@ footer a { color: #94a3b8; }
       <div class="card-tags"><span class="tag">SGLang</span></div>
     </article>
     </div>
-      
     </section>
     
   <footer>

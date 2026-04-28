@@ -70,3 +70,12 @@
 - publish: commit `be5360a`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +553 行
 - 亮点：arXiv 一批新 paper 集中爆发——**GVR**（Blackwell data-aware 精确 Top-K 稀疏注意力 decode，利用时序相关性 secant 式收敛）、**GICC**（Slingshot OFI 上的 GPU-initiated 通信 runtime，补齐 kernel 自主跨节点协调）、**FlashSpread**（多阶段 pipeline 压成寄存器级 fused Triton kernel 的范式）、**HFX**（multi-SLO + 弹性伸缩 cluster-level serving 控制面）、**Kernel Contracts**（跨硅片 kernel 一致性规约语言，对国产芯片对齐 NVIDIA 语义有用）、**LayerBoost**（层感知注意力替换，避开全局 retrain）、CUDA Graph × UCX 节点内多路径通信、**LangGraph 1.1.10 紧急 revert node-level timeouts**（1.1.9 昨日 land 今日打回）、LangGraph prebuilt 1.0.12 ToolNode channel hydration 修复、Luce DFlash 单卡 3090 + Qwen3.6-27B 投机解码 1.98×、SGLang 70x 冷启动、Anthropic prompt-cache 一致性可见性缺陷、Lightport MCP gateway
 - 状态: ✅ 成功。与昨日对照有意思：昨日 PyTorch nn.linear_cross_entropy 刚 land 就 revert，今日 LangGraph node-level timeouts 也是 24h 内 revert——"feature 落地即回滚"在基础设施层最近特别高频
+
+## 2026-04-28 22:00（周二跑，第 2 次——同一天再次触发）
+- fetch: 49 条 raw（papers 27 / code 6 / blogs 0 / community 16），无 RSS 源失败；第二次抓取量比第一次 92 条少是正常现象（HN/reddit 热度消退 + arXiv 时间窗滚出）
+- curated: 20 条（papers 12 / code 4 / blogs 0 / community 4），domain_tag 分布 推理 13 / 训练 3 / agent 4
+- render: `LLM 摘要 ✓`，无 fallback，19 处 CST 时间戳，source=today_curated.json
+- publish: commit `3595b88`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 218 行 diff
+- 亮点（新增/深化）：**CuTile**（跨架构 GEMM/FA/LLM inference 实测 vs cuBLAS/Triton/WMMA，H100/B200）、**ELSA**（tensor-core independent 线性扫描 attention，Triton+CUDA 精确 softmax）、**ClusterFusion++**（Transformer-block 级全块融合，CUDA Graph+TMA）、**RetroInfer**（向量存储引擎长上下文，CPU offload+稀疏 attention 检索）、**FlashNorm**（RMSNorm weight fold 进 linear 并行执行）、**FlashOverlap**（TP 通信计算 overlap 最小化尾延迟）、**InfiniPipe**（elastic PP，token/batch 粒度混合调度）、**MoE expert 激活**（Llama4/DSV3/Qwen3 多节点推理实测）、LongFlow（reasoning 长输出 KV cache 压缩）、**PTQ outlier 校准**（weighted set cover 选 channel）、Hybrid JIT+CUDA Graph（partition 静态/动态 dual-path）
+- 本次 agent 命中：LangGraph 三连（1.1.10 revert timeouts / 4.0.3 checkpoint lc=2 revive / 1.0.12 ToolNode hydration）+ Lightport MCP gateway
+- 状态: ✅ 成功。第二次跑信号质量仍高，推理方向新增多个 kernel 级别 paper，训练方向有 FlashOverlap+InfiniPipe+MoE expert 三条链路
