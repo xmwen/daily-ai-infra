@@ -53,3 +53,12 @@
 - publish: commit `001d722`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +459 行
 - 亮点：Qwen3.6-27B INT4 单卡 5090 100+ tps + 256k ctx、DSV4 KV cache 1M ctx 0.3% 占比（vs V3.2 降 7.9×）、lmsys×SGLang×Miles DSV4 Day0 推理+Verified RL、PyTorch FakeTensor C++ 迁移到 TensorImpl、PyTorch nn.LinearCrossEntropyLoss 融合算子、PyTorch CI CUDA 12.8→13.0、AutoMuon 一行替换 AdamW、Routiium tool_result_guard 防 tool-return prompt injection、Nemotron 3 Nano 混合 Mamba+MoE LoRA 讨论
 - 状态: ✅ 成功。周日水贴比例高，严格排除 paper-lantern bench/VLA 综述/金融应用/rebuttal 投诉/abliteration 抄袭事件等应用层内容
+
+## 2026-04-27 22:00（周一跑）
+- fetch: 67 条 raw（papers 34 / code 13 / blogs 0 / community 20），无 RSS 源失败；周一 blogs 0 常态（周末没人发博客）
+- curated: 17 条（papers 8 / code 5 / blogs 0 / community 4），domain_tag 分布 推理 12 / 训练 5 / agent 0
+- render: `LLM 摘要 ✓`，无 fallback，20 处 CST 时间戳
+- publish: commit `efac95a`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +534 行
+- 亮点：**vLLM v0.20.0**（CUDA 13 默认+PyTorch 2.11+Python 3.14+Transformers v5 全栈大迁徙，752 commits）、GVR Blackwell sparse-attention data-aware Top-K、GICC GPU-initiated Slingshot 通信 runtime、HFX multi-SLO serving、Kernel Contracts 跨硅片规约语言、LayerBoost 层感知 attention 替换、FlashSpread Triton 单 kernel 融合、UCX+CUDA Graphs multi-path intra-node、PyTorch nn.linear_cross_entropy 被 autorevert（昨日刚 land 今日打回）、Skymizer HTX301 prefill/decode 分芯卡 6 芯片×64GB=384GB@240W 跑 700B、AMD Hipfire 社区 ROCm 推理引擎
+- agent 方向 0 条：今日 LangGraph/AutoGen/OpenAI Agents/MCP/XGrammar/Outlines 全部无 release，HN Agent infra 也无有效信号，严格执行「宁缺毋滥」不塞应用层凑数
+- 状态: ✅ 成功。vLLM v0.20.0 是本周最重要节点信号
