@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Infra 每日动态 - 2026-04-28 Tuesday</title>
-<!-- rendered_at: 2026-04-28 11:32:21 CST -->
-<!-- source: today_curated.json data_generated_at: 2026-04-28T03:31:58.300738+00:00 -->
+<!-- rendered_at: 2026-04-28 14:52:36 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-04-28T06:52:00.871049+00:00 -->
 <style>
 * { box-sizing: border-box; }
 body {
@@ -164,177 +164,177 @@ footer a { color: #94a3b8; }
 <div class="container">
   <header class="hero">
     <h1>🧠 AI Infra 每日动态</h1>
-    <p>2026-04-28 Tuesday · 回溯 36h · 共 18 条</p>
+    <p>2026-04-28 Tuesday · 回溯 36h · 共 20 条</p>
     <div class="badges">
       <span class="badge">LLM 摘要 ✓</span>
-      <span class="badge">Data: 2026-04-28 11:31:58 CST</span>
-      <span class="badge">Rendered: 2026-04-28 11:32:21 CST</span>
+      <span class="badge">Data: 2026-04-28 14:52:00 CST</span>
+      <span class="badge">Rendered: 2026-04-28 14:52:36 CST</span>
       <span class="badge">Source: today_curated.json</span>
     </div>
   </header>
 
     <section class="section" style="--accent:#6366f1">
       <h2 class="sec-title">📄 重点论文
-        <span class="count">8/8</span>
+        <span class="count">8/12</span>
       </h2>
       <div class="cards">
     <article class="card">
       <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22312" target="_blank" rel="noopener">Guess-Verify-Refine: Data-Aware Top-K for Sparse-Attention Decoding on Blackwell via Temporal Correlation</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 15.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>GVR（Guess-Verify-Refine）是面向 Blackwell 稀疏注意力 decode 的 data-aware 精确 Top-K 算法。利用连续 decode 步间的时序相关性：用上一步 Top-K 作预测信号，结合预索引统计，以 secant 式计数在 1-2 次 global pass 内收敛到合法阈值，再用无 ballot 收集器验证候选。把长上下文 LLM serving 中「一次 decode 一次 Top-K」的瓶颈压到最小，工程意义是把 kernel 已充分优化后的剩余长尾进一步拿掉。</p></div>
-      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">TensorRT-LLM</span><span class="tag">speculative decoding</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">serving</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22126" target="_blank" rel="noopener">GICC: A High-Performance Runtime for GPU-Initiated Communication and Coordination in Modern HPC Systems</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 11.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>GICC 针对 HPE Slingshot 这类 OFI 互联给 GPU kernel 提供真正的 GPU-initiated 跨节点通信 runtime。痛点：host-driven progress + 缺乏 pre-staged NIC work 的有界回收机制，导致 kernel 无法自主触发分布式协调；InfiniBand 现有实现又带不必要的 sync/lock 开销。GICC 让 distributed GPU app 的 launch overhead 降下来、计算-通信 overlap 更彻底，对 DeepSeek 级别的大规模训练/RL 流程是直接增益。</p></div>
-      <div class="card-tags"><span class="tag">veRL</span><span class="tag">GPU kernel</span><span class="tag">InfiniBand</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22092" target="_blank" rel="noopener">FlashSpread: IO-Aware GPU Simulation of Non-Markovian Epidemic Dynamics via Kernel Fusion</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 6.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>FlashSpread 把非马尔可夫（renewal）疫情仿真的每步 pipeline（CSR 遍历、数值稳定 erfcx 风险评估、Bernoulli tau-leaping、状态转移、下一步感染性写回）融合进单个 Triton kernel，中间结果全程驻留 SM 寄存器不回显存，配合 block-scalar skip 保持 CUDA Graph 可捕获。虽是疫情场景，但把多阶段 IO-bound pipeline 压成一个寄存器级 fused Triton kernel 的范式，对 LLM 推理的 prefill/decode 融合同样有参考价值。</p></div>
-      <div class="card-tags"><span class="tag">triton</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22228" target="_blank" rel="noopener">Accelerating Intra-Node GPU-to-GPU Communication Through Multi-Path Transfers with CUDA Graphs</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 5.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>把 CUDA Graph 集成进 UCX 框架，在节点内同时利用 NVLink 与 PCIe-through-host 两条路径做 GPU-to-GPU 点对点通信。相比单路径，多路径+CUDA Graph 把通信开销显著压低。意义在于把 CUDA Graph 从 kernel launch 层面扩展到节点内通信层面，对 MPI-based HPC 和大模型 TP 通信都有启发。</p></div>
-      <div class="card-tags"><span class="tag">NVLink</span><span class="tag">GPU</span><span class="tag">CUDA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2508.15919" target="_blank" rel="noopener">HFX: Joint Design of Algorithms and Systems for Multi-SLO Serving and Fast Scaling</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.DC</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 5.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>HFX 是 production LLM serving 系统，联合优化请求调度和模型副本弹性伸缩以满足多样 SLO。核心是两级：scheduler 做 proactive budget estimation + 优先级保证新老请求 SLO 合规；elastic scaling 针对异构请求、变长 prompt、动态扩缩容决定何时起/停副本。定位类似 vLLM/SGLang 外围的 cluster-level serving 控制面，工程上把 single-task 静态调度升级成多 SLO 多任务。</p></div>
-      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">scheduler</span><span class="tag">serving</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22032" target="_blank" rel="noopener">Kernel Contracts: A Specification Language for ML Kernel Correctness Across Heterogeneous Silicon</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.LG</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 3.6</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Kernel Contracts 提出为 ML kernel 写正式合约的规约语言，8 部分：identifier/scope/precondition/postcondition/tolerance/reference oracle/measurement protocol/violation signature。针对「AMD matmul 梯度和 NVIDIA 不一致」「fused attention 静默下转累加器」「越界返零 vs 返垃圾」等跨硅片一致性灰色地带，给出可仲裁的形式产物。对昇腾/寒武纪/摩尔线程等国产芯片对齐 NVIDIA 语义尤其有用。</p></div>
-      <div class="card-tags"><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">Ascend</span><span class="tag">ZeRO</span><span class="tag">CUDA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.22050" target="_blank" rel="noopener">LayerBoost: Layer-Aware Attention Reduction for Efficient LLMs</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">arXiv cs.LG</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">arxiv.org</span>
-          
-          <span class="score">kw 1.8</span>
-        </div>
-      </div>
-      <div class="card-body"><p>LayerBoost 是层感知的注意力简化方法：先对预训练模型做系统敏感度分析，识别对性能关键的 attention 层；对不敏感的层才替换为线性/混合注意力变体。思路是把「全局统一换线性注意力」的性能崩塌问题拆成「逐层条件替换」，避开大规模 retrain。对长序列推理/部署的 softmax 二次复杂度瓶颈是实用折中。</p></div>
-      <div class="card-tags"><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">serving</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://arxiv.org/abs/2604.21952" target="_blank" rel="noopener">Focus Session: Hardware and Software Techniques for Accelerating Multimodal Foundation Models</a>
+        <a class="card-title" href="https://arxiv.org/abs/2604.23466" target="_blank" rel="noopener">Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs</a>
         <div class="card-meta">
           <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
           <span class="src">arXiv cs.AR</span>
           <span class="dot">·</span>
-          <span class="time">04-27 12:00 CST</span>
+          <span class="time">04-28 12:00 CST</span>
           <span class="dot">·</span>
           <span class="domain">arxiv.org</span>
           
-          <span class="score">kw 7.0</span>
+          <span class="score">kw 21.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Focus Session 面向多模态基础模型给出硬件-软件协同加速方法论：transformer block 硬软协同设计 + 层次感知混合精度量化 + 结构化剪枝 MLP channel + 投机解码 + 小-大模型 cascading routing。把 MFM 压缩/部署的常见优化手段做系统性整合。工程价值在流程层面——部署一条龙而非单点技术。</p></div>
-      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">quantization</span><span class="tag">decoding</span></div>
+      <div class="card-body"><p>NVIDIA CuTile（Python tile-centric CUDA 抽象）的首次独立跨架构评测，在 H100 NVL / B200 / RTX PRO 6000 Blackwell 三卡上对 GEMM、fused MHA、端到端 LLM 推理与 cuBLAS/Triton/WMMA/raw SIMT 逐一对标。结论是 CuTile 的效果与工作负载和架构强相关——不是「写一版就通吃」，给想迁到 CuTile 的 kernel 工程师提供了第一手 portability 证据。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">FlashAttention</span><span class="tag">triton</span><span class="tag">CUDA kernel</span><span class="tag">GPU kernel</span><span class="tag">attention</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.24088" target="_blank" rel="noopener">TACO: Efficient Communication Compression of Intermediate Tensors for Scalable Tensor-Parallel LLM Training</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>TACO 面向 tensor-parallel 训练中间张量通信压缩：观察到 TP intermediate tensor 接近零稠密分布、反复通信累积误差大。做法是 data-driven reshape + Adaptive Scale-Hadamard 变换使 FP8 量化高保真、再用 Dual-Scale Quantization 维持数值稳定，并把压缩融到一个算子里减少显存访问。目标是把大规模 TP 训练里的通信这一关从「算法差 + 开销大」同时解掉。</p></div>
+      <div class="card-tags"><span class="tag">FP8</span><span class="tag">pipeline parallel</span><span class="tag">veRL</span><span class="tag">quantization</span><span class="tag">kernel</span><span class="tag">ZeRO</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.23467" target="_blank" rel="noopener">Hybrid JIT-CUDA Graph Optimization for Low-Latency Large Language Model Inference</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 10.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Hybrid JIT-CUDA Graph 低延迟推理框架：把 transformer 推理拆成静态部分（CUDA Graph replay）+ 动态部分（JIT 编译 kernel），实现 decoding step 间 graph 的异步 capture 和复用。针对短序列交互场景的 kernel launch overhead 给出混合 runtime 解法，可以和 TensorRT-LLM 的 fixed-shape graph 路线互补。</p></div>
+      <div class="card-tags"><span class="tag">TensorRT-LLM</span><span class="tag">transformer</span><span class="tag">decoding</span><span class="tag">serving</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.24013" target="_blank" rel="noopener">FlashOverlap: Minimizing Tail Latency in Communication Overlap for Distributed LLM Training</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashOverlap 针对分布式 LLM 训练中 overlap 方案尾延迟问题：指出已有 data slicing 方式在 TP/DP 场景下 tail latency 长。提出一种新的 overlap 技术专门消除这段尾，使 TP 的通信瓶颈和通信-计算重叠的最差情况都被控制。大规模集群里「第 P99 步慢」的结构性成因被直接针对。</p></div>
+      <div class="card-tags"><span class="tag">tensor parallel</span><span class="tag">veRL</span><span class="tag">GPU</span><span class="tag">TPU</span><span class="tag">distributed training</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2509.21275" target="_blank" rel="noopener">InfiniPipe: Elastic Pipeline Parallelism for Efficient Variable-Length Long-Context LLM Training</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>InfiniPipe 弹性流水并行：观察到 batch-level PP 在长上下文场景显存炸、token-level PP 硬件利用率差，数据 seq 长度分布高度倾斜使单一粒度 PP 难以最优。提出 Elastic Pipeline Parallelism 在 token-level 与 batch-level 间自适应切换粒度，专治变长长上下文训练。</p></div>
+      <div class="card-tags"><span class="tag">long context</span><span class="tag">pipeline parallel</span><span class="tag">sequence parallel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.23150" target="_blank" rel="noopener">Scaling Multi-Node Mixture-of-Experts Inference Using Expert Activation Patterns</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 8.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>基于 Llama4 Maverick、DeepSeek V3-671B、Qwen3-230B-A22B 等 SOTA MoE 收集 10 万条真实 expert 激活 trace，系统刻画多节点 MoE 推理在 expert 负载不均 + token 路由低效下跨节点 all-to-all 的瓶颈，并提出基于 expert activation pattern 的 scaling 方案。真实 trace 驱动，面向大规模 MoE serving。</p></div>
+      <div class="card-tags"><span class="tag">MoE inference</span><span class="tag">serving</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2603.11504" target="_blank" rel="noopener">LongFlow: Efficient KV Cache Compression for Reasoning Models</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.8</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LongFlow 针对 reasoning model 长输出场景的 KV cache 压缩：指出已有 KV 优化主要面向「长输入短输出」，对 o1/R1 这类 long-output 推理的带宽压力反而无效，且 token importance 估计代价太高无法持续重估。用更轻的 importance scoring + 结构化压缩，压实 long-output decode 的 KV 带宽问题。</p></div>
+      <div class="card-tags"><span class="tag">FlashAttention</span><span class="tag">KV cache</span><span class="tag">ring attention</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.24008" target="_blank" rel="noopener">Coverage-Based Calibration for Post-Training Quantization via Weighted Set Cover over Outlier Channels</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.2</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Coverage-Based PTQ 校准选样：观察到 INT4 PTQ 质量很大程度取决于 calibration sample 有没有「激活 outlier channel」，未激活就会低估 dynamic range 产生 per-channel 误差。把选样建模成 outlier channel 上的加权集合覆盖问题，目标单调次模，用贪心逼近。给 AWQ/GPTQ 之前的数据选择环节提供了理论化框架——和 AWQ 的 salient channel 思路一脉相承但视角放在数据侧。</p></div>
+      <div class="card-tags"><span class="tag">INT4</span><span class="tag">GPTQ</span><span class="tag">AWQ</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">LLaMA</span></div>
     </article>
     </div>
-      
+      <p class="more">... 还有 4 条未显示（见 cache/today_raw.json）</p>
     </section>
     
     <section class="section" style="--accent:#10b981">
       <h2 class="sec-title">🚀 代码更新
-        <span class="count">6/6</span>
+        <span class="count">4/4</span>
       </h2>
       <div class="cards">
     <article class="card">
@@ -348,11 +348,30 @@ footer a { color: #94a3b8; }
           <span class="dot">·</span>
           <span class="domain">github.com</span>
           
-          <span class="score">kw 82.0</span>
+          <span class="score">kw 88.0</span>
         </div>
       </div>
-      <div class="card-body"><p>vLLM v0.20.0：752 commits / 320 贡献者的大版本。核心节点信号：(1) DeepSeek V4 初步支持（#40860），含 DSML token-leakage 修复、DSA+MTP IMA 修复、共享专家 silu clamp 限制；(2) PyPI 默认 CUDA wheel 切到 CUDA 13.0（CUDA 12.9 用户要加 --torch-backend=cu129）；(3) PyTorch 2.11 升级，XPU 同步 2.11；(4) 策略上 CUDA 版本跟随 PyTorch。本周最大底座迁徙节点。</p></div>
-      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">FlashAttention</span><span class="tag">FlashInfer</span><span class="tag">MLA</span><span class="tag">KV cache</span></div>
+      <div class="card-body"><p>vLLM v0.20.0：752 commits / 320 contributors 的年度级大版本。DeepSeek V4 初步支持（含 DSML token leakage、DSA+MTP IMA、shared expert silu clamp 三修），默认 wheel 从 CUDA 12.x 切到 CUDA 13.0 + PyTorch 2.11，XPU 也同步到 torch 2.11。CUDA 版本策略跟 PyTorch；CUDA 12.9 用户推荐用 uv --torch-backend=cu129。属于本周推理栈最重要的节点事件。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">speculative decoding</span><span class="tag">disaggregated</span><span class="tag">FlashAttention</span><span class="tag">FlashInfer</span><span class="tag">MLA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.0.3" target="_blank" rel="noopener">langgraph-checkpoint==4.0.3</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">LangGraph</span>
+          <span class="dot">·</span>
+          <span class="time">04-27 22:34 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LangGraph checkpoint 4.0.3：恢复对 lc=2 JSON blobs 的 safe-types 反序列化支持（#7582），不再强制走 allowlist。agent 状态持久化向后兼容的补救，对已经落盘老版本 checkpoint 的生产环境避免 breaking。</p></div>
+      <div class="card-tags"><span class="tag">LangGraph</span><span class="tag">LangSmith</span></div>
     </article>
     
 
@@ -367,10 +386,10 @@ footer a { color: #94a3b8; }
           <span class="dot">·</span>
           <span class="domain">github.com</span>
           
-          <span class="score">kw 1.0</span>
+          <span class="score">kw 3.0</span>
         </div>
       </div>
-      <div class="card-body"><p>LangGraph 1.1.10 紧急 revert：昨天 1.1.9 加的 node-level timeouts（#7599）今天就被 revert（#7627）。同时带 prebuilt 1.0.12 和 checkpoint 4.0.3。昨日 prebuilt 1.0.11 刚 land 的 ToolNode 返回 list[Command | ToolMessage] 特性保留。典型的「feature 落地后 24h 内回滚」信号，说明 node-level timeout 实现细节存在坑。</p></div>
+      <div class="card-body"><p>LangGraph 1.1.10 紧急回滚：1.1.9 刚加的 node-level timeouts（#7599）在此版本被整体 revert（#7627），24 小时内进出主线。agent 框架在 runtime 层加 per-node timeout 看似简单，落到实际检查点/调度状态里涉及 pregel 执行循环一致性，社区已有两次尝试失败。infra 层 revert 信号对同类框架设计有参考价值。</p></div>
       <div class="card-tags"><span class="tag">LangGraph</span></div>
     </article>
     
@@ -386,68 +405,11 @@ footer a { color: #94a3b8; }
           <span class="dot">·</span>
           <span class="domain">github.com</span>
           
-          <span class="score">kw 1.0</span>
+          <span class="score">kw 3.0</span>
         </div>
       </div>
-      <div class="card-body"><p>LangGraph prebuilt 1.0.12：关键修复是 ToolNode state hydration 通过 pregel helpers 从 channels 取值（#7594）。之前 ToolNode 拿 state 的方式绕开了 pregel 的 channel 机制，子图/嵌套场景下会读到过期数据。这种 agent 框架内部 state 同步路径的修复是 agent runtime 基础设施的核心。</p></div>
+      <div class="card-body"><p>LangGraph prebuilt 1.0.12：修复 ToolNode 从 channels 通过 pregel helper 做 state hydration（#7594），配合 1.0.11 新加的 ToolNode 返回 list[Command | ToolMessage] 一起完善 tool 调用的状态流。agent runtime 侧 tool 语义的打磨仍在持续。</p></div>
       <div class="card-tags"><span class="tag">LangGraph</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.0.3" target="_blank" rel="noopener">langgraph-checkpoint==4.0.3</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">LangGraph</span>
-          <span class="dot">·</span>
-          <span class="time">04-27 22:34 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 1.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>LangGraph checkpoint 4.0.3：复活 lc=2 JSON blob 对安全类型的反序列化支持，不强制 allowlist（#7582）。含义是旧版本写入的 checkpoint 能在新版本无感读取，降低 agent 长期运行状态的迁移成本。agent memory / 状态持久化工程细节。</p></div>
-      <div class="card-tags"><span class="tag">LangGraph</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F1b2c1d86899613bb95c1548c61a6bf5cdd1857c2" target="_blank" rel="noopener">trunk/1b2c1d86899613bb95c1548c61a6bf5cdd1857c2</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-28 10:12 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 1.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>PyTorch 修复 CUDA Graph 场景下 autograd 中陈旧 stream 引用的检测与修复。场景是图捕获后 stream 对象可能被释放但 autograd 仍持引用，引发 UAF/错流执行。对用 CUDA Graph 加速的训练/推理都是潜在崩溃点修复。</p></div>
-      <div class="card-tags"><span class="tag">CUDA</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/pytorch/pytorch/releases/tag/trunk%2F9c3d517dd658453263fa75e99a2b808dd2447f93" target="_blank" rel="noopener">trunk/9c3d517dd658453263fa75e99a2b808dd2447f93: [test][inductor] Fix broken compiler_bisector tests (#181642)</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
-          <span class="src">PyTorch</span>
-          <span class="dot">·</span>
-          <span class="time">04-28 10:03 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 1.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>PyTorch Inductor 修复 compiler_bisector 测试：适配新的非 custom pre_grad passes，两个测试改用 CustomGraphPass（#181642）。这是 Inductor 新 pass 机制落地后的配套测试调整，反映 Inductor 编译流水线在持续演进。</p></div>
-      <div class="card-tags"><span class="tag">compiler</span></div>
     </article>
     </div>
       
@@ -477,11 +439,49 @@ footer a { color: #94a3b8; }
           <span class="dot">·</span>
           <span class="domain">www.reddit.com</span>
           
-          <span class="score">kw 27.0</span>
+          <span class="score">kw 28.0</span>
         </div>
       </div>
-      <div class="card-body"><p>Luce DFlash：单卡 RTX 3090 上的 GGUF 版 DFlash 投机解码，基于 ggml 的独立 C++/CUDA 栈，承载 Qwen3.6-27B。在 HumanEval/GSM8K/Math500 上平均 ~1.98x 相对 autoregressive，无需 retraining（z-lab 2026-04-26 发了匹配的 Qwen3.6-DFlash draft，AL 还在涨）。把投机解码的部署门槛压到单张消费卡 + CUDA 12+，对本地推理生态是实用节点。</p></div>
+      <div class="card-body"><p>Luce DFlash 把 DFlash 投机解码 port 到 GGUF + 单机 C++/CUDA（基于 ggml），单卡 24GB RTX 3090 跑 Qwen3.6-27B，HumanEval/GSM8K/Math500 三个任务上比 autoregressive 平均 1.98× 吞吐，不需重训。配套 z-lab 2026-04-26 发的 Qwen3.6-DFlash 对齐 draft 还在训，AL 还会上升。对低成本部署长上下文 27B 模型的家用/小规模场景给了 vllm 之外的另一条路径。</p></div>
       <div class="card-tags"><span class="tag">vLLM</span><span class="tag">SGLang</span><span class="tag">llama.cpp</span><span class="tag">speculative decoding</span><span class="tag">KV cache</span><span class="tag">long context</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1sxsqux/i_got_3_faster_hfq4_prefill_on_strix_halo_in/" target="_blank" rel="noopener">I got 3× faster HFQ4 prefill on Strix Halo in hipfire with an opt-in MMQ path</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 13:57 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 14.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>hipfire（RDNA 导向的 LLM 推理引擎）新增 HFQ4-G256 的 MMQ 专用 prefill kernel：以前走通用量化 matmul 路径，Strix Halo 上 prefill 约 310–340 tok/s；新 opt-in MMQ 把工作打成 tiled 量化矩阵乘、预量化激活复用，作者实测 3× 提升。AMD 消费级芯片推理栈 kernel 侧的实际进展，跟 ROCm 生态对标 CUDA 栈 MMQ 路线又近一步。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">inference engine</span><span class="tag">llama.cpp</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/glama-ai/lightport" target="_blank" rel="noopener">Show HN: Lightport – AI gateway that makes LLM providers OpenAI-compatible</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">04-28 03:53 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Lightport 开源：由 Glama 基于 Portkey fork 而来的 LLM gateway，专注把多家 LLM provider 封成 OpenAI 兼容接口，去除原 Portkey 中 guardrails/billing 等更高层功能，只保留 provider 兼容层并覆盖 80+ provider 的集成测试。面向 MCP 生态作为上游 LLM 入口的基础设施组件。</p></div>
+      <div class="card-tags"><span class="tag">MCP</span><span class="tag">DeepSeek</span></div>
     </article>
     
 
@@ -499,46 +499,8 @@ footer a { color: #94a3b8; }
           <span class="score">kw 3.0</span>
         </div>
       </div>
-      <div class="card-body"><p>SGLang 冷启动优化实战：70x 加速冷（ish）启动。博客复盘具体瓶颈点和优化手段，典型 serving-side 冷启动场景的工程经验。对 serverless LLM、短驻留推理实例是直接可借鉴的路径。</p></div>
+      <div class="card-body"><p>SGLang 冷启动加速 70×：针对 serverless/弹性场景频繁拉起实例的首次加载耗时做系统级优化。文章会涉及 weight loading、CUDA context init、kernel pre-compilation 等常见冷启动热点。对 serverless 推理/多租 GPU 池的部署形态直接相关。</p></div>
       <div class="card-tags"><span class="tag">SGLang</span></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/anthropics/anthropic-sdk-python/issues/1451" target="_blank" rel="noopener">Claude prompt-cache writes may not be immediately visible to the next request</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">HN LLM infra</span>
-          <span class="dot">·</span>
-          <span class="time">04-28 02:59 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 0.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Anthropic Python SDK issue #1451：Claude prompt-cache 的写入对紧接着的下一次请求可能不立即可见。这是分布式 prompt cache 的一致性缺陷，对高频 multi-turn agent / coding agent 场景影响大——以为命中了实际 miss。agent 基础设施侧需要据此做幂等/重试假设。</p></div>
-      <div class="card-tags"></div>
-    </article>
-    
-
-    <article class="card">
-      <div class="card-head">
-        <a class="card-title" href="https://github.com/glama-ai/lightport" target="_blank" rel="noopener">Show HN: Lightport – AI gateway that makes LLM providers OpenAI-compatible</a>
-        <div class="card-meta">
-          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
-          <span class="src">HN LLM infra</span>
-          <span class="dot">·</span>
-          <span class="time">04-28 03:53 CST</span>
-          <span class="dot">·</span>
-          <span class="domain">github.com</span>
-          
-          <span class="score">kw 2.0</span>
-        </div>
-      </div>
-      <div class="card-body"><p>Lightport：开源 AI gateway（Portkey 的瘦身 fork），核心目标是把 80+ LLM provider 统一成 OpenAI-compatible 接口。去掉了 guardrails/billing 等上层特性，专注 provider 兼容层。MCP 生态相关项目（Glama 出品），tool use / function calling 在异构 provider 间的兼容性是 agent 系统基础设施的关键一环。</p></div>
-      <div class="card-tags"><span class="tag">DeepSeek</span><span class="tag">MCP</span></div>
     </article>
     </div>
       
