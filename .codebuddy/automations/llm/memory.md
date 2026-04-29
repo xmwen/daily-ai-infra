@@ -79,3 +79,12 @@
 - 亮点（新增/深化）：**CuTile**（跨架构 GEMM/FA/LLM inference 实测 vs cuBLAS/Triton/WMMA，H100/B200）、**ELSA**（tensor-core independent 线性扫描 attention，Triton+CUDA 精确 softmax）、**ClusterFusion++**（Transformer-block 级全块融合，CUDA Graph+TMA）、**RetroInfer**（向量存储引擎长上下文，CPU offload+稀疏 attention 检索）、**FlashNorm**（RMSNorm weight fold 进 linear 并行执行）、**FlashOverlap**（TP 通信计算 overlap 最小化尾延迟）、**InfiniPipe**（elastic PP，token/batch 粒度混合调度）、**MoE expert 激活**（Llama4/DSV3/Qwen3 多节点推理实测）、LongFlow（reasoning 长输出 KV cache 压缩）、**PTQ outlier 校准**（weighted set cover 选 channel）、Hybrid JIT+CUDA Graph（partition 静态/动态 dual-path）
 - 本次 agent 命中：LangGraph 三连（1.1.10 revert timeouts / 4.0.3 checkpoint lc=2 revive / 1.0.12 ToolNode hydration）+ Lightport MCP gateway
 - 状态: ✅ 成功。第二次跑信号质量仍高，推理方向新增多个 kernel 级别 paper，训练方向有 FlashOverlap+InfiniPipe+MoE expert 三条链路
+
+## 2026-04-28 22:00（周二跑，第 3 次——同一天第三次触发）
+- fetch: 45 条 raw（papers 27 / code 8 / blogs 0 / community 10），无 RSS 源失败；比第 2 次又少（reddit 热度继续消退）
+- curated: 18 条（papers 8 / code 6 / blogs 0 / community 4），domain_tag 分布 推理 11 / 训练 3 / agent 4
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳正常
+- publish: commit `c0de9b8`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 194 行 diff
+- 亮点（相对前两跑收敛稳定，未新增重大信号）：CuTile / ClusterFusion++ / RetroInfer / Hybrid JIT+CUDA Graph / MoE expert 激活 / FlashOverlap / InfiniPipe / TACO（TP FP8 通信压缩）；code 侧 vLLM v0.20.0 + FlashInfer 0.6.9 + LangGraph 三连（1.1.10 revert / 4.0.3 checkpoint / 1.0.12 prebuilt）+ OpenAI Agents v0.14.7（symlink LocalFile reject、tar/zip member 加固、Phase 2 memory turn limit 上调）；community 侧 Luce DFlash + Strix Halo hipfire HFQ4 MMQ 3× + Qwen3.6-27B IQ4_XS 显存回归 + 三档量化对比
+- 状态: ✅ 成功。同一日第 3 跑严格遵守「宁缺毋滥」，条数收敛到 18，丢掉了 ELSA/FlashNorm/LongFlow/PTQ 这类已在前跑覆盖、本次无新信号的 paper
+- 观察：同日多次触发的信号冗余度在第 3 次跑明显上升（arXiv 帖子是同一批，GitHub release 一样）；后续建议看板脚本增加「同日去重」或「仅差量输出」能力避免重复 commit 等量信息
