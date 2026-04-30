@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-"""一次性脚本：基于 today_raw.json 生成中文 curated。"""
+"""一次性脚本：读取 today_raw.json，按偏好挑选并写中文 tldr，输出 today_curated.json。"""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -8,171 +7,170 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "cache" / "today_raw.json"
 OUT = ROOT / "cache" / "today_curated.json"
 
-with open(RAW, "r", encoding="utf-8") as f:
+with RAW.open(encoding="utf-8") as f:
     raw = json.load(f)
 
+# key = link, value = (section, item, tldr, domain_tag)
+# 按 link 去重，同一 arXiv ID 在多分区出现时只保留一条（优先 cs.DC/cs.AR/cs.PF）
+selections = []
 
-def pick(section_name, wants):
-    """从 raw[section_name] 按 link 选出 wants 指定的条目，附加 tldr/domain_tag。
-    wants: list of (link, tldr, domain_tag)
-    """
-    by_link = {}
-    for it in raw["sections"].get(section_name, []):
-        by_link.setdefault(it["link"], it)  # 同 link 只取第一次出现，避开跨分区重复
-    out = []
-    for link, tldr, tag in wants:
-        src = by_link.get(link)
-        if not src:
-            print(f"[warn] link not found in {section_name}: {link}")
-            continue
-        item = dict(src)
-        item["tldr"] = tldr
-        item["domain_tag"] = tag
-        out.append(item)
-    return out
+def pick(section, link, tldr, domain_tag):
+    selections.append((section, link, tldr, domain_tag))
 
+# ==== papers（推理侧集中爆发）====
+pick("papers", "https://arxiv.org/abs/2604.26039",
+     "RaMP 针对 MoE 推理提出路由感知 kernel dispatch 框架：现有系统只按 batch size 选 kernel，忽视 expert 路由分布，损失 10-70% 吞吐。RaMP 用 4 参数 wave 代价模型从硬件常量出发推导各优化适用区间，按运行时 expert 直方图选最快配置，在 8 种架构（含 3 个未见架构）上对比 exhaustive search 平均遗憾仅 0.93%，每模型只需 10-24 分钟一次性 profiling。",
+     "推理")
 
-# ============== papers ==============
-# 注意：arXiv 同一 ID 会在 cs.DC/cs.AR/cs.PF/cs.LG/cs.CL 多个分区重复，
-# 去重后按「推理/训练/agent」维度挑最有工程价值的，其余丢弃凑数（宁缺毋滥）。
-papers_wants = [
-    (
-        "https://arxiv.org/abs/2602.10718",
-        "SnapMLA：针对 DeepSeek MLA 解码的 FP8 硬件感知量化流水线。识别 MLA 解码 FP8 化的三大障碍——位置编码解耦导致数值异质、FP8 PV GEMM 量化 scale 对齐困难、系统级支持缺失，提出 RoPE-aware per-token KV 量化 + 算法-kernel 协同优化，把 long-context MLA decode 推进到 FP8 全链路。对 SGLang/vLLM 里 MLA 路径的 FP8 落地有直接参考价值。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2604.25080",
-        "CacheFlow：把 KV cache 恢复重构为三维并行执行问题。现有方案在 recompute vs 远端 offload 之间做单请求 tradeoff，忽略 token/layer/分布式部署三个维度的并行性和 batch 下的资源争抢。CacheFlow 统一 3D 并行恢复框架，针对 multi-turn/RAG/agentic 等长上下文 serving 把 restore bottleneck 卸下。和 Mooncake/LMCache 的 KV 迁移是同一条赛道。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2604.24820",
-        "Salca：长上下文 attention 解码的稀疏感知硬件加速器。软硬件协同——软件侧双压缩动态稀疏注意力（ultra-low-precision 量化 + 特征稀疏），硬件侧针对 decode 阶段 KV cache 带宽压力设计专用流水线。面向长上下文 decode 带宽瓶颈，和 PIM/SSD-attention 之类 near-data 方案同一思路。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2604.24971",
-        "PolyKV：多 agent 共享一份非对称压缩 KV cache 池。不再每个 agent 独立一份 cache，而是写一次压缩后注入 N 个 agent 上下文（HuggingFace DynamicCache）。压缩非对称：Key 走 int8（保 softmax 稳定）、Value 走 TurboQuant MSE（Fast Walsh-Hadamard + 3-bit Lloyd-Max 量化）。多 agent 批量推理场景下压 cache 池成本的直接方案。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2512.13525",
-        "Janus：MoE 推理把 attention 和 experts 拆到独立 GPU worker 池。monolithic 部署强行让两类层共享资源配置，但它们 scaling 行为和 bottleneck 完全不同。Janus 三原则：解耦 attention/MoE 层资源、独立调度、动态调度 MoE 工作负载。和近期 UniEP/MegaScale 的 EP 独立部署趋势一脉相承。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2604.25326",
-        "AHASD：移动端 NPU+PIM 异构的自适应投机解码。识别 operator-level 同步执行的 idle 开销和异步执行因 draft 长度波动导致的计算浪费，提出 task-level DLM-TLM 解耦——PIM 跑并行 drafting，NPU 跑 verification。配 Entropy-History-Aware draft 长度自适应，是端侧 spec-decode 的系统级优化。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2604.25306",
-        "QFlash：把 FlashAttention 全量量化到 integer。识别三大障碍——tile-wise 累加 scale 爆炸、GPU 上移位指数低效、integer 比较对量化粒度的统一 scale 要求。解法是整型域 softmax + 单 Triton kernel 实现。ViT/DeiT/Swin 7 个 workload 上 vs I-ViT 最高 6.73×。把 FA 的数值稳定性障碍搬到全整型域。",
-        "推理",
-    ),
-    (
-        "https://arxiv.org/abs/2601.14910",
-        "PipeWeave：analytical + learning 混合的 GPU 性能预测统一框架。纯数据驱动方法跨硬件泛化差、对现代推理栈里复杂 production kernel 建模不足。PipeWeave 先用 analytical model 量化 kernel 对 GPU 异构指令流水线的需求，再交给 learning model。做国产芯片性能建模对齐 NVIDIA 时这个思路可以直接借鉴（topsAnalytics/VisitorBound 类建模）。",
-        "推理",
-    ),
-]
+pick("papers", "https://arxiv.org/abs/2604.26557",
+     "DUAL-BLADE 把 NVMe offload KV cache 升级为双路径：根据运行时内存压力动态把 KV tensor 分配到 page-cache 路径或 NVMe-direct 路径；direct 路径绕过文件系统，把 KV tensor 映射到连续 LBA，避免 page cache thrashing 与不可预测延迟。面向 edge LLM 推理，补齐长上下文 KV 溢出场景下的 storage stack 工程化短板。",
+     "推理")
 
-# ============== code ==============
-# FlashInfer nightly 日级别意义不大，OpenAI Agents 0.14.7/0.14.8 合并一条覆盖
-code_wants = [
-    (
-        "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc13",
-        "TensorRT-LLM v1.3.0rc13：Nemotron 3 Nano Omni 支持与初步优化（audio 从 video 抽取、ViT attention 优化、Nemotron/Nano VL 初始化显存下降）；GLM-4.7/GLM-5 tool parser；DeepSeek-V3.2 与 V3-Lite 在 Blackwell/SM100 上的 perf + chunked-prefill 修复；Nemotron-H Python 层执行优化。Blackwell 上 DeepSeek 路径的持续打磨节奏。",
-        "推理",
-    ),
-    (
-        "https://github.com/Dao-AILab/flash-attention/releases/tag/fa4-v4.0.0.beta11",
-        "FlashAttention 4 beta11：CUTE DSL 下 head_dim=256 支持（fwd+bwd）——对 Qwen3/Llama3 之外大 head_dim 模型补齐；Flex autograd 接口接入、flash_attn_varlen_func 增加 score_mod_bwd；SM100 上 MLA kernel 传 stream 修复、clc 调度请求 bug；MLA absorbed test 补齐覆盖。FA4 往 flex + MLA 生产可用方向再推一步。",
-        "推理",
-    ),
-    (
-        "https://github.com/openai/openai-agents-python/releases/tag/v0.14.8",
-        "OpenAI Agents Python v0.14.8（合并 v0.14.7）：MCP re-export import error 保留（便于定位 MCP 装配失败）；sandbox prompt 指令分节分隔；tool item 加 tool_name/call_id 便捷属性；Phase 2 memory consolidation turn 上限上调；tar/zip member 校验收紧、拒绝 symlink LocalFile 源；Responses API 调用剔除 unset 字段。供应链加固 + agent memory 工程细节持续完善。",
-        "agent",
-    ),
-    (
-        "https://github.com/mlc-ai/xgrammar/releases/tag/v0.1.34",
-        "XGrammar v0.1.34：EBNF 解析接受 {n,-1} 作无上界重复、AnyTokensFormat+exclude_tokens 作为 self-terminating 处理、解除 `.` 的 unlimited 限制、Gemma 4 内置 structural tag 支持；绑定层重新迁到 tvm_ffi。constrained decoding 引擎层面 grammar 语义和结构化输出 tag 都在补齐 Gemma 4。",
-        "agent",
-    ),
-    (
-        "https://github.com/flashinfer-ai/flashinfer/releases/tag/nightly-v0.6.9-20260428",
-        "FlashInfer nightly v0.6.9-20260428：延续 Blackwell SM120 fused MoE + FP4 GEMM + routing_replay 路径的日常修复。nightly 标签本身信号弱，但每日 build 表明 Blackwell/FP4 在 FlashInfer 里仍是最活跃的开发主线。",
-        "推理",
-    ),
-]
+pick("papers", "https://arxiv.org/abs/2604.26074",
+     "DAK 提出 direct-access 内存 offload：不再 prefetch 到本地 HBM（现有做法会引入 HBM 争用、浪费容量、产生 pipeline bubble），而是复用 TMA 异步从远端内存直接取 offloaded weights 和 KV cache 到 GPU 寄存器。把远端访问做成系统级原语，解决 tiered memory 推理下 HBM 带宽饱和而容量不足的两难。",
+     "推理")
 
-# ============== blogs ==============
-# Nemotron 3 Nano Omni 在 blog + arXiv 都有，blog 里 HuggingFace + NVIDIA 两条重复，只留一条
-blogs_wants = [
-    (
-        "https://developer.nvidia.com/blog/scaling-biomolecular-modeling-using-context-parallelism-in-nvidia-bionemo/",
-        "NVIDIA BioNeMo：用 Context Parallelism 扩展生物分子建模。计算生物长期被「单 GPU 显存塞不下复杂生物系统」这个还原论妥协所限制；BioNeMo 把 LLM 训练里已成熟的 context parallel 机制搬到生物分子建模。意义在于：CP 已不只是 LLM 长上下文专属技术，正向科学计算扩散，对训练/推理 CP 工程经验跨域复用是正反馈。",
-        "训练",
-    ),
-]
+pick("papers", "https://arxiv.org/abs/2604.26666",
+     "FACT 提出三阶段 agent 驱动的 kernel 合成流水线：不再让 LLM agent 直接生成 raw CUDA（会重新发明已有优化），而是 grounded 到 CUTLASS C++ 模板库——先 pattern discovery 匹配子图，再多 pattern 组合。把 agent 的作用限定在编译器 catalog 缺失处补洞，对 kernel 生成 agent 的系统设计有启发：库 grounding > 裸 CUDA 生成。",
+     "推理")
 
-# ============== community ==============
-# 严格筛掉应用层（web search 教程、"跑本地模型的感想"）
-community_wants = [
-    (
-        "https://www.reddit.com/r/LocalLLaMA/comments/1syx4sg/qwen_introduced_flashqla/",
-        "Qwen 开源 FlashQLA：TileLang 构建的高性能线性注意力 kernel。2-3× fwd、2× bwd；gate-driven 自动 intra-card CP、代数重构硬件友好形式、TileLang fused warp-specialized kernels。没完全 fuse GDN 全流程而是拆成 CP+bwd 两个 kernel，大 batch 下多一点 I/O 但在端侧+长上下文场景整体更优。线性注意力 kernel 工程化又一重要样本。",
-        "推理",
-    ),
-    (
-        "https://www.reddit.com/r/LocalLLaMA/comments/1sysyz2/qwen36_27b_on_dual_rtx_5060_ti_16gb_with_vllm_60/",
-        "Qwen3.6-27B NVFP4+MTP 在双卡 RTX 5060 Ti 16GB 上跑通 vLLM：TP=2、204k 上下文、~60 tok/s、CUDA 13 + Torch 2.11 nightly + vLLM 0.19.2rc1.dev + FP8 KV cache + modelopt + MTP(num_speculative_tokens=3)。工程细节完整：消费级 16GB×2 跑 27B+长上下文+投机解码+NVFP4 量化的端到端可复现配方。",
-        "推理",
-    ),
-    (
-        "https://www.reddit.com/r/LocalLLaMA/comments/1syxckc/llamacpp_benchmark_native_vs_non_native_nvfp4_on/",
-        "llama.cpp Blackwell native NVFP4 vs 非 native 实测（同 Qwen3.6-27B-NVFP4）：b8967 首个 native NVFP4 build 对比 b8966。核心结论：prompt processing 提速 43-68%，但 token generation 基本无变化。拆开说：NVFP4 native 打的是 compute-bound 的 prefill，decode 仍是 memory-bound 瓶颈。量化 native kernel 收益分布符合第一性原理。",
-        "推理",
-    ),
-    (
-        "https://www.reddit.com/r/LocalLLaMA/comments/1systb1/llamacpp_nvfp4_native_support_on_blackwell_from/",
-        "llama.cpp b8967：Blackwell NVFP4 native 支持落地。RTX 5090 上 Qwen3.6-27B-NVFP4（17.5GiB/26.9B）pp512 达 5546 t/s、tg128 73 t/s。和上一条 native vs 非 native 对比互为证据：FP4 原生 kernel 先解决 prefill 吞吐，decode 仍受 KV/权重 带宽制约。消费级 Blackwell 部署量化模型的关键节点。",
-        "推理",
-    ),
-]
+pick("papers", "https://arxiv.org/abs/2604.26103",
+     "AMMA 提出 multi-chiplet memory-centric 架构服务 1M 上下文 attention：现有 serving（含 NVIDIA Rubin GPU-LPU）仍把 GPU 当中心，但 decode 阶段 attention 是 memory-bound 与 GPU compute-heavy 架构本质错配。AMMA 把 KV cache 下沉到 PIM/PNM chiplet，attention 计算就近执行，用 GPU 只做剩余部分。符合长上下文 + agentic workload 下 attention 成为用户面瓶颈的趋势。",
+     "推理")
 
-# ============== 汇总 ==============
-papers = pick("papers", papers_wants)
-code = pick("code", code_wants)
-blogs = pick("blogs", blogs_wants)
-community = pick("community", community_wants)
+pick("papers", "https://arxiv.org/abs/2604.26334",
+     "xLM 客户端推理：提出 pipelined sharding——sub-layer 级模型分片 + CPU offload + pipelined copy-compute + VRAM 内优先级张量放置，同时优化 TTFT 与 TPS，适配 dense 与 MoE。面向 VRAM 受限客户端场景（例如 5090/4090 单卡跑 Llama4/DSV3），工程化把 llama.cpp 式 offload 流水线再推一步。",
+     "推理")
 
-curated = {
+pick("papers", "https://arxiv.org/abs/2604.26837",
+     "SPIN 统一稀疏 attention + 分层 KV 存储：现有稀疏算法粒度不一只能 ad hoc 实现；分层 KV 存储从 CPU 取 fine-grained 不规则子集又会吃掉稀疏收益。SPIN 把两层一起做 sparse-attention-aware 推理框架，把算法级稀疏收益真正落到端到端。对应用户关注的 per-slot KV cache 布局 + 稀疏检索这条工程链路。",
+     "推理")
+
+pick("papers", "https://arxiv.org/abs/2604.25326",
+     "AHASD 面向移动端 NPU+PIM 投机解码：传统 operator 级同步执行有 idle 开销，异步执行又因 draft 长度波动产生浪费。AHASD 把 drafting 放到 PIM 并行执行、verification 在 NPU 上做，task-level DLM-TLM 解耦；并用 Entropy-History 自适应 draft 长度。是移动端异构硬件上投机解码的又一条工程路径。",
+     "推理")
+
+pick("papers", "https://arxiv.org/abs/2604.26412",
+     "长程投机解码新角度：hidden-state-based drafter 的 long-range decay 即使用 test-time training 也修不完。本文把原因归到「target hidden state 是按当前 attention query 做的有偏上下文压缩，擅长下一 token 但压缩了远程信息」，转而用 KV cache 反向恢复远程上下文。对用户关注的 KV cache 量化 + 投机解码精度链路有直接借鉴。",
+     "推理")
+
+pick("papers", "https://arxiv.org/abs/2604.26779",
+     "在 NeMo-RL + vLLM 后端实现投机解码做 RL post-training rollout 加速：把 spec decoding 定位成无损加速原语，保留 target 分布；支持同步/异步流水线，在 rollout 阶段用 MTP heads 或小 draft 模型做投机。打通 spec decoding 到 RL 训练 rollout 这条场景，是 vLLM × Megatron/NeMo-RL 推理-训练联动的典型例子。",
+     "训练")
+
+pick("papers", "https://arxiv.org/abs/2604.26881",
+     "FaaSMoE 把 MoE 专家做成 FaaS stateless function：通过控制面与执行面解耦，按需调用 + scale-to-zero，解决 multi-tenant MoE 服务中激活专家少于常驻专家、资源浪费的矛盾。对应生产级 MoE serving 调度方向，与 Janus（expert 独立 worker 池）思路互补。",
+     "推理")
+
+pick("papers", "https://arxiv.org/abs/2604.26294",
+     "TSP 把 tensor parallelism 与 sequence parallelism 叠到同一 device 轴：传统 TP 切 weight、SP 切 token，各用一个 mesh 维度；TSP 让每个 rank 同时持有 weight shard 和 sequence shard，在同一轴上同时降参数与激活内存。attention 用广播 weight+seq-wise KV 通信重建上下文。是 3D 并行之外的新轴折叠范式。",
+     "训练")
+
+pick("papers", "https://arxiv.org/abs/2604.26687",
+     "COPUS 指出 batch size 与 3D 并行策略本质耦合：过去做法要么固定并行、只调 batch（优化派），要么固定 batch、只调并行（系统派），都是次优。COPUS 联合自适应两者，沿 critical batch size 轨迹动态切换最优并行策略。对大规模 LLM 训练调度有直接工程参考。",
+     "训练")
+
+pick("papers", "https://arxiv.org/abs/2604.26256",
+     "DORA 面向 RL post-training 异步训练：rollout 阶段占 50-80% 步骤时间，长尾轨迹阻塞整条流水线。DORA 识别出异步训练保持收敛的三个约束——轨迹内策略一致性、数据完整性、有界 staleness，提出针对长尾轨迹的内禀解决方案，而非传统 off-policy/replay 绕开。",
+     "训练")
+
+pick("papers", "https://arxiv.org/abs/2604.26889",
+     "逆向 NVIDIA 闭源 userspace driver 命令流：利用开源 kernel driver 打桩 memory-mapping 路径 + GPU doorbell 寄存器硬件断点，完整捕获 CUDA API 到硬件命令的翻译链路。对国产芯片做 CUDA 语义对齐、对 kernel 级性能建模（用户 VisitorBound_Scorpiox2 方向）都是难得的白盒材料。",
+     "推理")
+
+pick("papers", "https://arxiv.org/abs/2604.26821",
+     "Voxel 是 3D 堆叠 AI 芯片（DRAM on compute die 分布式 TSV）的编译器感知模拟器：3D 堆叠打通存储墙，但计算范式、ML 编译器优化、底层硬件三层纠缠难以协同设计。Voxel 为这类 memory-near-compute 架构提供快速探索工具。与 AMMA 一起构成今日 3D/PIM 存算一体的两条工程路径。",
+     "推理")
+
+# ==== code ====
+pick("code", "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0rc13",
+     "TensorRT-LLM v1.3.0rc13：新增 Nemotron 3 Nano Omni 支持与 ViT attention 优化、GLM-4.7/GLM-5 tool parser、DeepSeek-V3.2 与 V3-Lite 在 Blackwell/SM100 上的 perf + chunked-prefill 修复。昨日 FA4 beta11 在 Blackwell 侧同步推进，TensorRT-LLM 这次把 DSV3.2 chunked-prefill 路径落到 rc 级稳定——对标昨日 SnapMLA 论文，工业栈这条链路几乎同步跟进。",
+     "推理")
+
+pick("code", "https://github.com/kvcache-ai/ktransformers/releases/tag/v0.6.1",
+     "KTransformers v0.6.1：大 MoE LoRA SFT 重构，后端迁移到 kt-kernel，打包为 ktransformers[sft]。相对 ZeRO-Offload 基线训练性能 6-12×，CPU 内存降一半，GPU 内存压力也更低。延续 LLaMA-Factory 训练入口和 YAML 工作流，是 CPU offload + MoE SFT 路线的重要版本。",
+     "训练")
+
+pick("code", "https://github.com/flashinfer-ai/flashinfer/releases/tag/v0.6.10rc1",
+     "FlashInfer v0.6.10rc1：trtllm attention kernel 新增 head_dim=512 支持；SM90 上 MXFP4×BF16 与 INT4×FP8 CUTLASS MoE backend 做了 perf；新增 DCP all-to-all kernel 支持 context-parallel attention reduction；allreduce/allgather/reducescatter 组合路径补齐。继续沿「attention kernel 变种 × MoE 量化 × 通信」三轴扩展。",
+     "推理")
+
+pick("code", "https://github.com/Dao-AILab/flash-attention/releases/tag/fa4-v4.0.0.beta11",
+     "FA4 v4.0.0 beta11：CUTE DSL 补齐 head_dim=256 正反向；Flex autograd 接入 cute，flash_attn_varlen_func 加 score_mod_bwd 参数；blocksparse 接口在 flash_attn_func 里简化；SM100 MLA kernel stream 修复与 empty-tile 正确性 guard。整体在 Flex 可微 + MLA SM100 + hd256 三条线同步完善。",
+     "推理")
+
+pick("code", "https://github.com/langchain-ai/langgraph/releases/tag/1.2.0a1",
+     "LangGraph 1.2.0a1 alpha：引入 timers（idle/dynamic push-task timeouts）——这是前天 1.1.10 紧急 revert node-level timeouts 之后，把 timeout 方案重构成 channel-level；新增 DeltaChannel 在 blobs 存 sentinel 并从 checkpoint_writes 重建；streaming transformer 基础设施合入；EventLog 合并进 StreamChannel。前阵子「feature 落地即回滚」事件后，官方给出的工程答卷。",
+     "agent")
+
+pick("code", "https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.0.13",
+     "LangGraph prebuilt 1.0.13：修复 ToolRuntime tools 默认为 None 的问题改成空 list；同步合入 timers alpha 与 StreamChannel 重构。前几天 prebuilt 1.0.12 刚修了 ToolNode channel hydration，本次又发现 ToolRuntime 默认参数坑——tool 调用链路的边界条件 bug 在持续暴露。",
+     "agent")
+
+pick("code", "https://github.com/openai/openai-agents-python/releases/tag/v0.14.8",
+     "OpenAI Agents v0.14.8：修复 MCP re-export 丢失 ImportError 导致上层看不到真正的 import 失败原因；sandbox prompt instruction 段落分隔符修复。延续昨天 v0.14.7 的 tar/zip member 加固、symlink LocalFile reject，本次继续在「MCP 与 sandbox 边界可观测性」上迭代。",
+     "agent")
+
+pick("code", "https://github.com/mlc-ai/xgrammar/releases/tag/v0.1.34",
+     "XGrammar v0.1.34：EBNF parser 接受 {n,-1} 作无界 repeat；AnyTokensFormat 在 exclude_tokens 下按 self-terminating 处理；新增 Gemma 4 内置 structural tag 支持；binding 逻辑重新迁到 tvm_ffi；去掉 unlimited 限制的结构化输出上限。对结构化输出/constrained decoding 栈继续补齐。",
+     "agent")
+
+# ==== community（严格筛，排除非基础设施/水贴）====
+pick("community", "https://www.reddit.com/r/LocalLLaMA/comments/1szv6z0/actual_comparison_between_locally_ran_qwen3627b/",
+     "作者在单卡 3090 + Xeon 老服务器上长期跑 Qwen3.6-27B，对比云端低档模型做真实工程任务（写代码/agent workflow），得出在日常 coding 任务中本地 27B 量化已能与中档云模型接近的结论，并详细记录了 KV cache/FP8/Claude Code/Codex 搭配经验。是「本地 27B 类模型是否够用」当前比较诚实的实测样本。",
+     "推理")
+
+pick("community", "https://www.reddit.com/r/LocalLLaMA/comments/1sznc6q/amd_engineers_directly_seeking_rocm_feedback/",
+     "AMD 工程师直接在 r/LocalLLaMA 征集 ROCm 使用反馈。最近一周 ROCm 相关信号（hipfire 社区引擎、Strix Halo HFQ4 MMQ 3×、KTransformers v0.6.1 含 ROCm 支持）持续出现，AMD 侧对本地 AI 硬件生态的态度明显主动化，是国产/非 CUDA 推理生态的一个重要外部参照。",
+     "推理")
+
+# 过滤：Mistral-Medium-3.5（商业模型）、Qwen-Scope（SAE 研究非基础设施）、
+#       DeepSeek Thinking-with-Visual-Primitives（多模态推理范式非 infra）、
+#       5M 模型实验（小模型玩具）、Qwen svg 生成 demo、Qwen sticker、algif 内核漏洞（非 AI infra）
+
+raw_papers = raw["sections"]["papers"]
+raw_code = raw["sections"]["code"]
+raw_blogs = raw["sections"]["blogs"]
+raw_comm = raw["sections"]["community"]
+
+def find_item(section_items, link):
+    for it in section_items:
+        if it["link"] == link:
+            return it
+    return None
+
+curated_sections = {"papers": [], "code": [], "blogs": [], "community": []}
+seen_links = set()
+for section, link, tldr, domain_tag in selections:
+    if link in seen_links:
+        continue
+    seen_links.add(link)
+    pool = {"papers": raw_papers, "code": raw_code, "blogs": raw_blogs, "community": raw_comm}[section]
+    item = find_item(pool, link)
+    if item is None:
+        print(f"[warn] missing link: {link}")
+        continue
+    new_item = dict(item)
+    new_item["tldr"] = tldr
+    new_item["domain_tag"] = domain_tag
+    curated_sections[section].append(new_item)
+
+out = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "lookback_hours": raw.get("lookback_hours", 36),
-    "sections": {
-        "papers": papers,
-        "code": code,
-        "blogs": blogs,
-        "community": community,
-    },
-    "fetch_stats": raw.get("fetch_stats", {}),
+    "sections": curated_sections,
+    "source": "curated",
 }
 
-with open(OUT, "w", encoding="utf-8") as f:
-    json.dump(curated, f, ensure_ascii=False, indent=2)
+with OUT.open("w", encoding="utf-8") as f:
+    json.dump(out, f, ensure_ascii=False, indent=2)
 
-# 统计
-total = sum(len(v) for v in curated["sections"].values())
-dist = {"推理": 0, "训练": 0, "agent": 0}
-for sec in curated["sections"].values():
+counts = {k: len(v) for k, v in curated_sections.items()}
+tag_dist = {}
+for sec in curated_sections.values():
     for it in sec:
-        tag = it.get("domain_tag")
-        if tag in dist:
-            dist[tag] += 1
-print(f"curated total={total}  papers={len(papers)}  code={len(code)}  blogs={len(blogs)}  community={len(community)}")
-print(f"domain_tag: 推理={dist['推理']}  训练={dist['训练']}  agent={dist['agent']}")
-print(f"raw.generated_at   = {raw['generated_at']}")
-print(f"curated.generated_at = {curated['generated_at']}")
+        tag_dist[it["domain_tag"]] = tag_dist.get(it["domain_tag"], 0) + 1
+total = sum(counts.values())
+print(f"curated: {total} items, sections={counts}, domain_tag={tag_dist}")
+print(f"generated_at: {out['generated_at']}")
+print(f"raw generated_at: {raw['generated_at']}")

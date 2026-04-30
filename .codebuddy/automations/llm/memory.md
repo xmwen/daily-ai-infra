@@ -80,6 +80,14 @@
 - 本次 agent 命中：LangGraph 三连（1.1.10 revert timeouts / 4.0.3 checkpoint lc=2 revive / 1.0.12 ToolNode hydration）+ Lightport MCP gateway
 - 状态: ✅ 成功。第二次跑信号质量仍高，推理方向新增多个 kernel 级别 paper，训练方向有 FlashOverlap+InfiniPipe+MoE expert 三条链路
 
+## 2026-04-29 22:00（周三跑）
+- fetch: 40 条 raw（papers 21 / code 6 / blogs 3 / community 10），无 RSS 源失败；papers 跨分区重复严重（同一 arXiv ID 出现在 cs.DC/cs.AR/cs.PF/cs.LG/cs.CL）需在 curated 阶段按 link 去重
+- curated: 18 条（papers 8 / code 5 / blogs 1 / community 4），domain_tag 分布 推理 15 / 训练 1 / agent 2
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳正常
+- publish: commit `406ec13`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +544 行
+- 亮点：今日 arXiv 推理侧集中爆发——**SnapMLA**（DeepSeek MLA decode FP8 量化流水线，RoPE-aware per-token KV 量化）、**CacheFlow**（KV cache restoration 升级到 3D 并行）、**PolyKV**（多 agent 共享 Key int8+Value TurboQuant MSE 压缩 KV cache 池）、**Janus**（MoE attention/experts 独立 worker 池）、**Salca**（长上下文 decode 稀疏加速器）、**AHASD**（移动端 NPU+PIM 投机解码 task-level 解耦）、**QFlash**（FA 全整型化单 Triton kernel）、**PipeWeave**（analytical+learning 混合 GPU 性能建模）；release 侧 TensorRT-LLM v1.3.0rc13 补齐 Nemotron 3 Nano Omni + GLM-4.7/GLM-5 + DSV3.2 Blackwell chunked-prefill、FA4 beta11 CUTE head_dim=256 + Flex autograd、OpenAI Agents v0.14.8 MCP re-export + 供应链收紧、XGrammar v0.1.34 Gemma 4 structural tag；社区侧 Qwen FlashQLA TileLang 线性注意力 + llama.cpp b8967 Blackwell NVFP4 native（实测 **prefill +43~68% / decode 基本不变**，符合 compute-bound vs memory-bound 区分）+ Qwen3.6-27B 双卡 5060 Ti vLLM 204k 上下文
+- 状态: ✅ 成功。domain_tag 偏推理是今日客观情况（训练/agent 信号天然少），严格执行「宁缺毋滥」不塞应用层凑数。PolyKV 把 TurboQuant 用到多 agent KV cache 共享，是用户近期 TurboQuant 研究的新工程组合方向
+
 ## 2026-04-28 22:00（周二跑，第 3 次——同一天第三次触发）
 - fetch: 45 条 raw（papers 27 / code 8 / blogs 0 / community 10），无 RSS 源失败；比第 2 次又少（reddit 热度继续消退）
 - curated: 18 条（papers 8 / code 6 / blogs 0 / community 4），domain_tag 分布 推理 11 / 训练 3 / agent 4
