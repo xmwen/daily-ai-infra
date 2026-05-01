@@ -88,6 +88,14 @@
 - 亮点：今日 arXiv 推理侧集中爆发——**SnapMLA**（DeepSeek MLA decode FP8 量化流水线，RoPE-aware per-token KV 量化）、**CacheFlow**（KV cache restoration 升级到 3D 并行）、**PolyKV**（多 agent 共享 Key int8+Value TurboQuant MSE 压缩 KV cache 池）、**Janus**（MoE attention/experts 独立 worker 池）、**Salca**（长上下文 decode 稀疏加速器）、**AHASD**（移动端 NPU+PIM 投机解码 task-level 解耦）、**QFlash**（FA 全整型化单 Triton kernel）、**PipeWeave**（analytical+learning 混合 GPU 性能建模）；release 侧 TensorRT-LLM v1.3.0rc13 补齐 Nemotron 3 Nano Omni + GLM-4.7/GLM-5 + DSV3.2 Blackwell chunked-prefill、FA4 beta11 CUTE head_dim=256 + Flex autograd、OpenAI Agents v0.14.8 MCP re-export + 供应链收紧、XGrammar v0.1.34 Gemma 4 structural tag；社区侧 Qwen FlashQLA TileLang 线性注意力 + llama.cpp b8967 Blackwell NVFP4 native（实测 **prefill +43~68% / decode 基本不变**，符合 compute-bound vs memory-bound 区分）+ Qwen3.6-27B 双卡 5060 Ti vLLM 204k 上下文
 - 状态: ✅ 成功。domain_tag 偏推理是今日客观情况（训练/agent 信号天然少），严格执行「宁缺毋滥」不塞应用层凑数。PolyKV 把 TurboQuant 用到多 agent KV cache 共享，是用户近期 TurboQuant 研究的新工程组合方向
 
+## 2026-04-30 22:00（周四跑）
+- fetch: 45 条 raw（papers 23 / code 12 / blogs 0 / community 10），无 RSS 源失败；papers 跨分区重复严重（RaMP/Folding TSP/DUAL-BLADE/FACT/AMMA/xLM 等多篇同时出现在 cs.DC/cs.AR/cs.PF/cs.LG/cs.CL），curated 阶段按 link 去重
+- curated: 26 条（papers 16 / code 8 / blogs 0 / community 2），domain_tag 分布 推理 17 / 训练 5 / agent 4
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳正常
+- publish: commit `1c3c8da`，HEAD==origin/main，2026/04 + archive 两份 HTML 各 +697 行
+- 亮点：今日 arXiv 推理侧再次集中爆发——**RaMP**（MoE 路由感知 kernel dispatch，4 参数 wave 代价模型，0.93% 平均遗憾 vs exhaustive search）、**DUAL-BLADE**（NVMe KV offload 双路径 page-cache + direct LBA）、**DAK**（TMA 异步直接访问远端内存，不 prefetch 避开 HBM 争用与 pipeline bubble）、**FACT**（agent 驱动 kernel 合成 grounded 到 CUTLASS，避免裸 CUDA 重发明优化）、**AMMA**（multi-chiplet memory-centric 1M 上下文 attention，KV 下沉 PIM/PNM）、**SPIN**（稀疏 attention × 分层 KV 存储统一框架）、**AHASD**（移动端 NPU+PIM 投机解码 task-level 解耦）、**TSP**（TP+SP 折叠到同一 device 轴）、**COPUS**（batch×并行策略联合自适应）、**FaaSMoE**（MoE expert 作 stateless FaaS function scale-to-zero）、逆向 NVIDIA 闭源 driver 命令流（硬件断点+开源 kernel driver 打桩）；code 侧 TensorRT-LLM v1.3.0rc13 Nemotron 3 Nano Omni + GLM-4.7/GLM-5 + DSV3.2 Blackwell chunked-prefill、KTransformers v0.6.1 大 MoE LoRA SFT 6-12× vs ZeRO-Offload、FlashInfer v0.6.10rc1 head_dim=512 + MXFP4×BF16、FA4 beta11 hd256 + Flex autograd、LangGraph 1.2.0a1 timers 重构（前天 revert 之后的答卷）+ prebuilt 1.0.13、OpenAI Agents v0.14.8 MCP re-export 修复、XGrammar v0.1.34 Gemma 4 structural tag
+- 状态: ✅ 成功。papers 分区 16 条偏多但均在 20 条上限内，推理/训练/agent = 17/5/4 分布偏推理是今日客观情况（arXiv 今天刷出大量 infra 方向 paper）；社区侧严格过滤掉 Mistral-Medium-3.5/Qwen-Scope SAE/DeepSeek 视觉推理/5M 玩具模型/Qwen sticker 等非基础设施内容，只留 Qwen3.6-27B 实测与 AMD ROCm 工程师征集反馈
+
 ## 2026-04-28 22:00（周二跑，第 3 次——同一天第三次触发）
 - fetch: 45 条 raw（papers 27 / code 8 / blogs 0 / community 10），无 RSS 源失败；比第 2 次又少（reddit 热度继续消退）
 - curated: 18 条（papers 8 / code 6 / blogs 0 / community 4），domain_tag 分布 推理 11 / 训练 3 / agent 4
