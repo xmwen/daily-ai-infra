@@ -105,6 +105,14 @@
 - 状态: ✅ 成功。同一日第 3 跑严格遵守「宁缺毋滥」，条数收敛到 18，丢掉了 ELSA/FlashNorm/LongFlow/PTQ 这类已在前跑覆盖、本次无新信号的 paper
 - 观察：同日多次触发的信号冗余度在第 3 次跑明显上升（arXiv 帖子是同一批，GitHub release 一样）；后续建议看板脚本增加「同日去重」或「仅差量输出」能力避免重复 commit 等量信息
 
+## 2026-05-02 22:00（周六跑，五一假期第二天）
+- fetch: 22 条 raw（papers 0 / code 12 / blogs 0 / community 10），无 RSS 源失败；周六 arXiv 不更新（papers 0）+ 假期 blogs 0 双断流，HN LLM/Agent infra 也是 0，community 仅 r/LocalLLaMA 10 条
+- curated: 9 条（papers 0 / code 5 / blogs 0 / community 4），domain_tag 分布 推理 5 / 训练 0 / agent 4；训练 0 是今日 Megatron/PyTorch/DeepSpeed/TransformerEngine 全无 release 的客观事实
+- render: `LLM 摘要 ✓`，无 fallback，12 处 CST 时间戳，source=today_curated.json
+- publish: commit `347ef3c`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +375 行 diff
+- 亮点：**vLLM v0.20.1** 紧急 revert persistent topk（v0.20.0 次日 hotfix，延续最近「feature 落地即回滚」节奏）、**OpenAI Agents v0.15.0** 把模型拒答提升为显式 ModelRefusalError（silent failure→控制流可观测）、**OpenAI Agents v0.15.1** Responses WebSocket keepalive + UnixLocal PTY SIGINT 恢复、**LangGraph 一晚连发 6 个 alpha**（stream_events v3 dispatch / DeltaChannel sentinel+checkpoint_writes 重建 / node-level error handlers / two phase read / NodeTimeoutError 默认可重试——timers 重构在 4/28 revert 之后继续收敛）、**XGrammar v0.2.0** 高 tool 数量 structural-tag 编译耗时大降 + GrammarMatcher 暴露 draft tree traversal 给投机解码接 constrained decoding、**PFlash**（Luce 纯 C++/CUDA 投机式 prefill，3090 Qwen3.6-27B Q4_K_M 128K TTFT 10.4×，NIAH 保真，"投机"从 decode 扩到 prefill 的工程化落地）、**MiniMax M2.7 AWQ-4bit 2×DGX Spark vs 2×RTX 6000 96GB 实测**（Spark unified memory fabric 在 MoE 推理上差距比预期小，对国产 ScaleUp 路线直接参考）、**Qwen3.6-27B native vLLM Windows**（72 tok/s 3090 无 WSL）、**Mistral Medium 3.5 YaRN mscale_all_dim=1→0 跨实现 bug**（transformers + llama.cpp 同时中招，典型 RoPE 扩展解析默认值不一致导致长上下文崩坏）
+- 状态: ✅ 成功。严格排除 TTS 模型/设置分享网站/Qwen 路线猜测/社区规则 check-in/VSCode 日常使用体验等非基础设施内容；LangGraph 合并 6 条 alpha/prebuilt/checkpoint 为 1 条避免版本号轰炸；Mistral 两条重复 GGUF 修复帖合并 1 条
+
 ## 2026-05-01 22:00（周五跑，劳动节假期）
 - fetch: 44 条 raw（papers 24 / code 8 / blogs 1 / community 11），无 RSS 源失败；五一假期节奏，HN LLM/Agent infra 双 0 是常态，code 侧只有 FlashInfer/LangGraph/OpenAI Agents/KTransformers 四家有 release
 - curated: 20 条（papers 12 / code 4 / blogs 1 / community 3），按 link 去重后 papers 实际唯一 12 条全收（AMMA/AHASD 已在 4/30 覆盖过但是 v2 replace/v3 replace 今日再现，保留）；domain_tag 分布 推理 11 / 训练 5 / agent 4
