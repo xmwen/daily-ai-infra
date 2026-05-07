@@ -145,3 +145,13 @@
 - 亮点：arXiv 推理侧 **Predictive Multi-Tier KV Cache**（MLA 统一 sizing + 六级存储层次 + 预测淘汰，揭示 MLA 在通用框架被高估 57× 显存）、**FluxMoE**（expert paging，expert 非 GPU 常驻 vs FaaSMoE 的另一斜率）、**RCW-CIM**（DCIM 架构补齐权重更新延迟盲点，Llama2-7B decode -21.59%）、**VitaLLM**（BitNet 三元专用加速器 Dual-Core）、**RoundPipe**（消费级 GPU 打破 PP weight-binding，stateless 执行池）、**ZipCCL**（首个把无损压缩塞进集合通信库，基于高斯分布假设）、**SWOT**（光网络 intra-collective 重构中间路径）；agent 基础设施侧 **MARS**（GPU-CPU 异构 agent workload 协同调度）+ **Crab**（agent sandbox C/R runtime，75% agent turn 无 state 观察，用于 RL rollout 分支/容错/spot）；code 侧 **OpenAI Agents v0.15.0**（ModelRefusalError 显式化，拒答从 silent failure 到控制流）、**LangGraph 1.2.0a2**（NodeTimeoutError 默认可重试，timers 重构继续收敛）、**FlashInfer v0.6.10rc1**（trtllm FMHA head_dim=512 + MXFP4×BF16 MoE SM90 + DCP All-to-All CP kernel）、**KTransformers v0.6.1**（kt-kernel 重构 vs ZeRO-Offload 6-12×）；blogs 侧 **NVIDIA cuTile Python→cuTile.jl 自动 agent 翻译**（coding agent 做 kernel 跨语言移植的首个 NVIDIA 官方样本）；community 侧 DFlash Qwen3.5-35B-A3B 在 2080 SUPER 8GB 跑通、5000 行 Python 实现 6 层 IR LLM 编译器参考栈（TVM/Inductor/XLA 替代教学读物）、16×DGX Spark unified memory fabric 实战（对国产 ScaleUp 统一内存路线有直接参考意义）
 - 状态: ✅ 成功。严格排除 Sigmoid single-cell/Hyperledger/Affinity Tailor/HASE/r/LocalLLaMA 的 Packman 对比/MiMo 能力榜/算力涨价吐槽/open models 汇总/MacBook 买买买吐槽 等非基础设施内容
 - 注意：踩坑——Python 脚本里 tldr 含英文双引号会触发字符串提前闭合（SyntaxError），中文双引号要用「」避开。已固化：本次需要 3 轮 replace_in_file 才把 7 处英文双引号全换完；后续 `_build_curated.py` 只用中文「」或 em-dash 包裹强调词
+
+
+## 2026-05-06 22:00（周三跑）
+- fetch: 33 条 raw（papers 12 / code 6 / blogs 0 / community 15），无 RSS 源失败；blogs 全 0 + HN LLM infra 0
+- curated: 19 条（papers 10 / code 5 / blogs 0 / community 4），按 link 去重 papers 唯一 11 条扔 Lottery BP（QEC）+ FACT 跨分区合并；domain_tag 分布 推理 13 / 训练 0 / agent 6
+- render: LLM 摘要 ✓，无 fallback，CST 时间戳齐全
+- publish: commit 20debe，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +564 行
+- 亮点：Tutti（NVMe SSD KV cache 实用化 GPU 自主 IO）/ Continuum（agent KV cache TTL 调度）/ FACT（agent 驱动 CUTLASS 合成）/ VDCores（异步 GPU 单元 micro-op DAG）/ ZeRO-Prefill（MoE prefill-only 零冗余）/ SparKV（端云协同 KV chunk cost 模型）/ BloomBee（Internet 规模分布式推理 DP）/ CCCL（CXL 共享内存池替代 RDMA 跨节点 collective）/ TCM-Serve（多模态 modality-aware 调度）/ SpecKV（投机解码自适应 γ）；release 侧 OpenAI Agents v0.15.3+v0.15.2、LangGraph SDK 0.3.14+checkpoint-sqlite 3.1.0a1（streaming walk + delta cadence rework）、FA4 beta12（hd256 backward TMA + GQA determinism）；community 侧 Qwen3.6-27B MTP llama.cpp PR（M2 Max 96GB 2.5×）+ MTP grafted on Unsloth UD XL + TritonSigmoid（H100 515 TFLOPS）+ Recursant agent service mesh
+- 状态: ✅ 成功。训练 0 条是 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS 全无 release 的客观底；严格排除 SubQ BS / Apple Mac Studio / DeepSeek V4 cost / Ollama CVE / Gemma 4 用途讨论 / blockchain VLM 应用等非基础设施内容
+
