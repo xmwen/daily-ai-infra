@@ -155,3 +155,14 @@
 - 亮点：Tutti（NVMe SSD KV cache 实用化 GPU 自主 IO）/ Continuum（agent KV cache TTL 调度）/ FACT（agent 驱动 CUTLASS 合成）/ VDCores（异步 GPU 单元 micro-op DAG）/ ZeRO-Prefill（MoE prefill-only 零冗余）/ SparKV（端云协同 KV chunk cost 模型）/ BloomBee（Internet 规模分布式推理 DP）/ CCCL（CXL 共享内存池替代 RDMA 跨节点 collective）/ TCM-Serve（多模态 modality-aware 调度）/ SpecKV（投机解码自适应 γ）；release 侧 OpenAI Agents v0.15.3+v0.15.2、LangGraph SDK 0.3.14+checkpoint-sqlite 3.1.0a1（streaming walk + delta cadence rework）、FA4 beta12（hd256 backward TMA + GQA determinism）；community 侧 Qwen3.6-27B MTP llama.cpp PR（M2 Max 96GB 2.5×）+ MTP grafted on Unsloth UD XL + TritonSigmoid（H100 515 TFLOPS）+ Recursant agent service mesh
 - 状态: ✅ 成功。训练 0 条是 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS 全无 release 的客观底；严格排除 SubQ BS / Apple Mac Studio / DeepSeek V4 cost / Ollama CVE / Gemma 4 用途讨论 / blockchain VLM 应用等非基础设施内容
 
+## 2026-05-07 22:00（周四跑）
+- fetch: 42 条 raw（papers 20 / code 10 / blogs 1 / community 11），无 RSS 源失败；blogs 仅 HuggingFace 1 条（ServiceNow vLLM V0→V1 RL correctness）+ HN LLM/Agent infra 双 0
+- curated: 26 条（papers 13 / code 8 / blogs 1 / community 4），按 link 去重后 papers 唯一 13 条（扔 HERCULES NAS——"Outlines" 关键词误捕 + Serverless LEO 应用层）；domain_tag 分布 推理 14 / 训练 6 / agent 6
+- render: LLM 摘要 ✓，无 fallback，CST 时间戳齐全
+- publish: commit `3309709`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +696 行
+- 亮点：**papers 推理爆发**——FASQ（PQ 搬 LLM 权重，免校准连续 27-49% 过 4-bit GPTQ/AWQ）/ KernelBench-X（176 任务测 LLM 写 Triton，task 结构比方法设计重要 3×）/ HELM（生成式推荐 HBM 分配 PPO 三层控制，EMB/KV 最优比跨 workload 0.35）/ Coral（多 LLM×异构 GPU serving 联合优化无损两段分解）/ Microbench 解析模型（B200+MI300A MAE 1.31%/0.09% vs roofline 95%+）/ GRACE-MoE（EP 分组+动态复制+locality 路由）；**训练**——Piper（MoE 训练 cost model + pipeline 混合并行）/ MRC+SRv6（OpenAI+MS 10万+GPU 生产 RDMA 多路径+multi-plane Clos）/ CCL-D（CCL 慢/hang 秒级诊断）；**agent**——KEET（Nsight Compute profile → LLM agent 解释）/ phys-MCP（MCP 外溢到 PNN 编排）/ AgenTEE（edge LLM agent TEE）；**code**——TRT-LLM v1.3.0rc14（Mamba 混合 prefix caching+Qwen3.5 MoE）/ Megatron 26.04-alpha.rc2（MXFP8 param gather eval）/ DeepSpeed v0.19.0（Zero3 defragment+PyTorch 2.9/2.10 兼容）/ OpenAI Agents v0.16.0（默认切 gpt-5.4-mini + max_turns=None）+ v0.16.1 次日 7 项补漏 + v0.15.3 MCP 加固 / FA4 beta12 hd256 全链路 / FlashInfer v0.6.10.post1；**blogs**——ServiceNow vLLM V0→V1 RL correctness checklist；**community**——Qwen3.6-27B MTP 合并代表两条（M2 Max 96GB 2.5× / 3090 Ti 35B-A3B 150 tok/s）/ ParoQuant（pairwise rotation 压缩离群值，与 TurboQuant per-vector min-max 正交）/ Transformer Math Explorer（GPT-2→Qwen3.6 交互 dataflow 工具）
+- 状态: ✅ 成功。推理 14 偏重是 arXiv 今日客观事实；cs.LG 379 过 3、cs.CL 132 过 0，分区 min_score 工作正常
+- 观察：HERCULES NAS 被 "Outlines" 命中是 false positive——后续建议 `\bOutlines\b` 精确正则避免子串误匹配
+
+
+

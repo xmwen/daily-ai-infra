@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-05-09 Saturday</title>
+<!-- rendered_at: 2026-05-09 22:03:09 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-05-09T14:03:01.037426+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-05-09 Saturday · 回溯 36h · 共 9 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-05-09 22:03:01 CST</span>
+      <span class="badge">Rendered: 2026-05-09 22:03:09 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/kvcache-ai/ktransformers/releases/tag/v0.6.2.post2" target="_blank" rel="noopener">v0.6.2.post2: 0.6.2.post2: submodule refactor and update tutorial (#1993)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">KTransformers</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 18:53 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KTransformers v0.6.2.post2 把 V4-Flash 启动样例从 8×RTX 5090 切到「单卡 decode 20+ tok/s」，并把 Ada Lovelace SM_89 行升为 validated；底层 sglang 子模块升到 0.6.2.post2，修了 V4-Flash hybrid SWA chunked-prefill hang 与 DSV4 plugin registry refactor。意义：DSV4-Flash 从「8 卡集群」下放到「单消费级 GPU 可跑」是 MoE+SWA 推理工程的拐点信号。</p></div>
+      <div class="card-tags"><span class="tag">SGLang</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.17.0" target="_blank" rel="noopener">v0.17.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">OpenAI Agents</span>
+          <span class="dot">·</span>
+          <span class="time">05-08 16:09 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>OpenAI Agents v0.17.0：RealtimeAgent 默认切到 gpt-realtime-2；sandbox 局部源物化加固——LocalFile.src/LocalDir.src 默认必须落在 materialization base_dir（即 SDK 进程 CWD）内，绝对路径必须已在 base_dir 下或被 Manifest.extra_path_grants 显式授权，关闭了 agent host 文件越界拷贝路径。延续此前 sandbox boundary 收紧节奏。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/modelcontextprotocol/python-sdk/releases/tag/v1.27.1" target="_blank" rel="noopener">v1.27.1</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">MCP Python</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 00:44 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>MCP Python SDK v1.27.1：兼容 pydantic 2.13（catch PydanticUserError 生成 output schema 时）、OAuthClientMetadata 把空字符串可选 URL 字段强制 coerce 成 None、httpx 锁到 &lt;1.0.0、SSEError 改从 httpx_sse 公共 API 导入。纯依赖与 OAuth 鲁棒性 bugfix，跟着上游升 pydantic 必带。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/v0.6.11rc1" target="_blank" rel="noopener">Release v0.6.11rc1</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 11:39 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashInfer v0.6.11rc1 候选发布（含 nightly 20260508/20260509 同源 cut）。具体 commit list 仅指向 v0.6.11 区间，无独立 changelog；接续 v0.6.10 的 trtllm head_dim=512 + MXFP4×BF16 SM90 + DCP A2A 主线，rc1 阶段重点观察 Blackwell SM_120 与 hd512 路径稳定性。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/improving-bash-generation-in-small-language-models-with-grammar-constrained-decoding/" target="_blank" rel="noopener">Improving Bash Generation in Small Language Models with Grammar-Constrained Decoding</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 01:13 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">developer.nvidia.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA 官方博客：用 Grammar-Constrained Decoding 改 SLM 生成 Bash 的合法率。把 grep/curl/tar/管道等 shell 算子建模为 CFG，在解码每步用 grammar 掩码非法 token，让小模型直接产出可执行 shell 而不是「看似对、实际语法错」的字符串。命中 agent 系统的 tool use 底层（XGrammar/Outlines/lm-format-enforcer 路线），是 NV 首个把 constrained decoding 推到 coding agent shell 工具调用的官方背书。</p></div>
+      <div class="card-tags"><span class="tag">constrained decoding</span><span class="tag">decoding</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1t7yrvr/deepseek_v4_paper_full_version_is_out_fp4_qat/" target="_blank" rel="noopener">DeepSeek V4 paper full version is out, FP4 QAT details and stability tricks [D]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 16:10 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 11.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>DeepSeek V4 完整论文释出（4 月预览 58 页，全本加大量训练 infra 细节）。要点：FP4 QAT 直接进入训练后期，MoE 专家权重量化到 FP4，CSA indexer 的 QK 路径用 FP4 激活，QK selector 实现 2× 加速 + 99.7% recall；推理直接吃 FP4 权重。1M 上下文效率：V4-Pro FLOPs 27%、KV cache 10% of V3.2 baseline；V4-Flash FLOPs 10%、KV cache 7%。训练稳定性两板斧：anticipatory routing 与 loss spike 显式诱发-恢复机制，专治 trillion-param MoE 不可预测发散。</p></div>
+      <div class="card-tags"><span class="tag">KV cache</span><span class="tag">FP4</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">TPU</span><span class="tag">DeepSeek</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1t7kyju/got_mtp_turboquant_running_qwen3627b_80_ts_at/" target="_blank" rel="noopener">Got MTP + TurboQuant running — Qwen3.6-27B -- 80+ t/s at 262K context on a single RTX 4090</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 05:15 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 12.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>民间工程：把 MTP 和 TurboQuant 的 TBQ4_0（4.25 bpv 无损 KV cache）同时栓在 Qwen3.6-27B 上，单卡 RTX 4090 24GB 跑出 80–87 tok/s @ 262K 上下文，MTP 接受率 ≈73%。栈：Q4_K_M 权重 + grafted MTP heads + TBQ4_0 KV + draft 3 + CUDA 12.x。直接验证 vLLM 主线刚合的 TurboQuant per-vector min-max 4-bit KV 在 hybrid Mamba+Attn 风格 MoE 上的工程可用性。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">KV cache</span><span class="tag">kernel</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">DeepSeek</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1t82zxv/80_toksec_and_128k_context_on_12gb_vram_with/" target="_blank" rel="noopener">80 tok/sec and 128K context on 12GB VRAM with Qwen3.6 35B A3B and llama.cpp MTP</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 19:57 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Qwen3.6 35B-A3B + llama.cpp MTP PR 在 RTX 4070 Super 12GB 跑出 80 tok/s + 128K 上下文 + 80%+ MTP 接受率；同期另一组在 RTX 3060 12GB 上靠 -ncmoe 18 / ctk q8_0 / ctv q8_0 拿到 pp512 ≈914 tok/s + tg128 ≈46.8 tok/s。说明 MoE 推理 12GB 档「保 MoE 块在 GPU + KV 量化」的两条腿在主线 llama.cpp 已基本成熟，是 35B 级 MoE 在消费卡落地的清晰配方。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">KV cache</span><span class="tag">GPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1t7g70j/vllm_rocm_has_been_added_to_lemonade_as_an/" target="_blank" rel="noopener">vLLM ROCm has been added to Lemonade as an experimental backend</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-09 02:21 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>AMD/Lemonade 把 vLLM ROCm 实验性后端塞进 lemonade backends（lemonade backends install vllm:rocm 一行装好，run Qwen3.5-0.8B-vLLM 即起服务）。意义：safetensors 直跑不再强制转 GGUF，AMD 推理栈在 ROCm 侧首次有了与 llama.cpp 对位的 vLLM 一键体验。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">llama.cpp</span><span class="tag">Qwen</span><span class="tag">LLaMA</span><span class="tag">ROCm</span></div>
+    </article>
+    </div>
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>
