@@ -155,6 +155,15 @@
 - 亮点：Tutti（NVMe SSD KV cache 实用化 GPU 自主 IO）/ Continuum（agent KV cache TTL 调度）/ FACT（agent 驱动 CUTLASS 合成）/ VDCores（异步 GPU 单元 micro-op DAG）/ ZeRO-Prefill（MoE prefill-only 零冗余）/ SparKV（端云协同 KV chunk cost 模型）/ BloomBee（Internet 规模分布式推理 DP）/ CCCL（CXL 共享内存池替代 RDMA 跨节点 collective）/ TCM-Serve（多模态 modality-aware 调度）/ SpecKV（投机解码自适应 γ）；release 侧 OpenAI Agents v0.15.3+v0.15.2、LangGraph SDK 0.3.14+checkpoint-sqlite 3.1.0a1（streaming walk + delta cadence rework）、FA4 beta12（hd256 backward TMA + GQA determinism）；community 侧 Qwen3.6-27B MTP llama.cpp PR（M2 Max 96GB 2.5×）+ MTP grafted on Unsloth UD XL + TritonSigmoid（H100 515 TFLOPS）+ Recursant agent service mesh
 - 状态: ✅ 成功。训练 0 条是 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS 全无 release 的客观底；严格排除 SubQ BS / Apple Mac Studio / DeepSeek V4 cost / Ollama CVE / Gemma 4 用途讨论 / blockchain VLM 应用等非基础设施内容
 
+## 2026-05-09 22:00（周六跑）
+- fetch: 18 条 raw（papers 0 / code 6 / blogs 1 / community 11），无 RSS 源失败；周六 arXiv 不更新（papers 0）+ HN LLM/Agent infra 双 0 + blogs 仅 NVIDIA Dev 1 条；HuggingFace 777 项被时间窗过滤、Together AI/Google Research/Meta Eng 全部时间窗过滤
+- curated: 9 条（papers 0 / code 4 / blogs 1 / community 4），domain_tag 分布 推理 5 / 训练 1 / agent 3
+- render: LLM 摘要 ✓，无 fallback，12 处 CST 时间戳，source=today_curated.json
+- publish: commit `823bd07`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +374 行 diff
+- 亮点：**KTransformers v0.6.2.post2** 把 V4-Flash 启动样例从 8×RTX 5090 切到「单卡 decode 20+ tok/s」+ Ada Lovelace SM_89 升 validated（DSV4-Flash MoE+SWA 推理工程从集群下放消费卡的拐点信号）、**OpenAI Agents v0.17.0** RealtimeAgent 默认切 gpt-realtime-2 + sandbox 局部源物化关闭 host 文件越界拷贝（延续 sandbox boundary 收紧节奏）、**MCP Python v1.27.1** pydantic 2.13 兼容 + OAuth 空字符串 URL 强制 None、**FlashInfer v0.6.11rc1** 接续 hd512+MXFP4×BF16+DCP A2A、**NVIDIA Dev Blog Grammar-Constrained Decoding 改 SLM Bash 生成**（NV 首个把 constrained decoding 推到 coding agent shell tool use 的官方背书，命中 XGrammar/Outlines 路线）、**DeepSeek V4 完整论文释出**（FP4 QAT 进训练后期 + MoE 专家 FP4 + CSA QK FP4 99.7% recall 2× selector 加速 + 1M 上下文 V4-Pro KV cache 10% / V4-Flash 7% of V3.2 baseline + anticipatory routing 与 loss spike 显式诱发-恢复双稳定机制治 trillion-param MoE）、**TurboQuant TBQ4_0 KV + MTP @ Qwen3.6-27B 单卡 4090 80-87 tok/s @ 262K**（用户 RaBitQ/TurboQuant 方向直连工程验证）、**Qwen3.6 35B-A3B + llama.cpp MTP 12GB 档双实测**（4070 Super 80 tok/s @ 128K + 3060 12GB pp512 914/tg128 47，MoE 推理「保 MoE 块在 GPU + KV 量化」配方在主线已成熟）、**vLLM ROCm 入 Lemonade**（AMD 推理栈 ROCm 侧首次有 vLLM 一键体验，对位 llama.cpp）
+- 状态: ✅ 成功。9 条是周六的客观信号底（arXiv 0 + HN 双 0 + blogs 几乎全 0），严格执行「宁缺毋滥」——排除 Qwen NVFP4/GPTQ 多格式分发（应用层）、DGX Spark 社区情怀贴、April 致敬 meme、DeepSeek 拒阿里融资（商业新闻）、Pi+Qwen 装 Arch（agent 应用案例）、Qwen 不工作梗图、FlashInfer 两条同源 nightly 合并到 rc1
+- 观察：DSV4 完整论文 + KTransformers 把 V4-Flash 单卡化两件事在同一天命中——DSV4-Flash 的 KV cache 7% baseline 与 8 卡→单卡的工程拐点形成完整故事链
+
 ## 2026-05-07 22:00（周四跑）
 - fetch: 42 条 raw（papers 20 / code 10 / blogs 1 / community 11），无 RSS 源失败；blogs 仅 HuggingFace 1 条（ServiceNow vLLM V0→V1 RL correctness）+ HN LLM/Agent infra 双 0
 - curated: 26 条（papers 13 / code 8 / blogs 1 / community 4），按 link 去重后 papers 唯一 13 条（扔 HERCULES NAS——"Outlines" 关键词误捕 + Serverless LEO 应用层）；domain_tag 分布 推理 14 / 训练 6 / agent 6
