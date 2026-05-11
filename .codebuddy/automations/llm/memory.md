@@ -164,6 +164,15 @@
 - 状态: ✅ 成功。9 条是周六的客观信号底（arXiv 0 + HN 双 0 + blogs 几乎全 0），严格执行「宁缺毋滥」——排除 Qwen NVFP4/GPTQ 多格式分发（应用层）、DGX Spark 社区情怀贴、April 致敬 meme、DeepSeek 拒阿里融资（商业新闻）、Pi+Qwen 装 Arch（agent 应用案例）、Qwen 不工作梗图、FlashInfer 两条同源 nightly 合并到 rc1
 - 观察：DSV4 完整论文 + KTransformers 把 V4-Flash 单卡化两件事在同一天命中——DSV4-Flash 的 KV cache 7% baseline 与 8 卡→单卡的工程拐点形成完整故事链
 
+## 2026-05-10 22:00（周日跑）
+- fetch: 15 条 raw（papers 0 / code 4 / blogs 0 / community 11），无 RSS 源失败；周日 arXiv 不更新 + blogs 全 0（HF 777 项时间窗过滤，其余时间窗/无更新）+ HN LLM/Agent infra 双 0，客观低信号日
+- curated: 8 条（papers 0 / code 2 / blogs 0 / community 6），domain_tag 分布 推理 8 / 训练 0 / agent 0——训练/agent 双 0 是今日 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS/LangGraph/OpenAI Agents/XGrammar/Outlines 全无 release 的客观事实
+- render: LLM 摘要 ✓，无 fallback，CST 时间戳齐全
+- publish: commit `d482d0a`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +356 行
+- 亮点：**vLLM v0.20.2**（DeepSeek V4 MTP=1 hang + V1 KV 块分配失败 + gpt-oss MXFP4×torch.compile + Qwen3-VL deepstack 边界 4 项修复，延续本月 feature 落地即 revert→重上节奏）、**NVIDIA Star Elastic**（单 ckpt 塞 30B/23B/12B，zero-shot slicing 切层降档，三档共享 KV cache）、**llama.cpp b9095 NCCL-Free TP on Dual Blackwell**（消费级双 Blackwell TP 走自己的 CUDA IPC+P2P 绕开 NCCL，对国产芯片 P2P+host-staging 无 NCCL 方案直接参考）、**DeepSeek V4-Pro Q4_K_M 单卡 RTX PRO 6000 Max-Q 跑通**（Epyc 9374F+12×96GB RAM+97GB VRAM，antirez ds4/LegacyRemaster Q4_K_M 分支首个单卡家用 V4-Pro）、**DS4 (antirez)**（Redis 作者开源 V4-Flash on Mac Metal 1M ctx，OpenAI+Anthropic 端点，V4-Flash 第三个独立栈 KTransformers/SGLang/DS4）、**Qwen3.6 35B-A3B + llama.cpp MTP @ 12GB 80 tok/s 128K**（RTX 4070 Super 单卡稳定达标，MTP 接受率 80%+）、**MiniMax M2.7 on Strix Halo 100k**（AMD 统一内存 serving 参数调优，对 ScaleUp 统一内存路线借鉴）、**FlashInfer v0.6.11rc1** 正式 rc
+- 状态: ✅ 成功。周日 8 条是客观信号底，严格执行「宁缺毋滥」——排除 MCP server 一周年情怀、Harnesses 抱怨、OpenWebUI tool library 应用、3080 20GB mod 购买咨询、DeepSeek V4 论文 r/ML 版本（昨日 r/ML 已覆盖）
+- 观察：vLLM 本周曲线 5/2 v0.20.1 revert persistent topk → 5/10 v0.20.2 重启 persistent topk 并补 memset CUDA graph capture，"落地→revert→修根因→重上" 典型 V4 级 feature 曲线
+
 ## 2026-05-07 22:00（周四跑）
 - fetch: 42 条 raw（papers 20 / code 10 / blogs 1 / community 11），无 RSS 源失败；blogs 仅 HuggingFace 1 条（ServiceNow vLLM V0→V1 RL correctness）+ HN LLM/Agent infra 双 0
 - curated: 26 条（papers 13 / code 8 / blogs 1 / community 4），按 link 去重后 papers 唯一 13 条（扔 HERCULES NAS——"Outlines" 关键词误捕 + Serverless LEO 应用层）；domain_tag 分布 推理 14 / 训练 6 / agent 6
