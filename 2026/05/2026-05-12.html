@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-05-12 Tuesday</title>
+<!-- rendered_at: 2026-05-12 22:07:34 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-05-12T14:07:13.141190+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-05-12 Tuesday · 回溯 36h · 共 30 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-05-12 22:07:13 CST</span>
+      <span class="badge">Rendered: 2026-05-12 22:07:34 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.08151" target="_blank" rel="noopener">SPECTRE: Hybrid Ordinary-Parallel Speculative Serving for Resource-Efficient LLM Inference</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 18.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>多模型云服务推理框架 SPECTRE：把利用率低的小尾部模型当作大热门模型的远程 draft model，混合「顺序+并行」投机解码并通过吞吐量分析阈值切换。draft 与 verify 真正并行运行，化「闲置 tail 容量」为大模型加速燃料，针对长尾多租场景规避对额外 drafter 的训练与部署。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">LLM serving</span><span class="tag">SGLang</span><span class="tag">speculative decoding</span><span class="tag">veRL</span><span class="tag">decoding</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.10670" target="_blank" rel="noopener">Surviving Partial Rank Failures in Wide Expert-Parallel MoE Inference</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 16.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>宽 EP MoE 推理的部分秩故障容错：现有 EP 栈把 rank 集合固定到初始化阶段，单节点失败拖垮整服务。论文把 communicator、专家放置、CUDA Graph 路由元数据全部解耦，让 EP 在故障时缩容继续提供服务而非整体重启——MoE 大规模 EP 推理生产化的关键基建（直接命中 DeepEP / SGLang 路线）。</p></div>
+      <div class="card-tags"><span class="tag">SGLang</span><span class="tag">MoE inference</span><span class="tag">expert parallel</span><span class="tag">DeepEP</span><span class="tag">decoding</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2511.02230" target="_blank" rel="noopener">Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.OS</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Continuum v5 升级：agent 工作流 LLM 调用穿插 tool call 导致传统 KV 驱逐 + 队列等待两难。本版本把「重算/重载成本 vs GPU 等待成本」纳入统一 TTL 决策，对 tool 调用时长方差做内部分布建模；对 agent serving 场景的 KV 利用率天花板再抬一档。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">inference engine</span><span class="tag">KV cache</span><span class="tag">serving</span><span class="tag">GPU</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.01708" target="_blank" rel="noopener">SplitZip: Ultra Fast Lossless KV Compression for Disaggregated LLM Serving</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 10.8</span>
+        </div>
+      </div>
+      <div class="card-body"><p>SplitZip v2：PD 分离架构下，prefill→decode worker 间 KV 跨机传输成为瓶颈，离线权重压缩用的 CPU 变长编码完全不适用。SplitZip 给 GPU 原生超快无损 KV 编码方案，与 disagg/long-context/agent workload 直接相关，本版本扩 FP8 KV 支持。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">disaggregated</span><span class="tag">KV cache</span><span class="tag">KV compression</span><span class="tag">FP8</span><span class="tag">decoding</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.06763" target="_blank" rel="noopener">Sparse Attention as a Range Searching Problem: Towards an Inference-Efficient Index for KV Cache</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 10.2</span>
+        </div>
+      </div>
+      <div class="card-body"><p>把稀疏注意力建模成「区间搜索」问题：在 fixed/adaptive token budget 下选 top-k key 时漏掉关键 token 误差激增，尤其长 reasoning 中重要 token 集合随 decode step 漂移。论文给推理高效索引，保证零假阴性（critical key 不丢），针对长上下文 reasoning 调用直接补齐稀疏 attention 准确性证明。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">FlashAttention</span><span class="tag">KV cache</span><span class="tag">veRL</span><span class="tag">attention</span><span class="tag">decoding</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.04956" target="_blank" rel="noopener">KernelBenchX: A Comprehensive Benchmark for Evaluating LLM-Generated GPU Kernels</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">arXiv cs.PF</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 10.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KernelBenchX 全面评测 LLM 写 Triton GPU kernel：176 任务跨 15 类，对比 5 种方法。核心发现：任务结构对正确性影响是方法设计的 3 倍（9.4% vs 3.3% 解释方差），Fusion 类 72% 全员失败、Math 类基本都对。补齐 5/7 KernelBench-X 的 categorical 维度，对 coding agent 写 kernel 的能力边界给出可复现 benchmark。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">GPU kernel</span><span class="tag">quantization</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.08301" target="_blank" rel="noopener">Priming: Hybrid State Space Models From Pre-trained Transformers</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 9.6</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Priming：把 Hybrid（Attn+SSM）架构设计从「从头预训练问题」变成「知识迁移问题」——拿预训练 Transformer 初始化 Hybrid 模型，做短期对齐+后训练阶段即可恢复下游质量。对 KV cache 更小、decode 更快的 Hybrid 工程化路径直接降本，给 Mamba/Falcon-Mamba 类后续推广扫清成本障碍。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">vLLM</span><span class="tag">sequence parallel</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">decoding</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09863" target="_blank" rel="noopener">Nautilus Compass: Black-box Persona Drift Detection for Production LLM Agents</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 8.4</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Nautilus Compass：生产 coding agent 长会话「persona drift」黑盒检测——纯 prompt 文本层用 BGE-m3 embedding 算用户 prompt 与行为 anchor 的 cosine top-k 加权均值，无需模型权重所以可用于 Claude/GPT-4 闭源 API。对 Mem0/Letta/Cognee/Zep/MemOS 路线是首个可量化 drift 监控层。</p></div>
+      <div class="card-tags"><span class="tag">MCP</span><span class="tag">A2A</span><span class="tag">Claude Code</span><span class="tag">Cursor</span><span class="tag">agent memory</span><span class="tag">coding agent</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09735" target="_blank" rel="noopener">KV-RM: Regularizing KV-Cache Movement for Static-Graph LLM Serving</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 8.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KV-RM：静态图 LLM decoder 启动开销低、tensor shape 固定，但在线 decode 的 KV 行为天然不规则（请求长度异质 + EOS 异步 + 逻辑历史碎片化）。KV-RM 在固定 decode 接口下解耦逻辑 KV 与物理存储，吸收变动性而保留静态图低延迟优势——给「静态图执行器+动态请求」的鸿沟一个新工程方案。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">serving</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.08234" target="_blank" rel="noopener">When Does Value-Aware KV Eviction Help? A Fixed-Contract Diagnostic for Non-Monotone Cache Compression</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.2</span>
+        </div>
+      </div>
+      <div class="card-body"><p>提出 KV 驱逐 selector 失效的三步诊断：漏证据、误打高分给无影响 token、把相关证据切散。在 fixed-contract 框架下逐项分离贡献，给 value 排名用「block attention mass × 移除后输出变化」组合指标；LongBench 跨 3 模型 2 budget 实证 value-aware 选择何时真正有用、何时是噪声。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">KV cache</span><span class="tag">KV compression</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">TPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.10905" target="_blank" rel="noopener">TLX: Hardware-Native, Evolvable MIMW GPU Compiler for Large-scale Production Environments</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 7.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>TLX（Triton 低层语言扩展，围绕 MIMW Multi-Instruction Multi-Warp）：在 warp-group 粒度表达数据搬运、tensor core 计算、同步的编排，保留 Triton 块编程模型同时把 Hopper/Blackwell 异步硬件机制显式暴露。给大型生产环境一条「让编译器不必追赶硬件」的可演化通路。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">serving</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09375" target="_blank" rel="noopener">31.1 A 14.08-to-135.69Token/s ReRAM-on-Logic Stacked Outlier-Free Large-Language-Model Accelerator with Block-Clustered Weight-Compression and Adaptive Parallel-Speculative-Decoding</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>55nm ReRAM-on-logic 堆叠 LLM 加速芯片：14.08-135.69 tok/s。本地 rotation 单元实现「免离群点」低 bit 量化，stacking-aware PNM 配合 blockwise vector quantization 降权重 EMA 开销，自适应并行投机解码+乱序调度提升资源带宽利用率，相比 vanilla 投机解码 4.46-7.17×。把 PIM/堆叠+投机解码完整跑通的 ISSCC 级硬件信号。</p></div>
+      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">quantization</span><span class="tag">decoding</span><span class="tag">scheduler</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09490" target="_blank" rel="noopener">Not All Thoughts Need HBM: Semantics-Aware Memory Hierarchy for LLM Reasoning</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.AR</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Reasoning LLM 千级思维 token KV 都要驻 HBM 才行？永久驱逐 50% 半精度 token 准确率崩到 0-2.5%。论文提语义感知存储分层（HBM/DDR/压缩/驱逐 四档），累积 attention 评分排序，低权重 token 下沉 CPU 内存 + 每 attention step 全精度 prefetch 回 GPU，等价零误差——对 reasoning 长输出 KV 工程是「不丢精度+不爆 HBM」的双赢方案。</p></div>
+      <div class="card-tags"><span class="tag">KV cache</span><span class="tag">attention</span><span class="tag">GPU</span><span class="tag">ZeRO</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09329" target="_blank" rel="noopener">Test-Time Speculation</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Test-Time Speculation：当前 SOTA 投机解码器（DFlash/EAGLE-3/PARD）在几千 token 后接受长度衰减到接近 1，long-response 任务彻底失速——根因是 draft 离线短序列训练而 inference 走长序列分布外。提推理时自适应方案修复 long-response 投机解码可用性，对 reasoning model 部署直接 actionable。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">speculative decoding</span><span class="tag">decoding</span><span class="tag">TPU</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.26412" target="_blank" rel="noopener">When Hidden States Drift: Can KV Caches Rescue Long-Range Speculative Decoding?</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.CL</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>针对投机解码 SOTA hidden-state drafter 的「长距离衰减」：target hidden state 是带偏的上下文压缩（按当前位置 attention query 聚合历史），TTT 训练也救不回来。论文从上下文信息保留角度引入 KV cache 增援机制，把长距离投机解码 draft 精度拉回——补 5/11 DP 负载均衡之后投机解码长上下文链路。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">speculative decoding</span><span class="tag">KV cache</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">Qwen</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2603.01960" target="_blank" rel="noopener">TiledAttention: a CUDA Tile SDPA Kernel for PyTorch</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.LG</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.6</span>
+        </div>
+      </div>
+      <div class="card-body"><p>TiledAttention：用 cuTile Python（TileIR）写的 SDPA forward 算子，FlashAttention 风格 online-softmax + tiled K/V streaming，作为 PyTorch 可调用函数暴露。schedule 级（tile shape / staging / shared memory layout）Python 端可直接改，比 CUDA 模板低门槛但保留真实行为——对 attention 研究 reproducible benchmark 路线的官方推广作。</p></div>
+      <div class="card-tags"><span class="tag">FlashAttention</span><span class="tag">CUTLASS</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.00539" target="_blank" rel="noopener">AGoQ: Activation and Gradient Quantization for Memory-Efficient Distributed Training of LLMs</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.CL</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 6.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>AGoQ：4-bit 激活 + 8-bit 梯度训练量化——分层感知给各层激活按 type+pipeline stage 自适应 bit 宽（近 4-bit 储存）、8-bit 梯度 + 精度保持 8-bit All-Reduce 通信压缩。比单纯量化更精细且通信侧也省，5/4 同名 paper 今日 v2 替换，对 Megatron-LM 类训练栈直接接入有参考。</p></div>
+      <div class="card-tags"><span class="tag">Megatron-LM</span><span class="tag">DeepSpeed</span><span class="tag">quantization</span><span class="tag">serving</span><span class="tag">GPU</span><span class="tag">distributed training</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.08524" target="_blank" rel="noopener">Unleashing Scalable Context Parallelism for Foundation Models Pre-Training via FCP</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FCP（Flexible Context Parallelism）：现有 CP 设计要么把短序列过度切片、要么把长短序列分开处理无 bin-packing 引发负载不均。FCP 在 block 粒度分片+调度，抛弃环形等刚性拓扑允许任意 P2P 通信，灵活映射放置——对长上下文 pretraining 序列长度高方差的训练栈是新基建。</p></div>
+      <div class="card-tags"><span class="tag">context parallel</span><span class="tag">attention</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.09994" target="_blank" rel="noopener">Lakestream: A Consistent and Brokerless Data Plane for Large Foundation Model Training</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Lakestream：大基模训练数据 plane 重构。共址 dataloader 无故障隔离、消息队列式 disagg dataloader 表达不了 batch-level 语义。Lakestream 用 Transactional Global Batch（基于 lakehouse ACID + 训练特化一致性，原子 all-rank batch 可见性）替代 record/offset 抽象——给百万卡级训练数据 plane 一条无 broker、object-store 原生的工程路线。</p></div>
+      <div class="card-tags"><span class="tag">disaggregated</span><span class="tag">GPU</span><span class="tag">distributed training</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.08962" target="_blank" rel="noopener">MegaScale-Omni: A Hyper-Scale, Workload-Resilient System for MultiModal LLM Training in Production</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(16,185,129,.22);color:#a7f3d0;border:1px solid rgba(16,185,129,.55);">训练</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>字节 MegaScale-Omni：工业级 MLLM 训练系统应对动态模态混合比与样本长度分布。Encoder-LLM 复用方案三关键创新——长短序列并行的解耦并行策略、动态资源分配、模型并行随负载漂移——把 hyper-scale 部署下「encoder/LLM 静态切分」打破，对生产级 MLLM 训练直接参考价值。</p></div>
+      <div class="card-tags"><span class="tag">sequence parallel</span><span class="tag">GPU</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/InternLM/lmdeploy/releases/tag/v0.13.0" target="_blank" rel="noopener">v0.13.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">LMDeploy</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 11:46 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 23.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LMDeploy v0.13.0：Ascend 后端支持 Qwen3.5 35B-A3B；turbomind 集成 cublasGemmGroupedBatchedEx 给 Qwen3.5 MoE 在 Blackwell 上做内存拷贝优化；新增 TurboQuant（quant_policy=42）KV cache 量化（与用户 RaBitQ/TurboQuant 方向直连，继 vLLM #39931 之后第二个主线推理引擎落地）；Anthropic 兼容 serving 端点；kernel block size 支持。国产芯片 + TurboQuant + MoE 三线齐发的版本。</p></div>
+      <div class="card-tags"><span class="tag">LMDeploy</span><span class="tag">prefix caching</span><span class="tag">KV cache</span><span class="tag">FP8</span><span class="tag">MoE inference</span><span class="tag">transformer</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/openai/openai-agents-python/releases/tag/v0.17.2" target="_blank" rel="noopener">v0.17.2</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">OpenAI Agents</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 11:14 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>OpenAI Agents Python 一晚连发 v0.17.1 + v0.17.2：sandbox 三轴（archive 提取上限、GitRepo subpath 校验、空 subpath 处理）+ tracing（进程退出 best-effort、BatchTraceProcessor exporter 错误后 worker 存活、no-op span ID 守卫、shutdown 时打断 retry backoff）+ sessions（hosted tool ID 保留、corrupt item pop 跳过、MongoDB metadata 时间戳）+ realtime（未知工具不自动回应）+ MCP/sandbox 错误细节传递。延续本周三轴持续加固节奏。</p></div>
+      <div class="card-tags"><span class="tag">TPU</span><span class="tag">tracing</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/langchain-ai/langgraph/releases/tag/1.2.0" target="_blank" rel="noopener">langgraph==1.2.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">LangGraph</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 11:46 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>LangGraph 1.2.0 全家桶正式版：langgraph==1.2.0 + checkpoint==4.1.0 + checkpoint-postgres==3.1.0 + checkpoint-sqlite==3.1.0 + prebuilt==1.1.0 + cli 0.4.26 一晚一齐 bump 出 alpha。核心特性——主机崩溃后 durable error-handler 跨进程 resume / StateGraph.set_node_defaults() / checkpoint 强制 delta channel snapshot 每隔 max supersteps（避免 delta 链过长重建慢）/ checkpoint-sqlite 重写 get_delta_channel_history 为 streaming walk。1.1 timers 重构 → 4/28 revert → 5/2 6 个 alpha → 5/11 a7 → 今日 1.2.0 正式版的完整收敛曲线。</p></div>
+      <div class="card-tags"><span class="tag">LangGraph</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/introducing-nvidia-fleet-intelligence-for-real-time-gpu-fleet-visibility-and-optimization/" target="_blank" rel="noopener">Introducing NVIDIA Fleet Intelligence for Real-Time GPU Fleet Visibility and Optimization</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 03:44 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">developer.nvidia.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA Fleet Intelligence：大型 GPU 集群实时可见性与优化平台，作 GPU fleet 级监控/优化中枢。对 100k+ GPU 数据中心做集群健康+利用率统一观测，与 OpenAI/MS MRC+SRv6 之类生产级集群观测层互补。给 GPU 集群运维「再上一层 fleet 控制平面」的官方信号。</p></div>
+      <div class="card-tags"><span class="tag">GPU</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1tag07l/a_hackable_compiler_to_generate_efficient_fused/" target="_blank" rel="noopener">A hackable compiler to generate efficient fused GPU kernels for AI models [P]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 04:48 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 16.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>可 hack 的 LLM 编译器从零写：TVM 50 万+ 行 C++ / PyTorch 堆 Dynamo+Inductor+Triton，作者自建 6 层 IR 把 TinyLlama / Qwen2.5-7B 端到端降为一串 CUDA kernel。RTX 5090 上 FP32 几何平均 1.11×（vs PyTorch eager）+ 1.20×（vs torch.compile），小规约/SDPA/kv-projection 最高 4.7×，dense matmul seq=512 略输。第二部分深入 Tile IR/Kernel IR 与 lowering 规则——对内部教学+理解 Inductor/TVM/XLA 替代栈的极好阅读资料。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">CUDA kernel</span><span class="tag">GPU kernel</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1tb160j/gemma_4_mtp_vs_dflash_on_1x_h100_dense_vs_moe/" target="_blank" rel="noopener">Gemma 4 MTP vs DFlash on 1x H100: dense vs MoE results</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 21:09 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Gemma 4 31B / 26B-A4B 在 1×H100 80GB + vLLM 上跑 SPEED-Bench 880 prompt 跨 11 类的 MTP vs DFlash 投机解码对照。dense 31B：MTP 3.11× / DFlash 3.03×（baseline 40.3→125.3 tok/s @ MTP 8 / DFlash 15 spec token）。两套投机解码方案在 dense 模型上几乎打平，给「MoE 还是 dense / spec token 数怎么选」一手数据，对 vLLM MTP 路线选型直接 actionable。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">prefix caching</span><span class="tag">speculative decoding</span><span class="tag">decoding</span><span class="tag">serving</span><span class="tag">H100</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1taeg8h/computer_build_using_intel_optane_persistent/" target="_blank" rel="noopener">Computer build using Intel Optane Persistent Memory - Can run 1 trillion parameter model at over 4 tokens/sec</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 03:54 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 10.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Intel Optane Persistent Memory（DIMM 介乎 DRAM 与 SSD）二手买配 768GB 跑 Kimi K2.5 万亿参数模型 4 tok/s。Optane 走 Memory Mode 暴露给系统作 DRAM-级（DRAM 当 cache）——对内存墙极致预算场景给一个 cost/GB 极低的 LLM 推理替代路线。Optane 虽 EOL 二手仍流通，对 ScaleUp 统一内存方向与国产 CXL 内存池路径都是实测参考。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">llama.cpp</span><span class="tag">attention</span><span class="tag">GPU</span><span class="tag">LLaMA</span><span class="tag">Kimi</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://fergusfinn.com/blog/kv-entropy-coder/" target="_blank" rel="noopener">Speculative KV coding: ~4× losslessly compressed KV cache using a small model</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 21:18 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">fergusfinn.com</span>
+          
+          <span class="score">kw 3.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Speculative KV coding 博客实现：用一个小模型对 KV cache 做投机式熵编码，无损压缩约 4×。把投机解码的「target 模型预测分布近似」思路反向用到 KV 存储——decode 时小模型预测 KV 分布、用真实 KV 与预测差分编码。给 KV cache 无损压缩链路再加一个工程化思路（与 SplitZip 的 GPU 原生编码、ZipCCL 集合通信无损压缩形成完整 sub-track）。</p></div>
+      <div class="card-tags"><span class="tag">KV cache</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/uw-syfi/vibe-serve" target="_blank" rel="noopener">VibeServe: Can AI Agents Build Bespoke LLM Serving Systems?</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">05-11 23:48 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>UW SyFI 实验室 VibeServe：让 AI agent 自动构建定制 LLM serving 系统。把 agent 写代码能力推到「写自己的推理引擎+调度」这种系统级 infra 任务上的实验，对 FACT（agent 驱动 CUTLASS 合成）/ KernelBenchX（LLM 写 Triton kernel 评测）形成上层一致路线——agent 写 infra 已从单 kernel 上升到完整 serving stack。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">serving</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1tany5t/drastically_improve_prompt_processing_speed_for/" target="_blank" rel="noopener">Drastically improve prompt processing speed for --n-cpu-moe partially offloaded models</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-12 10:12 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>gpt-oss-120B-F16 在 RTX 3090 24GB 部分卸载 MoE 到 CPU 的 llama.cpp 实测：把物理 micro-batch -ub 从默认 512 拉到 4096-8192 并同步抬 --n-cpu-moe 到 26-28，prefill 吞吐 380→2090 tok/s（5.5×）而 decode 基本不动。对 partial offload MoE 推理调优是直接可复用配方——MoE prefill 是 CPU↔GPU 拷贝-launch 联合瓶颈，大 ubatch 摊平 launch 与拷贝最有效。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">GPU</span><span class="tag">LLaMA</span></div>
+    </article>
+    </div>
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>

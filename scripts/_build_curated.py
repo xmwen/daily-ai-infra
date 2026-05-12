@@ -1,181 +1,348 @@
-"""一次性构建 today_curated.json（中文 tldr + domain_tag）。"""
+# -*- coding: utf-8 -*-
+"""一次性 curated 生成脚本 - 2026-05-12"""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-RAW = Path("cache/today_raw.json")
-OUT = Path("cache/today_curated.json")
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "cache" / "today_raw.json"
+OUT = ROOT / "cache" / "today_curated.json"
 
-raw = json.loads(RAW.read_text(encoding="utf-8"))
-
-
-def pick(section: str, link: str, tldr: str, domain_tag: str):
-    for item in raw["sections"].get(section, []):
-        if item["link"] == link:
-            new = dict(item)
-            new["tldr"] = tldr
-            new["domain_tag"] = domain_tag
-            return new
-    raise SystemExit(f"NOT FOUND {section} {link}")
+with RAW.open("r", encoding="utf-8") as f:
+    raw = json.load(f)
 
 
-curated = {"papers": [], "code": [], "blogs": [], "community": []}
+def find_item(section, title_contains=None, link_contains=None):
+    for it in raw["sections"][section]:
+        if title_contains and title_contains.lower() in it["title"].lower():
+            return it
+        if link_contains and link_contains in it["link"]:
+            return it
+    return None
 
-# ============ papers（按 link 去重后 13 条 → 选 12 条） ============
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.06113",
-    "把 DP 负载均衡当作大规模 LLM serving 的一等瓶颈来治：TP/EP 分片 + DP 复制下每步 decode 同步屏障由最慢 worker 决定，「持续轻微不均衡」会逐步累积成大量浪费。作者形式化在线路由问题——KV cache 迁移昂贵导致分配粘性、单请求负载随时间增长、到达非平稳，路由必须在 100 ms 内对数百待处理请求做决定，给出可上线的实用调度方案。",
-    "推理",
-))
+def enrich(item, tldr, domain_tag):
+    out = dict(item)
+    out["tldr"] = tldr
+    out["domain_tag"] = domain_tag
+    return out
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07719",
-    "Fluxion：长上下文 KV 常驻 CPU 场景下的 CPU-GPU 混合稀疏 attention。指出仅靠 sparsity 不够——GPU-only 受 PCIe 与元数据内存约束，CPU-GPU 混合又卡在 CPU 端 top-k 选择与稀疏 attention 计算。三个关键洞察：output-aware KV budget、按 head 与粒度独立配置稀疏度、跨设备协调执行，end-to-end 把 GPU 空转和 PCIe 争用同时打掉。",
-    "推理",
-))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.06763",
-    "把稀疏 attention 重新表述为「range searching」问题：现有 fixed/adaptive budget 方法无法保证 decode 步零假阴性，少选关键 key 就会引发尖峰错误，特别是长推理任务下 important token 集合随步骤漂移。作者据此设计 KV cache 推理高效索引，给出可证明误差边界的 top-k 选择，连续 decode 步全部命中关键 token。",
-    "推理",
-))
+curated_papers = []
+curated_code = []
+curated_blogs = []
+curated_community = []
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07569",
-    "HexiSeq：把长上下文训练的 CP（Context Parallel）+ HP（Head Parallel）扩展到异构 GPU 集群。现有训练系统假设 mesh 同构，但生产环境常混用不同代 GPU 与非均匀网络带宽。HexiSeq 支持完全非对称 CP-HP 切分，按设备 compute/memory/通信能力分配 sequence shard 与 attention head，把异构 CP-HP allocation 形式化为约束优化并给出层级调度器找最优解。",
-    "训练",
-))
+# ===== papers =====
+# 1. SPECTRE 多租推理利用 tail model 作 remote drafter
+it = find_item("papers", link_contains="2605.08151")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "多模型云服务推理框架 SPECTRE：把利用率低的小尾部模型当作大热门模型的远程 draft model，混合「顺序+并行」投机解码并通过吞吐量分析阈值切换。draft 与 verify 真正并行运行，化「闲置 tail 容量」为大模型加速燃料，针对长尾多租场景规避对额外 drafter 的训练与部署。",
+        "推理",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07363",
-    "MISA：把 DeepSeek Sparse Attention（DSA）的 indexer 从 64-head 共享 token 集改为 MoE 池化。DSA 在 V3.2 上 indexer 64 query head 共享同一选中集让 indexer 成为长上下文主导成本；MISA 用 block-level 廉价统计做 router，按 query 仅激活若干 indexer head，drop-in 替换原 indexer 大幅降本同时保持选中质量。",
-    "推理",
-))
+# 2. Surviving Partial Rank Failures in Wide EP MoE Inference
+it = find_item("papers", link_contains="2605.10670")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "宽 EP MoE 推理的部分秩故障容错：现有 EP 栈把 rank 集合固定到初始化阶段，单节点失败拖垮整服务。论文把 communicator、专家放置、CUDA Graph 路由元数据全部解耦，让 EP 在故障时缩容继续提供服务而非整体重启——MoE 大规模 EP 推理生产化的关键基建（直接命中 DeepEP / SGLang 路线）。",
+        "推理",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07726",
-    "SuperMUC-NG Phase 2 大规模训练实战 recipe：用 Intel Data Center GPU Max 1550 跑 TP+PP+DP 完整并行栈训练 LLM。一万亿参数 GPT 风格模型估算需要 1.2 亿 exaflops，工作给出在 Intel Ponte Vecchio 非主流硬件路线下的可复现训练配方，对国产非 NVIDIA 卡（昇腾/寒武纪等）的训练栈设计有直接参考。",
-    "训练",
-))
+# 3. Continuum agent KV TTL 调度（V5 replace，4/28、5/6 同名 v3/v4 是同篇升级）
+it = find_item("papers", link_contains="2511.02230")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Continuum v5 升级：agent 工作流 LLM 调用穿插 tool call 导致传统 KV 驱逐 + 队列等待两难。本版本把「重算/重载成本 vs GPU 等待成本」纳入统一 TTL 决策，对 tool 调用时长方差做内部分布建模；对 agent serving 场景的 KV 利用率天花板再抬一档。",
+        "推理",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2510.01290",
-    "ThinKV：reasoning 模型长 CoT 输出导致 KV cache 暴涨，本文按「思维类型重要性」做自适应 KV 压缩——观察 attention sparsity 表明 CoT 内不同 thought 重要性差异显著，采用混合量化+驱逐策略：按思维重要性分配 token 精度，随推理轨迹推进渐进驱逐低价值思维 token，并设计扩展 PagedAttention 的 kernel 允许已驱逐 token 的内存高效复用。",
-    "推理",
-))
+# 4. SplitZip 无损 KV 压缩 PD 分离（v2 replace，5/5 首次覆盖，今日 v2 更新）
+it = find_item("papers", link_contains="2605.01708")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "SplitZip v2：PD 分离架构下，prefill→decode worker 间 KV 跨机传输成为瓶颈，离线权重压缩用的 CPU 变长编码完全不适用。SplitZip 给 GPU 原生超快无损 KV 编码方案，与 disagg/long-context/agent workload 直接相关，本版本扩 FP8 KV 支持。",
+        "推理",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07443",
-    "RcLLM：生成式推荐场景的 Beyond-Prefix KV cache 分布式推理。前缀 cache 在推荐 workload 收益有限（用户 history × item context 复用非连续），RcLLM 把 prompt 分解为可复用 block，对小巧 user-history cache 做复制实现零延迟检索、对海量 item cache 用 similarity-aware placement 做分片，是把 KV 复用从「线性前缀」推广到「block 级」的产线工程。",
-    "推理",
-))
+# 5. Sparse Attention as Range Searching - KV Cache index
+it = find_item("papers", link_contains="2605.06763")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "把稀疏注意力建模成「区间搜索」问题：在 fixed/adaptive token budget 下选 top-k key 时漏掉关键 token 误差激增，尤其长 reasoning 中重要 token 集合随 decode step 漂移。论文给推理高效索引，保证零假阴性（critical key 不丢），针对长上下文 reasoning 调用直接补齐稀疏 attention 准确性证明。",
+        "推理",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07182",
-    "Star Elastic：单次 post-training 同时产出 N 个嵌套子模型的 reasoning LLM 训练范式。一个 run 同时训出主模型 + N 个子模型节省 N 倍 compute；推理侧解锁「弹性预算控制」——根据 token 难度动态切档而不再固定架构，适合长 reasoning 任务高低难度混合分布。",
-    "训练",
-))
+# 6. KernelBenchX (cs.PF + cs.LG 同 ID 去重)
+it = find_item("papers", link_contains="2605.04956")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "KernelBenchX 全面评测 LLM 写 Triton GPU kernel：176 任务跨 15 类，对比 5 种方法。核心发现：任务结构对正确性影响是方法设计的 3 倍（9.4% vs 3.3% 解释方差），Fusion 类 72% 全员失败、Math 类基本都对。补齐 5/7 KernelBench-X 的 categorical 维度，对 coding agent 写 kernel 的能力边界给出可复现 benchmark。",
+        "agent",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2602.06283",
-    "SOCKET：把 LSH 升级为 SOft Collision Kernel EsTimator 用于 sparse attention 长上下文。传统 LSH 二元命中信号限制了 ranking 质量并需大量内存；SOCKET 在多张哈希表上累积 graded collision evidence，保持 top-k 排序质量同时大幅压低内存，配 FlashAttention/Triton kernel 实测可用。",
-    "推理",
-))
+# 7. Priming Hybrid SSM from pretrained transformer
+it = find_item("papers", link_contains="2605.08301")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Priming：把 Hybrid（Attn+SSM）架构设计从「从头预训练问题」变成「知识迁移问题」——拿预训练 Transformer 初始化 Hybrid 模型，做短期对齐+后训练阶段即可恢复下游质量。对 KV cache 更小、decode 更快的 Hybrid 工程化路径直接降本，给 Mamba/Falcon-Mamba 类后续推广扫清成本障碍。",
+        "训练",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.06914",
-    "TAPER：把分支并行（intra-request parallelism）看作机会请求做 per-step admission control。serving 系统目前要么贪心 admit（拉长 shared decode step，伤害同 batch 串行请求），要么硬限上限（牺牲分支带来的 throughput）。论文定义「branch externality」——admit branch 引起的额外 step latency 取决于 batch 组成、上下文长度、累积 slack，且持续变化，TAPER 据此动态裁决何时放分支进 batch。",
-    "推理",
-))
+# 8. Nautilus Compass agent memory drift (cs.LG + cs.CL 同 ID 去重)
+it = find_item("papers", link_contains="2605.09863")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Nautilus Compass：生产 coding agent 长会话「persona drift」黑盒检测——纯 prompt 文本层用 BGE-m3 embedding 算用户 prompt 与行为 anchor 的 cosine top-k 加权均值，无需模型权重所以可用于 Claude/GPT-4 闭源 API。对 Mem0/Letta/Cognee/Zep/MemOS 路线是首个可量化 drift 监控层。",
+        "agent",
+    ))
 
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.07985",
-    "Dooly：配置无关、冗余感知的 LLM 推理仿真 profile 框架。现有 profile-based simulator 把 op 集合硬编码到某配置，换一个 model/serving engine/attention backend 就要重 profile，成本爆炸。Dooly 注意到很多 op 输入维度由 model 配置或 request 决定，且 head size/layer count 等参数跨模型复用，单次 sweep 即可在多配置间共享，大幅压低做 LLM serving 容量规划/配置选型的 profile 成本。",
-    "推理",
-))
+# 9. KV-RM static graph KV movement (cs.AR + cs.OS 同 ID 去重)
+it = find_item("papers", link_contains="2605.09735")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "KV-RM：静态图 LLM decoder 启动开销低、tensor shape 固定，但在线 decode 的 KV 行为天然不规则（请求长度异质 + EOS 异步 + 逻辑历史碎片化）。KV-RM 在固定 decode 接口下解耦逻辑 KV 与物理存储，吸收变动性而保留静态图低延迟优势——给「静态图执行器+动态请求」的鸿沟一个新工程方案。",
+        "推理",
+    ))
 
-# Ascend MoE relay-free 通信：用户方向（国产芯片）强信号
-curated["papers"].append(pick(
-    "papers",
-    "https://arxiv.org/abs/2605.06055",
-    "Ascend 上的 MoE 推理 relay-buffer-free 通信设计：现有 MoE dispatch/combine 多为 buffer-centric，靠 inter-process 中继与重排 buffer 围绕 collective 传输，本文围绕「直接落入目标 expert 窗口、直接从远端 expert 窗口读」重新组织 dispatch/combine，建在全局池化 HBM 之上避免 routing 引发的布局变换/临时中继/输出复原开销，是国产昇腾 MoE 推理通信路径设计的直接工程信号。",
-    "推理",
-))
+# 10. Value-Aware KV Eviction Fixed-Contract Diagnostic
+it = find_item("papers", link_contains="2605.08234")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "提出 KV 驱逐 selector 失效的三步诊断：漏证据、误打高分给无影响 token、把相关证据切散。在 fixed-contract 框架下逐项分离贡献，给 value 排名用「block attention mass × 移除后输出变化」组合指标；LongBench 跨 3 模型 2 budget 实证 value-aware 选择何时真正有用、何时是噪声。",
+        "推理",
+    ))
 
-# ============ code ============
+# 11. TLX hardware-native MIMW GPU compiler for Triton
+it = find_item("papers", link_contains="2605.10905")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "TLX（Triton 低层语言扩展，围绕 MIMW Multi-Instruction Multi-Warp）：在 warp-group 粒度表达数据搬运、tensor core 计算、同步的编排，保留 Triton 块编程模型同时把 Hopper/Blackwell 异步硬件机制显式暴露。给大型生产环境一条「让编译器不必追赶硬件」的可演化通路。",
+        "推理",
+    ))
 
-curated["code"].append(pick(
-    "code",
-    "https://github.com/vllm-project/vllm/releases/tag/v0.20.2",
-    "vLLM v0.20.2 小补丁：DeepSeek V4 sparse attention 重新启用 Hopper 上 persistent topk 路径，并把 memset kernel 强制放进 CUDA graph capture 阶段而非按 max_seq_len 决定（修 MTP=1 hang，#41665 是 #41605 的 revert）；V4 KV cache 修 V1 引擎 KV block 分配失败；gpt-oss MXFP4 把 hidden_dim_unpadded 接进 moe_forward fake op 让 torch.compile 在 v0.20.x 上工作；Qwen3-VL 去掉重负载下会失败的无效 deepstack 边界检查。延续本月 V4 级 feature「落地→revert→修根因→重上」节奏。",
-    "推理",
-))
+# 13. ReRAM-on-Logic LLM Accelerator with speculative decoding
+it = find_item("papers", link_contains="2605.09375")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "55nm ReRAM-on-logic 堆叠 LLM 加速芯片：14.08-135.69 tok/s。本地 rotation 单元实现「免离群点」低 bit 量化，stacking-aware PNM 配合 blockwise vector quantization 降权重 EMA 开销，自适应并行投机解码+乱序调度提升资源带宽利用率，相比 vanilla 投机解码 4.46-7.17×。把 PIM/堆叠+投机解码完整跑通的 ISSCC 级硬件信号。",
+        "推理",
+    ))
 
-curated["code"].append(pick(
-    "code",
-    "https://github.com/openai/openai-agents-python/releases/tag/v0.17.1",
-    "OpenAI Agents v0.17.1：sandbox 加固一批——把 provider 错误细节带回给上层、限制 sandbox archive 解压、校验 git repo 子路径、允许空 GitRepo 子路径作为 repo root、保留 GitRepo root 子路径别名；tracing 把进程退出时 shutdown 改成 best-effort、保活 BatchTraceProcessor worker 应对 exporter 报错、guard no-op tracing span id；sessions 在 OpenAI conversation session 中保留必需 hosted tool id、pop 时跳过损坏条目、跟踪 MongoDB metadata 时间戳。延续 sandbox/tracing/sessions 持续收紧节奏。",
-    "agent",
-))
+# 15. Not All Thoughts Need HBM: tier-aware reasoning KV
+it = find_item("papers", link_contains="2605.09490")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Reasoning LLM 千级思维 token KV 都要驻 HBM 才行？永久驱逐 50% 半精度 token 准确率崩到 0-2.5%。论文提语义感知存储分层（HBM/DDR/压缩/驱逐 四档），累积 attention 评分排序，低权重 token 下沉 CPU 内存 + 每 attention step 全精度 prefetch 回 GPU，等价零误差——对 reasoning 长输出 KV 工程是「不丢精度+不爆 HBM」的双赢方案。",
+        "推理",
+    ))
 
-# ============ community ============
+# 17. Test-Time Speculation (speculator 长输出衰减问题)
+it = find_item("papers", link_contains="2605.09329")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Test-Time Speculation：当前 SOTA 投机解码器（DFlash/EAGLE-3/PARD）在几千 token 后接受长度衰减到接近 1，long-response 任务彻底失速——根因是 draft 离线短序列训练而 inference 走长序列分布外。提推理时自适应方案修复 long-response 投机解码可用性，对 reasoning model 部署直接 actionable。",
+        "推理",
+    ))
 
-# Grinder12 0.96-bit KV cache 压缩（虽热度低但跟用户 TurboQuant/RaBitQ 量化方向直连，且 16.55× VRAM 是极端数字，留作存疑信号）
-curated["community"].append(pick(
-    "community",
-    "https://github.com/ggml-org/llama.cpp/discussions/22891",
-    "llama.cpp 社区讨论 Grinder12「0.96-bit 无损流式 KV cache」声称 16.55× VRAM 节省。「sub-bit」无损 KV 极端化路线，与 RaBitQ/TurboQuant per-vector 量化做对比的工程信号点（具体是否真无损待社区复现）。属于持续追踪用户 KV 量化方向的低分位但相关的社区动向。",
-    "推理",
-))
+# 18. Hidden States Drift speculative decoding rescue
+it = find_item("papers", link_contains="2604.26412")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "针对投机解码 SOTA hidden-state drafter 的「长距离衰减」：target hidden state 是带偏的上下文压缩（按当前位置 attention query 聚合历史），TTT 训练也救不回来。论文从上下文信息保留角度引入 KV cache 增援机制，把长距离投机解码 draft 精度拉回——补 5/11 DP 负载均衡之后投机解码长上下文链路。",
+        "推理",
+    ))
 
-# MTP 加速速度分布的系统性 benchmark（与 user MTP 兴趣强相关）
-curated["community"].append(pick(
-    "community",
-    "https://www.reddit.com/r/LocalLLaMA/comments/1t9gcar/mtp_benchmark_results_the_nature_of_the/",
-    "Qwen 3.6 27B MTP 投机解码系统 benchmark：300+ 次测试得出关键结论——「生成任务性质决定 MTP 是否加速」。F16 + MTP 在 coding 任务下提速近 3 倍，Q4_K_M + MTP 在创意写作下反而更慢——同一特性同一模型同一设置，结果相反。投机解码加速比 = f(草稿接受率, 任务文本熵)，coding 高接受率高加速，creative 低接受率反而被 verify 开销吃掉。",
-    "推理",
-))
+# 19. TiledAttention cuTile Python SDPA kernel
+it = find_item("papers", link_contains="2603.01960")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "TiledAttention：用 cuTile Python（TileIR）写的 SDPA forward 算子，FlashAttention 风格 online-softmax + tiled K/V streaming，作为 PyTorch 可调用函数暴露。schedule 级（tile shape / staging / shared memory layout）Python 端可直接改，比 CUDA 模板低门槛但保留真实行为——对 attention 研究 reproducible benchmark 路线的官方推广作。",
+        "推理",
+    ))
 
-# Tracing tokens through Llama 3.1 8B inference on H100s（推理内部数据流可视化教学）
-curated["community"].append(pick(
-    "community",
-    "https://krithik.xyz/what-is-inference-actually",
-    "Tracing Llama 3.1 8B on H100：从 token 进入到 logits 输出全链路追踪，按层展开 attention/MLP/normalization/sampling 实际 GPU 上做什么。对系统学习 LLM 推理 dataflow（embedding → attention → KV update → MLP → sampling）与 Transformer Math Explorer 同类的教学读物。",
-    "推理",
-))
+# 20. AGoQ 4-bit activation + 8-bit gradient
+it = find_item("papers", link_contains="2605.00539")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "AGoQ：4-bit 激活 + 8-bit 梯度训练量化——分层感知给各层激活按 type+pipeline stage 自适应 bit 宽（近 4-bit 储存）、8-bit 梯度 + 精度保持 8-bit All-Reduce 通信压缩。比单纯量化更精细且通信侧也省，5/4 同名 paper 今日 v2 替换，对 Megatron-LM 类训练栈直接接入有参考。",
+        "训练",
+    ))
 
-# ExLlamaV3 DFlash 加速大更新——投机解码工程化跟踪
-curated["community"].append(pick(
-    "community",
-    "https://www.reddit.com/r/LocalLLaMA/comments/1t9voxs/exllamav3_major_updates/",
-    "ExLlamaV3 Turboderp 连续更新：Gemma 4 支持、改进 cache 效率、两周前 DFlash 上线，agentic/code 任务 2.5× 加速（55.98→140.61 t/s）、coding 3× 加速（59.21→177.67 t/s）、创意/翻译 1.3-2× 加速。延续 ExLlamaV3 把投机解码工程化做到单卡量化推理引擎的趋势，对位 llama.cpp speculative 路线。",
-    "推理",
-))
+# 21. FCP flexible context parallelism
+it = find_item("papers", link_contains="2605.08524")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "FCP（Flexible Context Parallelism）：现有 CP 设计要么把短序列过度切片、要么把长短序列分开处理无 bin-packing 引发负载不均。FCP 在 block 粒度分片+调度，抛弃环形等刚性拓扑允许任意 P2P 通信，灵活映射放置——对长上下文 pretraining 序列长度高方差的训练栈是新基建。",
+        "训练",
+    ))
 
-now = datetime.now(timezone.utc).isoformat()
-out = {
-    "generated_at": now,
-    "lookback_hours": raw.get("lookback_hours", 36),
-    "sections": curated,
-}
-OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"OK -> {OUT}")
-print(f"papers={len(curated['papers'])} code={len(curated['code'])} blogs={len(curated['blogs'])} community={len(curated['community'])}")
+# 22. Lakestream brokerless training data plane
+it = find_item("papers", link_contains="2605.09994")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "Lakestream：大基模训练数据 plane 重构。共址 dataloader 无故障隔离、消息队列式 disagg dataloader 表达不了 batch-level 语义。Lakestream 用 Transactional Global Batch（基于 lakehouse ACID + 训练特化一致性，原子 all-rank batch 可见性）替代 record/offset 抽象——给百万卡级训练数据 plane 一条无 broker、object-store 原生的工程路线。",
+        "训练",
+    ))
+
+# 23. MegaScale-Omni multimodal LLM training
+it = find_item("papers", link_contains="2605.08962")
+if it:
+    curated_papers.append(enrich(
+        it,
+        "字节 MegaScale-Omni：工业级 MLLM 训练系统应对动态模态混合比与样本长度分布。Encoder-LLM 复用方案三关键创新——长短序列并行的解耦并行策略、动态资源分配、模型并行随负载漂移——把 hyper-scale 部署下「encoder/LLM 静态切分」打破，对生产级 MLLM 训练直接参考价值。",
+        "训练",
+    ))
+
+# ===== code =====
+# 24. LMDeploy v0.13.0
+it = find_item("code", title_contains="v0.13.0")
+if it and "lmdeploy" in it["link"].lower():
+    curated_code.append(enrich(
+        it,
+        "LMDeploy v0.13.0：Ascend 后端支持 Qwen3.5 35B-A3B；turbomind 集成 cublasGemmGroupedBatchedEx 给 Qwen3.5 MoE 在 Blackwell 上做内存拷贝优化；新增 TurboQuant（quant_policy=42）KV cache 量化（与用户 RaBitQ/TurboQuant 方向直连，继 vLLM #39931 之后第二个主线推理引擎落地）；Anthropic 兼容 serving 端点；kernel block size 支持。国产芯片 + TurboQuant + MoE 三线齐发的版本。",
+        "推理",
+    ))
+
+# 25. OpenAI Agents v0.17.1 + v0.17.2 合并
+it1 = None
+it2 = None
+for it in raw["sections"]["code"]:
+    if it["source"] == "OpenAI Agents":
+        if "v0.17.1" in it["title"]:
+            it1 = it
+        elif "v0.17.2" in it["title"]:
+            it2 = it
+if it2:
+    curated_code.append(enrich(
+        it2,
+        "OpenAI Agents Python 一晚连发 v0.17.1 + v0.17.2：sandbox 三轴（archive 提取上限、GitRepo subpath 校验、空 subpath 处理）+ tracing（进程退出 best-effort、BatchTraceProcessor exporter 错误后 worker 存活、no-op span ID 守卫、shutdown 时打断 retry backoff）+ sessions（hosted tool ID 保留、corrupt item pop 跳过、MongoDB metadata 时间戳）+ realtime（未知工具不自动回应）+ MCP/sandbox 错误细节传递。延续本周三轴持续加固节奏。",
+        "agent",
+    ))
+
+# 26. LangGraph 1.2.0 + checkpoint family（合并 6 个 release）
+it = None
+for r in raw["sections"]["code"]:
+    if r["source"] == "LangGraph" and r["title"] == "langgraph==1.2.0":
+        it = r
+        break
+if it:
+    curated_code.append(enrich(
+        it,
+        "LangGraph 1.2.0 全家桶正式版：langgraph==1.2.0 + checkpoint==4.1.0 + checkpoint-postgres==3.1.0 + checkpoint-sqlite==3.1.0 + prebuilt==1.1.0 + cli 0.4.26 一晚一齐 bump 出 alpha。核心特性——主机崩溃后 durable error-handler 跨进程 resume / StateGraph.set_node_defaults() / checkpoint 强制 delta channel snapshot 每隔 max supersteps（避免 delta 链过长重建慢）/ checkpoint-sqlite 重写 get_delta_channel_history 为 streaming walk。1.1 timers 重构 → 4/28 revert → 5/2 6 个 alpha → 5/11 a7 → 今日 1.2.0 正式版的完整收敛曲线。",
+        "agent",
+    ))
+
+# ===== blogs =====
+# 27. NVIDIA Fleet Intelligence
+it = raw["sections"]["blogs"][0] if raw["sections"]["blogs"] else None
+if it:
+    curated_blogs.append(enrich(
+        it,
+        "NVIDIA Fleet Intelligence：大型 GPU 集群实时可见性与优化平台，作 GPU fleet 级监控/优化中枢。对 100k+ GPU 数据中心做集群健康+利用率统一观测，与 OpenAI/MS MRC+SRv6 之类生产级集群观测层互补。给 GPU 集群运维「再上一层 fleet 控制平面」的官方信号。",
+        "推理",
+    ))
+
+# ===== community =====
+# 28. r/ML hackable LLM compiler 6 IRs
+it = find_item("community", link_contains="1tag07l")
+if it:
+    curated_community.append(enrich(
+        it,
+        "可 hack 的 LLM 编译器从零写：TVM 50 万+ 行 C++ / PyTorch 堆 Dynamo+Inductor+Triton，作者自建 6 层 IR 把 TinyLlama / Qwen2.5-7B 端到端降为一串 CUDA kernel。RTX 5090 上 FP32 几何平均 1.11×（vs PyTorch eager）+ 1.20×（vs torch.compile），小规约/SDPA/kv-projection 最高 4.7×，dense matmul seq=512 略输。第二部分深入 Tile IR/Kernel IR 与 lowering 规则——对内部教学+理解 Inductor/TVM/XLA 替代栈的极好阅读资料。",
+        "推理",
+    ))
+
+# 29. Gemma 4 MTP vs DFlash on H100
+it = find_item("community", link_contains="1tb160j")
+if it:
+    curated_community.append(enrich(
+        it,
+        "Gemma 4 31B / 26B-A4B 在 1×H100 80GB + vLLM 上跑 SPEED-Bench 880 prompt 跨 11 类的 MTP vs DFlash 投机解码对照。dense 31B：MTP 3.11× / DFlash 3.03×（baseline 40.3→125.3 tok/s @ MTP 8 / DFlash 15 spec token）。两套投机解码方案在 dense 模型上几乎打平，给「MoE 还是 dense / spec token 数怎么选」一手数据，对 vLLM MTP 路线选型直接 actionable。",
+        "推理",
+    ))
+
+# 30. Optane PMem 1T model 4 tok/s
+it = find_item("community", link_contains="1taeg8h")
+if it:
+    curated_community.append(enrich(
+        it,
+        "Intel Optane Persistent Memory（DIMM 介乎 DRAM 与 SSD）二手买配 768GB 跑 Kimi K2.5 万亿参数模型 4 tok/s。Optane 走 Memory Mode 暴露给系统作 DRAM-级（DRAM 当 cache）——对内存墙极致预算场景给一个 cost/GB 极低的 LLM 推理替代路线。Optane 虽 EOL 二手仍流通，对 ScaleUp 统一内存方向与国产 CXL 内存池路径都是实测参考。",
+        "推理",
+    ))
+
+# 31. KV entropy coder lossless ~4×
+it = find_item("community", link_contains="kv-entropy-coder")
+if it:
+    curated_community.append(enrich(
+        it,
+        "Speculative KV coding 博客实现：用一个小模型对 KV cache 做投机式熵编码，无损压缩约 4×。把投机解码的「target 模型预测分布近似」思路反向用到 KV 存储——decode 时小模型预测 KV 分布、用真实 KV 与预测差分编码。给 KV cache 无损压缩链路再加一个工程化思路（与 SplitZip 的 GPU 原生编码、ZipCCL 集合通信无损压缩形成完整 sub-track）。",
+        "推理",
+    ))
+
+# 32. VibeServe agent build serving systems
+it = find_item("community", link_contains="vibe-serve")
+if it:
+    curated_community.append(enrich(
+        it,
+        "UW SyFI 实验室 VibeServe：让 AI agent 自动构建定制 LLM serving 系统。把 agent 写代码能力推到「写自己的推理引擎+调度」这种系统级 infra 任务上的实验，对 FACT（agent 驱动 CUTLASS 合成）/ KernelBenchX（LLM 写 Triton kernel 评测）形成上层一致路线——agent 写 infra 已从单 kernel 上升到完整 serving stack。",
+        "agent",
+    ))
+
+# 33. ubatch prompt processing on gpt-oss-120B
+it = find_item("community", link_contains="1tany5t")
+if it:
+    curated_community.append(enrich(
+        it,
+        "gpt-oss-120B-F16 在 RTX 3090 24GB 部分卸载 MoE 到 CPU 的 llama.cpp 实测：把物理 micro-batch -ub 从默认 512 拉到 4096-8192 并同步抬 --n-cpu-moe 到 26-28，prefill 吞吐 380→2090 tok/s（5.5×）而 decode 基本不动。对 partial offload MoE 推理调优是直接可复用配方——MoE prefill 是 CPU↔GPU 拷贝-launch 联合瓶颈，大 ubatch 摊平 launch 与拷贝最有效。",
+        "推理",
+    ))
+
+# now check counts
+print(f"papers: {len(curated_papers)}")
+print(f"code: {len(curated_code)}")
+print(f"blogs: {len(curated_blogs)}")
+print(f"community: {len(curated_community)}")
+
+# domain_tag stats
+all_items = curated_papers + curated_code + curated_blogs + curated_community
 tag_count = {"推理": 0, "训练": 0, "agent": 0}
-for sec in curated.values():
-    for it in sec:
-        tag_count[it["domain_tag"]] += 1
-print(f"domain_tag: 推理 {tag_count['推理']} / 训练 {tag_count['训练']} / agent {tag_count['agent']}")
+for it in all_items:
+    tag_count[it["domain_tag"]] = tag_count.get(it["domain_tag"], 0) + 1
+print(f"domain_tag: {tag_count}")
+print(f"total: {len(all_items)}")
+
+out = {
+    "generated_at": datetime.now(timezone.utc).isoformat(),
+    "lookback_hours": raw["lookback_hours"],
+    "sections": {
+        "papers": curated_papers,
+        "code": curated_code,
+        "blogs": curated_blogs,
+        "community": curated_community,
+    },
+}
+
+with OUT.open("w", encoding="utf-8") as f:
+    json.dump(out, f, ensure_ascii=False, indent=2)
+print(f"wrote {OUT}")
