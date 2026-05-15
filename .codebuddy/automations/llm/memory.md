@@ -199,6 +199,15 @@
 - 状态: ✅ 成功。LMDeploy TurboQuant 是用户方向直连最强信号；arXiv 同日 Power Capping paper + r/LocalLLaMA 4090 实测形成「decode memory-bound → power cap 永不触发」完整证据链；LangGraph 1.2.0 正式版收敛完成 4/28 revert 之后曲线
 - 观察：r/MachineLearning 全月持续 0 命中（min_score=6 太高？），后续可考虑微调阈值
 
+## 2026-05-14 22:00（周四跑）
+- fetch: 35 raw（papers 16 / code 9 / blogs 0 / community 10），blogs 全 0 + HN LLM/Agent infra 双 0；arXiv cs.LG 492→3、cs.CL 212→1（min_score=6 严格筛工作正常）
+- curated: 23 条（papers 9 / code 8 / blogs 0 / community 6），按 link 跨分区去重 papers 唯一 9 条（MMA cs.DC×cs.PF / Lit Silicon cs.DC×cs.AR / MinT cs.DC×cs.LG 合并）；扔 ChipMATE/MARLIN/Hierarchical Transformer/TurboGR 应用层；domain_tag 推理 18 / 训练 3 / agent 2
+- render: LLM 摘要 ✓，无 fallback，26 处 CST 时间戳
+- publish: commit `11a56895`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +640 行 diff
+- 亮点：**KVServe**（disagg serving 服务感知自适应 KV 通信压缩首作）/ **Attention Once**（有状态推理引擎 + Flash Queries 范式）/ **PipeSD**（云边协同投机解码 token-batch pipeline）/ **MinT**（百万 LoRA × 少量 base 部署，覆盖 MLA/DSA frontier MoE）/ **MMA**（软件定义多路径 host-GPU 数据传输，补齐 KV offload PCIe 带宽闲置）/ **ArcLight**（many-core CPU NUMA 感知推理）/ **FlashSampling**（exact 采样融合 LM-head matmul，TP 流式 P2P 替 all-gather）/ **Ada-MK**（DAG 自动搜索 MegaKernel for NVIDIA Ada）/ **Lit Silicon**（多 GPU 训练性能波动 ↔ 热不均耦合 C3 straggler 系统级诊断）；code—**TransformerEngine v2.15**（FA4 + MXFP8 attention + NVFP4 fused Adam + mHC Triton）+ **CUTLASS 4.5.0**（CuTe block_copy + SM120 MXF8/F6/F4 BlockScaled MMA + EFC mode permutation）+ **vLLM v0.21.0rc3 TOKENSPEED_MLA backend for DSR1/Kimi K2.5** + rc2 CUDA 13 cutlass-dsl + **Outlines v1.3.0** 统一 provider 异常 + **FA4 beta13**（hd256 + Flex varlen blocksparsity + SM100 deterministic）+ DeepGEMM nv_dev 同步 Mega MoE；community—MI50 + Qwen 3.6 27B 52.8 tps TG（gfx906 fork ROCm 7.2.1）/ GTX 1080 8GB 跑 30B MoE 24 tok/s（TurboQuant KV K=turbo4 V=turbo3 + MTP draft embedding 锁 GPU 修正）/ opendesk computer-use MCP / NVIDIA Kimi K2.5/K2.6 NVFP4 释出（GPQA 90.4 vs INT4 90.9 无损）/ 5090 power-level benchmark 400W 性能不变（印证 Power Capping Illusion paper）/ Qwen MTP × TurboQuant on M5 Max 64GB +40%（21→34 tok/s 接受率 90%）
+- 状态: ✅ 成功。推理 18 偏重是 arXiv 今日推理 paper 集中爆发，训练 3 / agent 2 反映 Megatron/PyTorch/DeepSpeed/LangGraph/AutoGen/OpenAI Agents/MCP Python/XGrammar 全无 release 客观底；Outlines v1.3.0 + opendesk MCP 代表 agent 方向；MMA + Attention Once 同日命中 KV offload + 流式 serving 两条母题
+- 观察：HuggingFace Blog 又是 777 项全部时间窗过滤——已连续多日，blogs 源利用率持续偏低
+
 ## 2026-05-07 22:00（周四跑）
 - fetch: 42 条 raw（papers 20 / code 10 / blogs 1 / community 11），无 RSS 源失败；blogs 仅 HuggingFace 1 条（ServiceNow vLLM V0→V1 RL correctness）+ HN LLM/Agent infra 双 0
 - curated: 26 条（papers 13 / code 8 / blogs 1 / community 4），按 link 去重后 papers 唯一 13 条（扔 HERCULES NAS——"Outlines" 关键词误捕 + Serverless LEO 应用层）；domain_tag 分布 推理 14 / 训练 6 / agent 6
