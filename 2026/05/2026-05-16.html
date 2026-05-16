@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-05-16 Saturday</title>
+<!-- rendered_at: 2026-05-16 22:04:17 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-05-16T14:03:56.953709+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-05-16 Saturday · 回溯 36h · 共 11 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-05-16 22:03:56 CST</span>
+      <span class="badge">Rendered: 2026-05-16 22:04:17 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.09603" target="_blank" rel="noopener">ECHO: Elastic Speculative Decoding with Sparse Gating for High-Concurrency Scenarios</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>ECHO v2 replace 持续刷：把投机解码当成 budgeted scheduling 问题塞进 SGLang，sparse confidence gating 把 batch 当统一 super-tree 弹性管理，针对高并发下「verification 计算才是瓶颈」这一被忽略事实，避开 static tree 验证浪费与 dynamic tree 误判累积；定位为 SGLang 集成式投机解码预算控制器，是本周 SGLang 侧最强推理 release 候选。</p></div>
+      <div class="card-tags"><span class="tag">SGLang</span><span class="tag">speculative decoding</span><span class="tag">veRL</span><span class="tag">decoding</span><span class="tag">serving</span><span class="tag">kernel</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2605.13319" target="_blank" rel="noopener">PipeSD: An Efficient Cloud-Edge Collaborative Pipeline Inference Framework with Speculative Decoding</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 12.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>PipeSD v2 replace 接力：云边协同推理框架，把投机解码与 token-batch pipeline 调度耦合，重叠 token 生成与通信解决既有顺序生成低利用率问题；自适应触发云端 NAV（non-autoregressive verification）避免过早 verify 或回滚开销，针对端侧+云端 hybrid SD 部署补齐控制面。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">speculative decoding</span><span class="tag">veRL</span><span class="tag">decoding</span><span class="tag">LLaMA</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2511.16964" target="_blank" rel="noopener">Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 9.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Optimizing PyTorch Inference w/ Multi-Agent v2 replace：用 LLM 多 agent 系统替代手写 GPU kernel 与专用编译器调优。逻辑框架对比显示 exploit-heavy 策略配合 error-fixing agent 表现最佳，性能与 agent 类型组合强相关；定位为 FACT/KernelBenchX 之后 agent 写 kernel 范式的系统化对比，给「coding agent 接管 infra 工程」提供方法论依据。</p></div>
+      <div class="card-tags"><span class="tag">GPU kernel</span><span class="tag">kernel</span><span class="tag">compiler</span><span class="tag">GPU</span><span class="tag">H100</span><span class="tag">PyTorch</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://arxiv.org/abs/2604.25899" target="_blank" rel="noopener">Pythia: Exploiting Workflow Predictability for Efficient Agent-Native LLM Serving</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">arXiv cs.DC</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 12:00 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">arxiv.org</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Pythia v2 replace：agent-native LLM serving 利用 multi-agent 结构化拓扑的语义可预测性。基于一线 agent-serving 平台 + 内部 coding assistant 生产 trace 分析，识别现有 serving 系统把 agent 流量当通用 traffic 导致的 prefix cache 命中率低、调度低效等瓶颈，针对结构化 workflow 重新设计调度。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">serving</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.21.0" target="_blank" rel="noopener">v0.21.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">05-15 16:54 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 76.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.21.0 正式版（367 commits / 202 contributors / 49 新人）：① 正式 deprecate transformers v4 强制迁 v5；② 编译升 C++20 要求（与 PyTorch 对齐，破坏式 build change）；③ KV Offload 与 Hybrid Memory Allocator 完整融合（含 scheduler 端 sliding-window group + 完整 HMA enable）；④ 投机解码尊重 reasoning/thinking budget，reasoning 模型 spec decode 正确性补齐；⑤ Blackwell TOKENSPEED_MLA backend；本月「feature 落地即 revert」节奏后第一个完整收敛正式版。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">Mooncake</span><span class="tag">speculative decoding</span><span class="tag">disaggregated</span><span class="tag">FlashInfer</span><span class="tag">MLA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.21.1rc0" target="_blank" rel="noopener">v0.21.1rc0: [ROCm][CI] Stage B gating (#42025)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">05-15 16:49 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 1.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.21.1rc0：紧随正式版的 ROCm CI Stage B gating 补丁，AMD 路径独立质量门保护，避免 v0.21.0 RTM 之后第一波 ROCm 侧回归。</p></div>
+      <div class="card-tags"><span class="tag">ROCm</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/v0.6.11.post3" target="_blank" rel="noopener">Release v0.6.11.post3</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 04:53 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashInfer v0.6.11.post3：post 系列继续滚动，trtllm FMHA head_dim=512 + MXFP4×BF16 MoE SM90 + DCP All-to-All 主线在 v0.6.11 后持续稳定化，对 NVFP4/MXFP4 主线推理栈持续兜底；当日同时刷出两份 nightly。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1teryn8/llama_spec_mtp_support_by_am17an_pull_request/" target="_blank" rel="noopener">llama + spec: MTP Support by am17an · Pull Request #22673 · ggml-org/llama.cpp</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 20:11 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 5.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>llama.cpp MTP 正式合并主线（PR #22673 by am17an）：Multi-Token Prediction 投机解码框架终于在 llama.cpp master 落地，配套 GGUF 释出 Qwen3.6-27B-MTP 与 Qwen3.6-35B-A3B-MTP；意味着消费级单机推理 MTP 进入 stable 渠道，自 5/4 周起持续追踪的「MTP 工程化下沉到 llama.cpp」事件链至此收口。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">Qwen</span><span class="tag">LLaMA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1te5xpu/orthrusqwen38b_up_to_78tokensforward_on_qwen38b/" target="_blank" rel="noopener">Orthrus-Qwen3-8B : up to 7.8×tokens/forward on Qwen3-8B, frozen backbone, provably identical output distribution</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 03:07 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Orthrus-Qwen3 系列（1.7B/4B/8B）：在冻结 AR Transformer 每层注入可训练 diffusion attention 模块，两路 head 共享一份 KV cache——diffusion head 一次并行投影 K=32 tokens，AR head 第二 pass 验证取最长匹配前缀，输出分布与 base 完全等价（无损）；MATH-500 上达 7.8× TPF / 约 6× wall-clock，仅训 16% 参数 &lt;1B tokens 24h on 8×H200。相比 Fast-dLLM-v2 等改 base 权重掉精度、相比 EAGLE-3/DFlash 不需外部 drafter，提供新一类「base 模型内嵌 drafter」可证明等价投机解码范式。</p></div>
+      <div class="card-tags"><span class="tag">speculative decoding</span><span class="tag">KV cache</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">decoding</span><span class="tag">H200</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1tee5ms/can_a_5090_with_qwen36_achieve_3000_toks_bring/" target="_blank" rel="noopener">Can a 5090 with qwen3.6 achieve &gt; 3,000 tok/s ? bring your pitchforks (open-dllm)</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 08:28 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 13.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Open-dLLM × Qwen3.6 5090 探路（仅理论，未实测）：把 Qwen3.6 改造成 diffusion LM 跑 5090，目标 3000+ tok/s——基于 6 个月前 Open-dLLM（已跑 Qwen2.5）框架，混入 LDLM（arxiv 2605.07933）方法，用 opencode + deepseek-flash/GLM5.1 隔夜 agent 自动改 codebase。意义不在数字而是「AR→diffusion LM」改造成本被 coding agent 拉到隔夜级，与本周 Optimizing PyTorch Multi-Agent 形成「agent 写 infra」证据链。</p></div>
+      <div class="card-tags"><span class="tag">triton</span><span class="tag">transformer</span><span class="tag">attention</span><span class="tag">kernel</span><span class="tag">GPU</span><span class="tag">H100</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1teqjjl/reduce_your_gpu_power_limit/" target="_blank" rel="noopener">Reduce your GPU power limit</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-16 19:03 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 2.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>RTX 游戏卡 power limit 实测：消费级 GPU（Qwen3.5-9B 测试集）大幅下调 power limit 对 prefill/decode 吞吐影响极小；显存超频 700-1000MHz 可小幅提升 tg。再次实测印证 5/13 arXiv「Power Capping Illusion」paper——decode memory-bound 下功耗 cap 永远触不到 TDP，砍功率几乎免费换续航/温控；本周「power-limit 砍半性能不变」第三起独立社区验证。</p></div>
+      <div class="card-tags"><span class="tag">GPU</span><span class="tag">Qwen</span></div>
+    </article>
+    </div>
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>
