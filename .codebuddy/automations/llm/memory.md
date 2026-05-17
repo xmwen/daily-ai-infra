@@ -217,6 +217,15 @@
 - 状态: ✅ 成功。推理 18 偏重是 arXiv 今日推理 paper 集中爆发 + vLLM v0.21.0 正式版双轴客观主导；训练 0 是 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS 全无 release 客观底（与 5/10、5/6 周日同样状况）；严格排除 Pi rm-rf 梗、SupraLabs 创业贴、Cola DLM/Intern-S2 模型发布、China modded 4090 硬件咨询、self-train math 论文实验贴等非基础设施内容
 - 观察：vLLM 完整收敛曲线——5/2 v0.20.1 revert persistent topk → 5/10 v0.20.2 重启 → 5/13-14 v0.21.0rc1/rc2/rc3 → 5/15 v0.21.0 正式版 + 当日 v0.21.1rc0 ROCm hotfix；TurboQuant 用户方向连续命中第三天（5/13 LMDeploy 落地 + 5/15 r/LocalLLaMA 系统对比）
 
+## 2026-05-16 22:00（周六跑）
+- fetch: 23 raw（papers 7 / code 5 / blogs 0 / community 11），无 RSS 源失败；arXiv cs.AR/cs.PF/cs.LG/cs.CL/cs.OS 全 0，仅 cs.DC 7 篇；code 大批仓库时间窗过滤（TRT-LLM/TE/Megatron/CUTLASS/SGLang/LMDeploy/Mooncake/KTransformers/DeepSpeed/PyTorch/Triton/LangGraph/AutoGen/OpenAI Agents/MCP Python/XGrammar/Outlines 全空），仅 vLLM 2 + FlashInfer 3；blogs 全 0（HF 779 / NVIDIA Dev 100 / Google 100 / Together 100 全时间窗过滤）；HN LLM/Agent infra 双 0
+- curated: 11 条（papers 4 / code 3 / blogs 0 / community 4），domain_tag 推理 9 / 训练 0 / agent 2；扔 EMA（ML 网络应用层）+ Mat2Boundary（PDE 应用层）+ Hierarchical Transformer（物理仿真）+ Jetson Sparky/Opencode/动态 budget HLE（agent 应用层 + 闲聊）
+- render: LLM 摘要 ✓，无 fallback，14 处 CST 时间戳，source=today_curated.json
+- publish: commit `db6f7c5`，HEAD==origin/main，2026/05 + archive 两份 HTML 各 +412 行 diff
+- 亮点：papers 今日基本全是 v2 replace（ECHO/PipeSD/Optimizing PyTorch Multi-Agent/Pythia 昨日已覆盖，今日以 v2 增量视角再写）；code 侧 vLLM v0.21.0 正式版（核心信号延续）+ v0.21.1rc0 ROCm CI 紧随 + FlashInfer v0.6.11.post3 滚动；community 真正强信号是 **llama.cpp MTP PR #22673 正式 merge 进 master**（含 Qwen3.6-27B-MTP / Qwen3.6-35B-A3B-MTP GGUF 释出，自 5/4 周追踪的 MTP 工程化下沉事件链至此完整收口）+ **Orthrus-Qwen3 系列**（冻结 AR + 注入 diffusion attention，两路 head 共享 KV cache，7.8× TPF 输出分布等价证明，定位「base 内嵌 drafter」新一类投机解码范式，与 EAGLE-3/DFlash 不需外部 drafter）+ **Open-dLLM × Qwen3.6 5090 探路**（agent 写 infra 隔夜级证据延续）+ **RTX power-limit 实测**（再次印证 5/13 Power Capping Illusion paper，本周第三起独立社区验证）
+- 状态: ✅ 成功。11 条是周六客观信号底（arXiv 5/6 分区 0 + code 17 仓库全空 + blogs 全 0 + HN 双 0），严格执行「宁缺毋滥」；训练 0 是 Megatron/PyTorch/DeepSpeed/TransformerEngine/CUTLASS 全无 release 客观底（与 5/10 周日同样状况）
+- 观察：MTP 工程曲线完整闭合——5/4 KTransformers 首发 → 5/6-7 Qwen3.6-27B 多平台实测 → 5/11-13 系统 benchmark 出「文本熵决定加速比」结论 → 5/16 llama.cpp master 合并；Orthrus 提供与 MTP/EAGLE/DFlash 正交的「base 内嵌 drafter 等价」第四条投机解码范式
+
 ## 2026-05-07 22:00（周四跑）
 - fetch: 42 条 raw（papers 20 / code 10 / blogs 1 / community 11），无 RSS 源失败；blogs 仅 HuggingFace 1 条（ServiceNow vLLM V0→V1 RL correctness）+ HN LLM/Agent infra 双 0
 - curated: 26 条（papers 13 / code 8 / blogs 1 / community 4），按 link 去重后 papers 唯一 13 条（扔 HERCULES NAS——"Outlines" 关键词误捕 + Serverless LEO 应用层）；domain_tag 分布 推理 14 / 训练 6 / agent 6
