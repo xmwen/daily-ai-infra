@@ -246,3 +246,12 @@
 
 
 
+
+## 2026-05-18 22:00（周一）
+- fetch: 29 条 raw（papers 15 / code 3 / blogs 0 / community 11），无 RSS 源失败；周末/blogs 0 是常态
+- curated: 16 条（papers 9 / code 2 / blogs 0 / community 5），domain_tag 推理 11 / 训练 3 / agent 2
+- render: `LLM 摘要 ✓`，无 fallback，CST 19 处，source=today_curated.json
+- publish: ⚠️ 系统 git.exe 已卸载（PATH 残留 `D:\Downloads\Git\cmd`），publish.py 报 FileNotFoundError；改用 scripts/_dulwich_publish.py（dulwich + 系统 OpenSSH + id_rsa）兜底
+- commit `cc5de01`，HEAD == origin/main（dulwich.ls_remote 校验），2026/05 + archive 两份 HTML 各 +487 行
+- 亮点 paper：TurboMind（LMDeploy 混精度全栈）、CascadeInfer（length-aware serving 重调度）、GQLA（MLA→GQA 双路径解码权重）、DualKV（GRPO RL prompt-shared FlashAttention）、MoE-Prefill（prefill 零冗余）、Adaptive Speculative（speculator 训-服合一）、Asteria（二阶优化器 NVMe offload）、BatchWeave（object-store 训练 dataloader）、WAIT（fluid KV 调度）；code 弱：XGrammar v0.2.1（Kimi/Qwen tool-call grammar）+ FlashInfer 0.6.11 nightly；community：Qwen3.6-27B 24GB ik_llama.cpp 三连 + MTP draft KV 量化 + M5 vs DGX Spark + SmallCode 4B agent harness
+- 状态: ✅ 成功（带⚠️ git 工具失效，长期需用户修复）

@@ -26,6 +26,7 @@ Python venv：`C:\Users\hughxmwen\.workbuddy\binaries\python\envs\default\Script
 - `render.py` 有 `CURATED_STALE_HOURS=2` 兜底：curated 比 raw 老 >2h 会自动 fallback 到英文 raw —— 这是**错误信号**，说明 curated 没及时生成。
 - 每份 HTML 都注入 `rendered_at` 徽章和注释，保证字节级非幂等，便于核对 pipeline。
 - **时区约定（2026-04-22 起）**：看板所有展示时间统一用东八区（CST）。`render.py` 里 `CST = timezone(timedelta(hours=8))`，卡片 pub_display / hero 徽章 / HTML 注释都走 `astimezone(CST).strftime("... CST")`。`fetch.py` / `publish.py` 的 `today` 日期也按 CST 生成（跨零点机器时区漂移防护）。缓存里的 `generated_at` 仍保留 UTC ISO（机器可解析标准），只在渲染时转 CST。
+- **git 不可用兜底（2026-05-18 发现）**：系统 git.exe 在 2026-05-18 期间被卸载，PATH 残留 `D:\Downloads\Git\cmd` 指向不存在目录，`publish.py` 立即 `FileNotFoundError [WinError 2]`。临时方案是 `scripts/_dulwich_publish.py`：venv 装 `dulwich`（pure Python git），通过 SSHVendor 调用系统 OpenSSH（`C:\Windows\System32\OpenSSH\ssh.exe`，9.5p2 自带）+ `~/.ssh/id_rsa` 走 `git@github.com:xmwen/daily-ai-infra.git` 推送。校验则用 `dulwich.porcelain.ls_remote` 替代 `git ls-remote`。**长期需求**：用户应重装 Git for Windows（或修正 PATH），让 publish.py 走原生 git 路径，dulwich 仅作降级兜底。
 
 ## 用户工作关联（筛选偏好）
 重点保留：
