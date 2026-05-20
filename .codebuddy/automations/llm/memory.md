@@ -255,3 +255,13 @@
 - commit `cc5de01`，HEAD == origin/main（dulwich.ls_remote 校验），2026/05 + archive 两份 HTML 各 +487 行
 - 亮点 paper：TurboMind（LMDeploy 混精度全栈）、CascadeInfer（length-aware serving 重调度）、GQLA（MLA→GQA 双路径解码权重）、DualKV（GRPO RL prompt-shared FlashAttention）、MoE-Prefill（prefill 零冗余）、Adaptive Speculative（speculator 训-服合一）、Asteria（二阶优化器 NVMe offload）、BatchWeave（object-store 训练 dataloader）、WAIT（fluid KV 调度）；code 弱：XGrammar v0.2.1（Kimi/Qwen tool-call grammar）+ FlashInfer 0.6.11 nightly；community：Qwen3.6-27B 24GB ik_llama.cpp 三连 + MTP draft KV 量化 + M5 vs DGX Spark + SmallCode 4B agent harness
 - 状态: ✅ 成功（带⚠️ git 工具失效，长期需用户修复）
+
+## 2026-05-19 22:00（周二）
+- fetch: 45 条 raw（papers 28 / code 3 / blogs 0 / community 14），无 RSS 失败源；blogs 全 0 + HN 双 0
+- curated: 21 条（papers 15 / code 2 / blogs 0 / community 4），按 link 跨分区去重 papers 唯一 15 条（OSCAR cs.DC×cs.PF×cs.LG / VeriCache cs.AR×cs.LG / AgentKernelArena cs.LG×cs.CL 合并）；domain_tag 分布 推理 15 / 训练 2 / agent 4
+- render: `LLM 摘要 ✓`，无 fallback，24 处 CST 时间戳
+- publish: ⚠️ 系统 git.exe 仍未恢复（连续第二天），继续走 scripts/_dulwich_publish.py 兜底
+- commit `09672ab1`，HEAD == origin/main（dulwich.ls_remote 校验），2026/05 + archive 两份 HTML 各 602 行（新增文件）
+- 亮点：**arXiv KV cache/量化方向同日 6 篇集中爆发**——OSCAR（INT2 KV 旋转 + attention covariance 离线估计 + 部署级 INT2 attention kernel）/ **VeriCache（首个无损 KV 压缩推理框架，压缩 KV 当 drafter + 完整 KV verify 比特等价 full KV decode，把 lossy 套进可验证投机解码壳）** / TriAxialKV（agent 推理三轴异质 KV 量化）/ Protection-Capped KV Eviction（7 大策略共有 prompt-boundary 漏洞，10% boundary 保留即恢复 69-90% 质量；本质在「保护」不在「打分」）/ KVDrive（GPU/host/SSD 三层 KV 管理）/ DashAttention（α-entmax 可微稀疏分层注意力）；agent serving——HexAGenT/GoodServe/S-Bus（多 agent NL state race condition + Observable-Read Isolation）；训练——JanusPipe（MLIP 双反向 PP）/ RRFP（PP readiness-driven runtime）；硬件——FP8 DCIM / Hawkeye GPU 非确定性 CPU 比特复现 / MLIR Arm SVE VLA codegen；agent 写 kernel——AgentKernelArena 196 任务测完整 agent workflow；code 弱——OpenAI Agents v0.17.3 一波 11+ fix 进入「补漏期」+ FlashInfer 0.6.11 nightly；community——CUDA kernel 重写 small-batch runtime（机器人/VLA non-GEMM 瓶颈清单）/ Qwen 3.6 27B F16 vs Q8 实测（Q8 不是无损）/ LangGraph 组织级三类 agent 实战 / llama.cpp MTP PR #23269 工程化下沉延续
+- 状态: ✅ 成功（带⚠️ git 工具失效）
+- 观察：VeriCache 首次把「无损」作为 first-class goal 引入 KV 压缩，是新范式起点；OpenAI Agents v0.17.3 接续 v0.17.0-v0.17.2 sandbox 加固，本月 agent SDK 进入安全边界收紧的「补漏期」
