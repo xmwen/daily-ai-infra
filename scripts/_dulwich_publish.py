@@ -13,7 +13,12 @@ from dulwich import porcelain
 from dulwich.repo import Repo
 
 REPO_PATH = Path(r"D:/workbuddy/daily_news")
-COMMIT_MSG = b"daily: 2026-05-18 LLM infra digest (dulwich fallback)"
+# 动态 CST today，避免硬编日期漂移
+CST = timezone.utc.utcoffset(None)  # placeholder
+from datetime import timedelta as _td
+_CST = timezone(_td(hours=8))
+_today = datetime.now(_CST).strftime("%Y-%m-%d")
+COMMIT_MSG = f"daily: {_today} LLM infra digest (dulwich fallback)".encode("utf-8")
 
 os.chdir(REPO_PATH)
 repo = Repo(str(REPO_PATH))
