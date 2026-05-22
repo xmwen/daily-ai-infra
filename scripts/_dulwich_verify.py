@@ -76,7 +76,11 @@ print("\n=== files in last commit ===")
 for f, (p, m) in files.items():
     print(f"  +{p:5d} -{m:5d}  {f}")
 
-today_html_2026 = "2026/05/2026-05-20.html"
-today_html_arch = "archive/2026-05-20.html"
+from datetime import datetime, timezone, timedelta
+_CST = timezone(timedelta(hours=8))
+_today = datetime.now(_CST).strftime("%Y-%m-%d")
+_month = datetime.now(_CST).strftime("%Y/%m")
+today_html_2026 = f"{_month}/{_today}.html"
+today_html_arch = f"archive/{_today}.html"
 print(f"\n2026/05 HTML diff: {today_html_2026 in files} ({files.get(today_html_2026, (0,0))})")
 print(f"archive HTML diff: {today_html_arch in files} ({files.get(today_html_arch, (0,0))})")

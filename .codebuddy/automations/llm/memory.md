@@ -276,3 +276,13 @@
 - 状态: ✅ 成功（带⚠️ git 工具失效连续 3 天）
 - 观察：C2CServe + SuperInfer 同日命中 GH200/GB200 NVLink-C2C 推理母题，与 5/2 Strix Halo / 5/9-10 DGX Spark unified memory 实测形成完整 ScaleUp 证据链；MTP 工程化下沉曲线完整闭环（5/4 KTransformers → 5/16 llama.cpp merge → 5/17 多硬件实测 → 5/20 LM Studio+移动端+长 ctx 边界），覆盖 cloud→edge 全栈；agent 安全边界母题持续（5/17 MCP Python / 5/19 OpenAI Agents v0.17.3 / 5/20 NVIDIA Verified Skills + Atlassian MCP audit，agent SDK 进入「协议合规审计期」）
 - 待修：`_dulwich_publish.py` commit message 仍硬编「2026-05-18」（实际 5/20），后续改为动态 CST today；长期 TODO 用户修复 Git for Windows 让原生路径恢复
+
+## 2026-05-21 22:00（周四）
+- fetch: 47 raw（papers 22 / code 3 / blogs 1 / community 21），无 RSS 失败源；blogs 几乎全 0（HF 783/Google 100/Together 100 全过滤）
+- curated: 20 条（papers 13 / code 1 / blogs 1 / community 5），跨分区去重 papers 唯一 13；domain_tag 推理 16 / 训练 1 / agent 3
+- render: LLM 摘要 ✓，无 fallback，23 处 CST 时间戳
+- publish: ⚠️ git.exe 仍未恢复（连续第四天）走 dulwich 兜底；commit `048c8927`，HEAD == origin/main，2026/05 + archive 两份 HTML 各 +582 行
+- 亮点：Frontier 推理仿真器 / NanoCP 请求级动态 CP / SSV 投机解码×动态稀疏 attn 工程兼容 / Silent Hyperparameter（200 引擎调研呼吁 backend 列入 first-class 复现性）/ DODOCO MoE all-to-all 假设实证检验 / PALS GPU power cap 升一等可控旋钮集成 vLLM / Runtime-Certified KV 量化误差证书 / **OCTOPUS（续 TurboQuant/PolarQuant rotation-preconditioned KV codec，八面体参数化联合量化坐标三元组——用户方向直连最强信号）** / OFU GPU fleet 效率指标 / LlamaWeb WebGPU 浏览器推理 / TokenCake multi-agent KV serving / PulseCol dLLM 列稀疏 attn / FA4 beta14 / NVIDIA Deep Research Skill on Agent Harnesses / ik_llama.cpp 12GB 110 tok/s（MTP 主线合并后反退、ik 分支重新生效，MTP 工程化下沉新拐点）/ Doubleword「请求按 expert 共激活重排序，MoE load 不均 -15%」生产捷径
+- 已修：`_dulwich_publish.py`/`_dulwich_verify.py` commit message + HTML 路径都改成动态 CST today，根除硬编日期 bug
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 4 天，长期 TODO 用户修复 Git for Windows）
+
