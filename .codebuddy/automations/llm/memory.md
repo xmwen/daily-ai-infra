@@ -295,3 +295,12 @@
 - 状态: ✅ 成功（带⚠️ git 工具失效连续 5 天，长期 TODO 用户修复 Git for Windows）
 - 观察：AVMP 命中用户 Hybrid Mamba+Attention KV 方向最强信号；MTP 工程化曲线进入生产稳定性补漏阶段
 
+## 2026-05-23 22:00（周六）
+- fetch: 20 raw（papers 0 / code 7 / blogs 2 / community 11），无 RSS 失败源；周六 arXiv 不更新（papers 0 常态）+ HN LLM/Agent infra 双 0 + blogs 几乎全过滤（HF 784→2，其余 NVIDIA Dev/Google/Together 时间窗全过滤）；code 25 仓库仅 5 命中（FlashInfer 3 + LangGraph 2 + Mooncake 1 + SGLang 1，TRT-LLM/TE/Megatron/CUTLASS/DeepGEMM/DeepEP/PyTorch/Triton/LMDeploy/KTransformers/DeepSpeed/AutoGen/OpenAI Agents/MCP Python/XGrammar/Outlines 全空）
+- curated: 5 条（papers 0 / code 3 / blogs 0 / community 2），domain_tag 推理 4 / agent 1 / 训练 0；扔 SGLang 0.5.12.post1 + 2 条 FlashInfer nightly（无 changelog）+ Nemotron-Labs Diffusion LM/Specialization Beats Scale（应用/商业）+ NuExtract3/G4-MeroMero/Cohere Transcribe finetune（应用层）+ LongCat Video（视频生成应用）+ DeepSeek 融资（商业新闻）+ 397B competitor 闲聊；Qwen3.6-27B Q4_K_M 16GB 与 35B-A3B 8GB 两条合并为 1 条 MoE 边缘部署配方
+- render: LLM 摘要 ✓，无 fallback，8 处 CST 时间戳，source=today_curated.json
+- publish: ⚠️ git.exe 仍未恢复（连续第六天）走 dulwich 兜底；commit `00d04715`，HEAD == origin/main，2026/05 + archive 两份 HTML 各 +299 行真实 diff
+- 亮点：**FlashInfer v0.6.12rc1**（Kimi K2.5 H64 CuTe DSL MLA decode + CUTLASS MLA paged attention FP8 输出 + SM120 b12x W4A16 MoE kernel + TRTLLM-GEN GQA 动态 tokens-per-page）/ **LangGraph 三连**（checkpoint 4.1.1 把 lc:2 envelope revival 限制到默认构造器防反序列化攻击 + sdk 0.3.15 URL 路径强制 percent-encode 防注入 + langgraph 1.2.1，本月 agent SDK「补漏期」从 sandbox 推到反序列化与 URL 解析层）/ **Mooncake v0.3.11.post1**（mlx5dv QP path diversity via UDP sport + LAG port balance，KV cache 跨节点 RDMA 多路径与 LAG 负载均衡，对 PD 分离 KV pool 尾延迟与突发瓶颈直接受益；TENT QoS+slice spraying；NPU 发布流水线接入）/ **BeeLlama v0.2.0**（投机解码引擎单卡 RTX 3090 实测 Qwen3.6-27B 164 tok/s 4.40× / Gemma4 31B 177.8 tok/s 4.93×，drafter K/V projection 缓存 + reduced verifier path 严格化 + draft/target 校验）/ Qwen3.6 MoE 消费级长 ctx 双例（27B Q4_K_M pure 16GB 40 tok/s + 35B-A3B Q4 8GB 30+ tok/s @ 262K，MoE active expert 进 VRAM + KV 量化下沉范式坐实）
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 6 天，长期 TODO 用户修复 Git for Windows）
+- 观察：5 条是周六客观信号底（papers 0 + blogs 0 + HN 双 0 + code 17 仓库全空），严格执行「宁缺毋滥」——同 5/9/5/16/5/17 周末同样状况；agent SDK 补漏期母题在 LangGraph 同日发 3 包 / 安全边界从 sandbox 推到反序列化&URL 解析的两轴新增信号
+
