@@ -286,3 +286,12 @@
 - 已修：`_dulwich_publish.py`/`_dulwich_verify.py` commit message + HTML 路径都改成动态 CST today，根除硬编日期 bug
 - 状态: ✅ 成功（带⚠️ git 工具失效连续 4 天，长期 TODO 用户修复 Git for Windows）
 
+## 2026-05-22 22:00（周五）
+- fetch: 36 raw（papers 14 / code 6 / blogs 3 / community 13），无 RSS 失败源；arXiv cs.LG 419→3 / cs.CL 163→2（min_score=6 严格筛工作正常）；code 24 仓库仅 4 命中
+- curated: 18 条（papers 7 / code 4 / blogs 2 / community 5），跨分区去重 papers 唯一 7（AVMP cs.DC×cs.PF / HealthCraft cs.LG×cs.CL 合并）；扔 FlashSinkhorn/ORBIS/Tyche/HealthCraft/VectraYX-Nano 等应用层；community 大量 Qwen workflow/DeepSeek 融资/硬件咨询丢；domain_tag 推理 13 / 训练 2 / agent 3
+- render: LLM 摘要 ✓，无 fallback，21 处 CST 时间戳，source=today_curated.json
+- publish: ⚠️ git.exe 仍未恢复（连续第五天）走 dulwich 兜底；commit `bcea8b6d`，HEAD == origin/main，2026/05 + archive 两份 HTML 各 +544 行真实 diff
+- 亮点：**AVMP**（Mamba+Transformer 混合架构推理双 cache 异构虚拟分页 7.3× 显存节省，命中用户 vLLM × Hybrid Mamba+Attention KV 工程方向）/ **WarmServe**（多 LLM 共享 GPU 集群一对多 prewarming）/ **Flashlight**（PyTorch 编译器原生自动生成 FlashAttention-like 融合 kernel 覆盖整族 attention 变体）/ **LiveR**（弹性训练 live reconfiguration 替 ckpt restart，与 5/20 DynaTrain 同期不同思路答卷）/ **Dooly v2**（推理仿真器跨配置共享 op profile，配 5/13 GRIEF/5/19 Hawkeye/5/21 Silent Hyperparameter 同母题）/ **InnerQ**（硬件感知免调优 KV cache group-wise 量化，延续 RaBitQ/TurboQuant/OCTOPUS 母题）/ **DynaFlow**（intra-device 并行可编程 op 调度抽象）；code—TRT-LLM v1.3.0rc15（Gemma4/Kimi K2.5/DSV4 全打磨）/ Triton 3.7 正式 / LangGraph 1.2.1 续 1.2.0 后首个 patch / OpenAI Agents v0.17.3 11+ fix 「补漏期」；blogs—NVIDIA GB200 NVL72 Slurm topology-aware 调度 + K8s 集群级 GPU 实时可观测；community—llama.cpp 非对称 KV 量化 PP 回退 CPU 解法（异步 8/4 bit 仅 1.3% 精度损失）/ llama.cpp b9274 修 MTP VRAM leak（MTP 工程化下沉曲线进入「生产稳定性补漏」新阶段）/ OpenBMB BitCPM-CANN 1.58 bit 在昇腾 910B 跑通（BitNet 国产 NPU 信号点）/ Vibedock macOS 切 Claude Code MCP 开关（MCP 走到桌面 capability governance UX 化）/ lemon-mlx-engine 集成 ROCm 7.13
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 5 天，长期 TODO 用户修复 Git for Windows）
+- 观察：AVMP 命中用户 Hybrid Mamba+Attention KV 方向最强信号；MTP 工程化曲线进入生产稳定性补漏阶段
+
