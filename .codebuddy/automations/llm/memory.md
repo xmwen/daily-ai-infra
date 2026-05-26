@@ -1,5 +1,14 @@
 # 自动化执行历史 - 每日 LLM 推理与训练动态看板
 
+## 2026-05-25 22:00（周一跑）
+- fetch: 39 raw（papers 21 / code 4 / blogs 0 / community 14），无 RSS 失败源
+- curated: 17 条（papers 9 / code 1 / blogs 0 / community 7），domain_tag 推理 15 / 训练 1 / agent 1
+- render: `LLM 摘要 ✓`，无 fallback，CST 时间戳 20 处
+- publish: dulwich 兜底（git.exe 连续第 8 天失效），HTML 正主 commit `35bf2ef7`（两份各 +525 行 add），HEAD == origin/main
+- 注意：第五步校验脚本意外 `from _dulwich_publish import OpenSSHVendor` 触发模块顶层 push 副作用，产生附属 commit `e71e54d4`（无 HTML diff），同步至远端，看板内容不受影响。后续应避免 import 该模块。
+- 亮点：KV 治理三路（ObjectCache S3 / AMS region quota / OSCAR INT2 ~7× 压缩）、AlignedServe iteration 级 bubble 治理、PIM-CIM 边缘 MoE 三连（DCC / NASiC / ZipMoE）、TileLang v0.1.10 跨栈 tile DSL 转折点（NV+AMD+Apple）、Qwen3.6 新旧卡两极实测（RTX PRO 6000 vs V100）、coding agent × serving 契约（llama.cpp PR 22929 修 reprefill 抖动）
+- 状态: ✅ 成功
+
 ## 2026-04-22 22:00（执行于 19:16）
 - fetch: 68 条原始 item（papers 32 / code 15 / blogs 5 / community 16）
 - render: 筛出 13 条卡片，输出 `2026/04/2026-04-22.html`
