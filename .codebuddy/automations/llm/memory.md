@@ -1,5 +1,12 @@
 # 自动化执行历史 - 每日 LLM 推理与训练动态看板
 
+## 2026-05-28 22:00（周四）
+- fetch 53 raw / curated 32 / render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 11 天失效），commit `0ab7e97d`，HEAD == origin/main，2026/05 + archive 各 +810 行真实 diff，35 处 CST
+- domain_tag 推理 29 / 训练 3 / agent 0（papers 14 / code 9 / blogs 1 / community 8）
+- agent 0 是合规结果：今日 HN Agent infra 全部命中 MCP 应用层（颜色档案/SEO Skill/jensenify/favorite MCP 调研），无 agent 系统基础设施类内容，按筛选纪律全弃，宁缺毋滥
+- 亮点：arXiv MoE serving 三连（AFD 设计空间 / SiDP DP 共享权重换大 batch / GQLA 让 MLA 权重等价暴露 MQA-absorb + GQA per-group expand 双解码路径解 H20 适配） / FCDC 铁电 PIM attention 全替换 + KV 协处理两模式 / Hurwitz 24-cell 四元数 KV 量化 / OpenURMA UB 协议 clean-room 实现（华为 Unified Bus 替 RDMA QP-over-PCIe）/ NVIDIA Blackwell STAC-AI 金融推理纪录 / TritonMoE 89-131% Megablocks 跨 NV+AMD 零改动 / Zai 千卡 GLM-5.1 集群 ZCube 网络替 ROFT（PD 解耦推理流量优化，吞吐 +15%、P99 -40.6%、成本 -33%）/ NVIDIA SOL-ExecBench AI 生成 CUDA kernel 在真实分布下 silently 破坏训练（fused embed-grad+RMSNorm 案例）/ DeepSpeed v0.19.1 ZeRO-3 走 mori SDMA allgather + Evoformer CUTLASS auto-detect / CUTLASS 4.5.1 Blackwell 低延迟 GQA paged KV + UE8M0 / FA4 beta15 sm_110 Blackwell-family 收口 / vLLM 0.22.0rc1-rc3 三连补丁
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 11 天，长期 TODO 用户修复 Git for Windows）
+
 ## 2026-05-27 22:00（周三）
 - fetch 43 raw / curated 23 / render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 10 天失效），commit `10dc0111`，HEAD == origin/main，2026/05 + archive 各 +639 行真实 diff，26 处 CST
 - domain_tag 推理 16 / 训练 2 / agent 5（papers 10 / code 7 / blogs 3 / community 3）
