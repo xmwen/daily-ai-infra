@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra 每日动态 - 2026-05-30 Saturday</title>
+<!-- rendered_at: 2026-05-30 22:26:00 CST -->
+<!-- source: today_curated.json data_generated_at: 2026-05-30T14:23:32.180903+00:00 -->
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+               Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+header.hero {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 50%, #be185d 100%);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.4);
+}
+header.hero h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: .5px;
+}
+header.hero p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+header.hero .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+header.hero .badge {
+  background: rgba(255,255,255,.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.section {
+  margin-bottom: 36px;
+  padding: 20px 24px 24px;
+  background: #1e293b;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+}
+.sec-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .count {
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cards { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  padding: 16px 18px;
+  background: #0f172a;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all .15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.card-head { margin-bottom: 8px; }
+.card-title {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title:hover { color: var(--accent); text-decoration: underline; }
+.card-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.card-meta .dot { opacity: .4; }
+.card-meta .src { color: #cbd5e1; font-weight: 500; }
+.card-meta .score {
+  margin-left: auto;
+  background: rgba(99,102,241,.15);
+  color: #a5b4fc;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .rel {
+  background: rgba(16,185,129,.18);
+  color: #6ee7b7;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.card-meta .domain-tag {
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.card-body {
+  margin: 8px 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+.card-body p { margin: 0 0 6px; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body strong { color: #e0e7ff; font-weight: 600; }
+.card-body code {
+  background: rgba(148,163,184,.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12.5px;
+  color: #fbbf24;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: rgba(148,163,184,.12);
+  color: #94a3b8;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.empty { color: #64748b; font-size: 13px; padding: 12px 0; }
+.more  { color: #64748b; font-size: 12px; margin: 8px 0 0; text-align: right; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+footer a { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <h1>🧠 AI Infra 每日动态</h1>
+    <p>2026-05-30 Saturday · 回溯 36h · 共 9 条</p>
+    <div class="badges">
+      <span class="badge">LLM 摘要 ✓</span>
+      <span class="badge">Data: 2026-05-30 22:23:32 CST</span>
+      <span class="badge">Rendered: 2026-05-30 22:26:00 CST</span>
+      <span class="badge">Source: today_curated.json</span>
+    </div>
+  </header>
+
+    <section class="section" style="--accent:#6366f1">
+      <h2 class="sec-title">📄 重点论文
+      </h2>
+      <div class="cards"><p class="empty">今日无新条目。</p></div>
+    </section>
+    
+    <section class="section" style="--accent:#10b981">
+      <h2 class="sec-title">🚀 代码更新
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/vllm-project/vllm/releases/tag/v0.22.0" target="_blank" rel="noopener">v0.22.0</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">vLLM</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 03:16 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 75.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>vLLM v0.22.0 正式版：459 commits / 230 贡献者。DeepSeek V4 进入成熟阶段——单独抽到 vllm/models/deepseek_v4/ 包，新增 NVFP4 fused MoE、full + piecewise CUDA Graph、MTP 投机解码及 MegaMoE/mhc/Q-norm/indexer/sparse MLA 一组 fused kernel，伴随 ROCm 平价修复与精度回归。Model Runner V2 接近成为默认：oracle 让 Qwen3 dense 默认走 MRv2，并补 sleep-mode 权重重载、update_config 与共享 KV 层。</p></div>
+      <div class="card-tags"><span class="tag">vLLM</span><span class="tag">Mooncake</span><span class="tag">speculative decoding</span><span class="tag">disaggregated</span><span class="tag">FlashInfer</span><span class="tag">MLA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/flashinfer-ai/flashinfer/releases/tag/v0.6.12" target="_blank" rel="noopener">Release v0.6.12</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">FlashInfer</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 07:44 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 31.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>FlashInfer v0.6.12：SM120 W4A16 b12x MoE kernel 落地（Blackwell consumer 拿到 W4A16 大批量解码路径）；Kimi K2.5 H64 CuTe DSL MLA decode 支持；CUTLASS MLA paged attention 加 FP8 输出；TRT-LLM-Gen 新增 dynamic tokens-per-page GQA kernel，per-token NVFP4 量化算子优化，sccache JIT 缓存与 AOT 诊断改善构建体验。MoE/MLA/低比特推理三条主线并行推进。</p></div>
+      <div class="card-tags"><span class="tag">FlashInfer</span><span class="tag">MLA</span><span class="tag">FP8</span><span class="tag">FP4</span><span class="tag">INT4</span><span class="tag">W4A16</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/modelcontextprotocol/python-sdk/releases/tag/v1.27.2" target="_blank" rel="noopener">v1.27.2</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(236,72,153,.22);color:#fbcfe8;border:1px solid rgba(236,72,153,.55);">Agent</span>
+          <span class="src">MCP Python</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 01:10 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 0.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>MCP Python SDK v1.27.2：把 transport session 绑定到已认证 principal，experimental tasks 限定到创建它的 session 内，AccessToken 增加 subject 与 claims 字段。这是 MCP runtime 在多租户/会话隔离方向的硬化改动——避免一个会话的工具调用泄漏到另一个 principal，是 agent 系统层面把 MCP 真正搬进生产必须的鉴权基础设施。</p></div>
+      <div class="card-tags"></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#f59e0b">
+      <h2 class="sec-title">📝 技术博客
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://developer.nvidia.com/blog/dynosim-simulating-the-pareto-frontier/" target="_blank" rel="noopener">DynoSim: Simulating the Pareto Frontier</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">NVIDIA Developer Blog</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 06:31 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">developer.nvidia.com</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>NVIDIA Dynamo 团队发布 DynoSim：把 LLM serving 的部署调参（model backend、TP 形状、prefill/decode 拆分、worker 数、批策略）抽象成可模拟的设计空间，目标是直接画出 throughput-latency 的 Pareto 前沿，不必每次烧真实集群跑全量扫参。配合 Dynamo 路由器与 PD 解耦，让选型从「经验拍脑袋」变成「模拟器选最优点再落地」，是 serving 调优工程化的官方答卷。</p></div>
+      <div class="card-tags"><span class="tag">LLM serving</span><span class="tag">serving</span></div>
+    </article>
+    </div>
+    </section>
+    
+    <section class="section" style="--accent:#ec4899">
+      <h2 class="sec-title">💬 社区热议
+      </h2>
+      <div class="cards">
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/MachineLearning/comments/1tqvuz9/building_a_monokernel_for_llm_inference_on_amd/" target="_blank" rel="noopener">Building a monokernel for LLM inference on AMD MI300X - up to 3,300 output tokens/s per request [P]</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/MachineLearning</span>
+          <span class="dot">·</span>
+          <span class="time">05-29 16:54 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 12.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KOG.ai 发布 MI300X monokernel：把整条 decode 跑成单个 GPU-resident kernel，按 die topology 把内存访问图谱映射到物理布局，CU 按所属 IOD 分组让硬件跑到设计峰值。8x MI300X、batch=1、无投机/无量化的 2B coding 模型上达到 3300 tok/s/请求，单请求吞吐摸到 AMD 推理新天花板。后续打算扩到大型 frontier MoE，是 monolithic kernel 路线对抗 vLLM/TGI 多 kernel 拼接的实证。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">speculative decoding</span><span class="tag">quantization</span><span class="tag">decoding</span><span class="tag">kernel</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://blog.kog.ai/delayed-tensor-parallelism-for-faster-transformer-inference/" target="_blank" rel="noopener">Delayed Tensor Parallelism for Faster Transformer Inference</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 01:58 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">blog.kog.ai</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KOG.ai《Delayed Tensor Parallelism》：传统 TP 在每层 attention/FFN 后都要 all-reduce，跨 GPU 同步是单 token 延迟瓶颈。Delayed TP 把同步推迟到必要点，让计算与通信深度重叠以提升 transformer 单请求推理速度，是配合上面 monokernel 的同源工作——延迟优化派从 kernel 内 / kernel 间两个层面同时压通信开销。</p></div>
+      <div class="card-tags"><span class="tag">tensor parallel</span><span class="tag">transformer</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://blog.kog.ai/real-time-llm-inference-on-standard-gpus-3-000-tokens-s-per-request/" target="_blank" rel="noopener">Real-time LLM Inference on Standard GPUs: 3k tokens/s per request</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">05-29 17:47 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">blog.kog.ai</span>
+          
+          <span class="score">kw 4.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>KOG.ai 总览文：标准 GPU 上做到 3000 tok/s/请求 实时 LLM 推理。HN 205 分热帖，把上面 monokernel + Delayed TP 的整体路线图串起来——单请求超低延迟需要 die topology 感知 kernel + 通信延迟外推 + 全程 GPU-resident，三者缺一不可。代表 latency-first 推理派对抗主流 throughput-first 引擎（vLLM/TGI）的整套方法论。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">GPU</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://github.com/jmaczan/tiny-vllm" target="_blank" rel="noopener">Show HN: Tiny-vLLM – high performance LLM inference engine in C++ and CUDA</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">HN LLM infra</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 03:38 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">github.com</span>
+          
+          <span class="score">kw 10.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Show HN：Tiny-vLLM 用 C++/CUDA 重写一份 minimal vLLM——HN 167 分。教学/可读性优先，把 PagedAttention、continuous batching、KV cache 管理这些 vLLM 核心机制抽到能读懂的代码量内。对想看清现代推理引擎工程拆解的人是好读物，也方便在它上面试新 kernel/调度策略不必啃 vLLM 的 OOP 全家桶。</p></div>
+      <div class="card-tags"><span class="tag">LLM inference</span><span class="tag">inference engine</span><span class="tag">vLLM</span><span class="tag">CUDA</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-head">
+        <a class="card-title" href="https://www.reddit.com/r/LocalLLaMA/comments/1tr9vzn/qwen3627b_quantization_benchmark/" target="_blank" rel="noopener">Qwen3.6-27B Quantization Benchmark</a>
+        <div class="card-meta">
+          <span class="domain-tag" style="background:rgba(99,102,241,.22);color:#c7d2fe;border:1px solid rgba(99,102,241,.55);">推理</span>
+          <span class="src">r/LocalLLaMA</span>
+          <span class="dot">·</span>
+          <span class="time">05-30 01:53 CST</span>
+          <span class="dot">·</span>
+          <span class="domain">www.reddit.com</span>
+          
+          <span class="score">kw 11.0</span>
+        </div>
+      </div>
+      <div class="card-body"><p>Qwen3.6-27B 全量量化评测：用 llama.cpp 的 perplexity 工具，按 KLD 与 Same-Top-P 双指标比较 unsloth / mradermacher / IQ4_XS / Ununnilium 各家从 Q8 到 Q2 的 GGUF。KLD 比 perplexity 更敏感，能捕捉量化对分布尾部的扭曲，Same-Top-P 直接量化「贪婪解码下 token 选择是否一致」。是 GGUF 量化生态难得的横向对照实验，结论可用来挑本地推理量化档位。</p></div>
+      <div class="card-tags"><span class="tag">llama.cpp</span><span class="tag">KV cache</span><span class="tag">attention</span><span class="tag">quantization</span><span class="tag">GPU</span><span class="tag">Qwen</span></div>
+    </article>
+    </div>
+    </section>
+    
+  <footer>
+    AI Infra Daily · powered by WorkBuddy Automation ·
+    <a href="./archive/">历史归档</a>
+  </footer>
+</div>
+</body>
+</html>
