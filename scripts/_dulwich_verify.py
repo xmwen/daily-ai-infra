@@ -1,86 +1,73 @@
-# -*- coding: utf-8 -*-
-"""dulwich 真推校验脚本：HEAD vs origin/main 对齐 + 当日 HTML diff 行数。"""
-import os
+"""dulwich 校验：HEAD vs origin/main、最近一次 commit 改了哪些文件、行数 diff。"""
 from pathlib import Path
-from dulwich import porcelain
-from dulwich.repo import Repo
-from dulwich import client as dulwich_client
-from dulwich.client import SSHVendor
-import subprocess
+import sys
 
-# 用 5/18 修好的 OpenSSH SSHVendor
-class OpenSSHVendor(SSHVendor):
-    def run_command(self, host, command, username=None, port=None, password=None, key_filename=None, ssh_command=None, protocol_version=None):
-        from dulwich.client import SubprocessWrapper
-        ssh = r"C:\Windows\System32\OpenSSH\ssh.exe"
-        args = [ssh, "-x"]
-        if port: args += ["-p", str(port)]
-        if key_filename: args += ["-i", key_filename]
-        target = f"{username}@{host}" if username else host
-        if isinstance(command, (bytes, bytearray)):
-            command = [command.decode() if isinstance(command, (bytes, bytearray)) else command]
-        elif isinstance(command, list):
-            command = [c.decode() if isinstance(c, (bytes, bytearray)) else c for c in command]
-        args += [target] + list(command)
-        proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, bufsize=0)
-        return SubprocessWrapper(proc)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _dulwich_publish import open_ssh_client  # 复用 SSHVendor 配置  # noqa: E402
 
-dulwich_client.get_ssh_vendor = lambda: OpenSSHVendor()
+from dulwich import porcelain  # noqa: E402
+from dulwich.repo import Repo  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
+REMOTE = "git@github.com:xmwen/daily-ai-infra.git"
+
 repo = Repo(str(ROOT))
-head_sha = repo.head().decode()
-print(f"HEAD = {head_sha}")
+head = repo.head().decode()
+print(f"[verify] HEAD = {head}")
 
-# ls-remote origin
-remote_url = "git@github.com:xmwen/daily-ai-infra.git"
-refs = porcelain.ls_remote(remote_url)
-remote_main = refs[b"refs/heads/main"].decode() if b"refs/heads/main" in refs else "<missing>"
-print(f"origin/main = {remote_main}")
-print(f"HEAD == origin/main: {head_sha == remote_main}")
+open_ssh_client()
+refs = porcelain.ls_remote(REMOTE)
+remote_main = refs[b"refs/heads/main"].decode()
+print(f"[verify] origin/main = {remote_main}")
+print(f"[verify] HEAD == origin/main: {head == remote_main}")
 
-# 看最新 commit 改了哪些文件 + 行数
-last_commit = repo[repo.head()]
-parent = repo[last_commit.parents[0]]
-print(f"\nlast commit message: {last_commit.message.decode().strip()}")
-print(f"author: {last_commit.author.decode()}")
+# 拉最近 commit 的 stat（含哪些文件 + 行数 diff）
+commit = repo[head.encode()]
+print(f"[verify] commit message = {commit.message.decode().strip()}")
 
-from dulwich.patch import write_tree_diff
-import io
+parent = commit.parents[0] if commit.parents else None
+if parent is None:
+    print("[verify] no parent commit")
+    sys.exit(1)
+
+from dulwich.diff_tree import tree_changes  # noqa: E402
+
+old_tree = repo[parent].tree
+new_tree = commit.tree
+
+added = modified = deleted = 0
+files_in_commit = []
+for change in tree_changes(repo.object_store, old_tree, new_tree):
+    if change.type == "add":
+        added += 1
+        files_in_commit.append(("A", change.new.path.decode()))
+    elif change.type == "delete":
+        deleted += 1
+        files_in_commit.append(("D", change.old.path.decode()))
+    else:
+        modified += 1
+        files_in_commit.append(("M", change.new.path.decode()))
+
+print(f"[verify] files changed: +{added} ~{modified} -{deleted}")
+for tag, path in files_in_commit:
+    print(f"  {tag} {path}")
+
+# 行数 diff（dulwich patch）
+import io  # noqa: E402
 buf = io.BytesIO()
-write_tree_diff(buf, repo.object_store, parent.tree, last_commit.tree)
-diff_text = buf.getvalue().decode("utf-8", errors="replace")
+porcelain.diff_tree(repo, old_tree, new_tree, outstream=buf)
+patch = buf.getvalue().decode("utf-8", errors="replace")
 
-# 统计每文件 +/- 行
-files = {}
-current = None
-plus = minus = 0
-for line in diff_text.splitlines():
-    if line.startswith("diff --git"):
-        if current:
-            files[current] = (plus, minus)
-        # diff --git a/path b/path
-        parts = line.split(" ")
-        current = parts[-1][2:] if len(parts) >= 4 else "<?>"
-        plus = minus = 0
-    elif line.startswith("+++") or line.startswith("---") or line.startswith("@@"):
-        continue
-    elif line.startswith("+"):
-        plus += 1
-    elif line.startswith("-"):
-        minus += 1
-if current:
-    files[current] = (plus, minus)
+added_lines = sum(1 for line in patch.splitlines() if line.startswith("+") and not line.startswith("+++"))
+removed_lines = sum(1 for line in patch.splitlines() if line.startswith("-") and not line.startswith("---"))
+print(f"[verify] lines: +{added_lines} -{removed_lines}")
 
-print("\n=== files in last commit ===")
-for f, (p, m) in files.items():
-    print(f"  +{p:5d} -{m:5d}  {f}")
-
-from datetime import datetime, timezone, timedelta
-_CST = timezone(timedelta(hours=8))
-_today = datetime.now(_CST).strftime("%Y-%m-%d")
-_month = datetime.now(_CST).strftime("%Y/%m")
-today_html_2026 = f"{_month}/{_today}.html"
-today_html_arch = f"archive/{_today}.html"
-print(f"\n2026/05 HTML diff: {today_html_2026 in files} ({files.get(today_html_2026, (0,0))})")
-print(f"archive HTML diff: {today_html_arch in files} ({files.get(today_html_arch, (0,0))})")
+# 当日 HTML 是否在 commit 内
+today_files = [
+    "2026/05/2026-05-30.html",
+    "archive/2026-05-30.html",
+]
+files_set = {p.replace("\\", "/") for _, p in files_in_commit}
+print("[verify] today HTML present in commit:")
+for f in today_files:
+    print(f"  {f}: {f in files_set}")
