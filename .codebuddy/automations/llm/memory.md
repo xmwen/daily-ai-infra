@@ -1,5 +1,13 @@
 # 自动化执行历史 - 每日 LLM 推理与训练动态看板
 
+## 2026-05-30 22:00（周六）
+- fetch 25 raw（papers 0 / code 6 / blogs 1 / community 18，周末 arXiv 停更）/ curated 9 / render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 13 天失效），当日 HTML commit `5575d314`（HEAD~1），HEAD `1d8144d5` == origin/main，HEAD~1 +882 -5 行真实 diff，2026/05/2026-05-30.html + archive/2026-05-30.html + 12 处 CST + 10 处 domain-tag pill
+- domain_tag 推理 8 / 训练 0 / agent 1（papers 0 / code 3 / blogs 1 / community 5）
+- 周末分量轻属正常，按宁缺毋滥纪律：弃掉 4 条 GPU 选购/散热讨论 + 角色扮演模型 + IBM Quantum 噱头 + Codex 替代问询 + 8GB 训 25M tinystories 等应用层/玩具
+- 亮点：vLLM v0.22.0 正式版（DeepSeek V4 单独包 + NVFP4 fused MoE + full/piecewise CUDA Graph + MTP）/ FlashInfer v0.6.12（SM120 W4A16 b12x MoE + Kimi K2.5 MLA + CUTLASS MLA paged FP8）/ MCP Python v1.27.2（transport session 绑 principal + experimental task scope，agent runtime 多租户硬化）/ NVIDIA DynoSim Pareto 模拟器/ **KOG.ai 三连**（MI300X monokernel 3300 tok/s + Delayed TP + Real-time 3K tok/s 总览，latency-first 推理派的整套方法论，HN 双热帖 167+205 分）/ Tiny-vLLM 教学实现 / Qwen3.6-27B GGUF 量化 KLD + Same-Top-P 双指标横评
+- 踩坑：verify 脚本最初 `from _dulwich_publish import open_ssh_client` 触发模块顶层 publish 副作用，又跑了一次 dulwich.push（只 stage 了 verify 脚本本身，造成 HEAD `1d8144d5` 这个小补丁 commit）。当日 HTML 真实落在 HEAD~1 `5575d314`，两个 commit 都已推到 origin/main，HEAD == origin/main 校验通过，看板内容正确。后续若再用 dulwich 校验，**不要 import publish 脚本**。
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 13 天，长期 TODO 用户修复 Git for Windows；带💡 verify 脚本误触发 publish 副作用已规避）
+
 ## 2026-05-28 22:00（周四）
 - fetch 53 raw / curated 32 / render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 11 天失效），commit `0ab7e97d`，HEAD == origin/main，2026/05 + archive 各 +810 行真实 diff，35 处 CST
 - domain_tag 推理 29 / 训练 3 / agent 0（papers 14 / code 9 / blogs 1 / community 8）
