@@ -1,5 +1,12 @@
 # 自动化执行历史 - 每日 LLM 推理与训练动态看板
 
+## 2026-05-31 22:00（周日）
+- fetch 12 raw（papers 0 / code 2 / blogs 0 / community 10，arXiv 停更 + 多数 blogs/code 静默）/ curated **2**（推理 2 / 训练 0 / agent 0）/ render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 14 天失效），commit `c1427685`，HEAD == origin/main，2026/05/2026-05-31.html + archive/2026-05-31.html 真实 diff +594 -139 行
+- 收：FlashInfer 0.6.12-nightly20260531（0.6.12 正式版前回归节奏）/ NVIDIA Qwen3.6-35B-A3B-NVFP4（Model Optimizer 官方 NVFP4 PTQ MoE，3.06× 压缩，开箱给 vLLM）
+- 弃 9 条 r/LocalLLaMA：6.4k 自建 server TCO / 家用机房炫机 / MiMo vs DS vs GLM 主观比 / DeepSWE 评测榜 / 13 abliterated Gemma 横评 / Stepfun 主观好评 / Qwen-Claude-Distilled GGUF 蒸馏打包 / `<Think>` toggle 前端脚本 / 4B agent 小模型问询，全部应用层/评测/玩家向，按宁缺毋滥纪律弃
+- verify 脚本里 `today_files` 写死的 5-30 改成 5-31，按 MEMORY.md 教训未 import publish 脚本，无副作用二次推送
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 14 天，curated 2 条系周日 RSS 稀薄合规结果非筛选标准下降）
+
 ## 2026-05-30 22:00（周六）
 - fetch 25 raw（papers 0 / code 6 / blogs 1 / community 18，周末 arXiv 停更）/ curated 9 / render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 13 天失效），当日 HTML commit `5575d314`（HEAD~1），HEAD `1d8144d5` == origin/main，HEAD~1 +882 -5 行真实 diff，2026/05/2026-05-30.html + archive/2026-05-30.html + 12 处 CST + 10 处 domain-tag pill
 - domain_tag 推理 8 / 训练 0 / agent 1（papers 0 / code 3 / blogs 1 / community 5）

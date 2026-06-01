@@ -56,8 +56,8 @@ removed_lines = sum(1 for line in patch.splitlines() if line.startswith("-") and
 print(f"[verify] lines: +{added_lines} -{removed_lines}")
 
 today_files = [
-    "2026/05/2026-05-30.html",
-    "archive/2026-05-30.html",
+    "2026/05/2026-05-31.html",
+    "archive/2026-05-31.html",
 ]
 files_set = {p.replace("\\", "/") for _, p in files_in_commit}
 print("[verify] today HTML present in commit:")
