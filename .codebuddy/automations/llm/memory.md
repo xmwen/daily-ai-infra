@@ -1,5 +1,12 @@
 # 自动化执行历史 - 每日 LLM 推理与训练动态看板
 
+## 2026-06-01 22:00（周一）
+- fetch 35 raw（papers 21 / code 3 / blogs 1 / community 10）/ curated **13**（推理 11 / 训练 1 / agent 1，papers 10 / code 1 / blogs 1 / community 1）/ render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 15 天失效），commit `07ca27c3`，HEAD == origin/main，当日 2026/06/2026-06-01.html + archive/2026-06-01.html 真实新增，总 diff +1128 -246 行
+- 亮点：arXiv 单日多篇推理系统重磅 — Memory-Bound but Not Bandwidth-Limited（H100/A100/L40S/L4 在 batch-1 decode 下 44 cell 实测，揭示带宽 + kernel 启动开销/SM 占用率双瓶颈）/ Deterministic Inference across TP sizes（TP-invariant kernel 解 RL rollout 与 train engine TP 不一致问题）/ MixFP4（在 NVFP4 框架内零额外元数据自适应 E2M1↔E1M2）/ ParisKV（GPU-native 碰撞候选 + 量化内积重排，UVA 卸载 1M token KV）/ StiefAttention（Stiefel 流形上学习正交投影，post-training KV 低秩压缩）/ Mellum 2 12B MoE coding（GQA+SWA 3/4 层+MTP 头复用做 draft）/ Kernel Foundry（多专家进化框架做 LLM kernel codegen）/ Roofline → Ruggedness（GEMM 性能崎岖性 30% 抖动分析框架）/ Near-Free Parallelism（并行 decoding 系统侧 NFP 边界由 hw 平衡度+kernel 粒度决定）。LMDeploy v0.14.0a1 一次性推 FP8 KV 量化 + Qwen3.5 MoE AWQ + spec stats + Anthropic adapter + AllowedToolChoice。NVIDIA Vera CPU agentic workload 硬件 roadmap 宣言。社区 DGX Spark 实测 V4 Flash MXFP8×MXFP4 + 1M KV 第一手数据。
+- 弃：8 条 r/LocalLLaMA 应用层（VibeETL 数据应用 / GGUF 量化横评 / Nemotron 公告 / 100T 数据八卦 / HTML chat / V100 选购 / Jensen meme / Qwen 吐槽）+ 2 篇 RTL EDA 论文 + Caspar 机器人符号编程 + KernelCraft（评测榜按规则弃）+ TRT-LLM 仅 CI 配置补丁 + FlashInfer nightly（昨天已收）
+- verify 脚本 today_files 6-01 已更新；按 MEMORY.md 教训未 import publish 模块，无副作用二次推送
+- 状态: ✅ 成功（带⚠️ git 工具失效连续 15 天，长期 TODO 用户修复 Git for Windows）
+
 ## 2026-05-31 22:00（周日）
 - fetch 12 raw（papers 0 / code 2 / blogs 0 / community 10，arXiv 停更 + 多数 blogs/code 静默）/ curated **2**（推理 2 / 训练 0 / agent 0）/ render LLM 摘要 ✓ no fallback / publish 走 dulwich 兜底（git.exe 连续第 14 天失效），commit `c1427685`，HEAD == origin/main，2026/05/2026-05-31.html + archive/2026-05-31.html 真实 diff +594 -139 行
 - 收：FlashInfer 0.6.12-nightly20260531（0.6.12 正式版前回归节奏）/ NVIDIA Qwen3.6-35B-A3B-NVFP4（Model Optimizer 官方 NVFP4 PTQ MoE，3.06× 压缩，开箱给 vLLM）

@@ -1,0 +1,149 @@
+"""一次性脚本：生成 cache/today_curated.json（中文 tldr + domain_tag）。
+
+PICKS 内的中文双引号统一用『』，避免与 Python " 冲突。
+"""
+from __future__ import annotations
+
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "cache" / "today_raw.json"
+OUT = ROOT / "cache" / "today_curated.json"
+
+raw = json.loads(RAW.read_text(encoding="utf-8"))
+
+# (section, link, tldr, domain_tag)
+PICKS = [
+    # ===================== papers (17) =====================
+    ("papers", "https://arxiv.org/abs/2606.01751",
+     "SparseX 把 KV cache 复用粒度从 prefix 扩到任意 segment：以连续 token 段作为复用单位，利用 KV 复用 workload 中天然出现的 Sparse-Q 索引估计需要纠正的关键 token，再做 Sparse-KV 重算补偿。解决 vLLM/PagedAttention 仅按 prompt 前缀缓存的限制，覆盖跨请求/跨对话/跨 agent 出现的非前缀重复内容，对长上下文 serving 的 prefill 阶段降本明显。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01387",
+     "对 vLLM/SGLang/TRT-LLM 暴露的 retention priority、TTL、host offload、block events、no-evict 调度、KV-aware routing 等 KV 原语做形式化梳理：这些只是 hint，并不等价于运行时对未来 KV 复用的承诺。论文给出 ResidentClaim lowering 的形式契约（identity 绑定、materialization 谓词、有序生命周期事件、claim 作用域），让 patch/adapter 在 fail-closed 语义下被审计为真正满足声明，给 KV runtime 设计补一块语义地基。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01502",
+     "Move the Query, Not the Cache：当大 codebase KV 被切分到多张 GPU、agent 子任务跨 GPU 选 KV 块时，传统做法是把选中 KV 拉到 query 所在 GPU。MLA 把每个 token 的 KV 压成 ~1KB 的窄向量，比 KV 块本身还小，反过来移动 query 行更划算。论文系统刻画了跨 GPU fabric 上 MLA 的 query 重分布带宽与延迟，给 MLA 模型在多机 serving 下的稀疏 attention 路由提供新范式。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01065",
+     "Leyline 把 KV cache 当作可编程对象：agentic LLM 会重试失败 tool call、丢弃过期输出、改写轨迹，导致同内容换位置（PIC for MLA 已部分解）以及主动从 cache 删除/替换某段历史这两类问题。Leyline 给 serving runtime 加 KV directive 指令集，让 policy 显式表达『撤销或替换某段历史』，配合 vLLM/SGLang 这类 page-based runtime 落地，把 agent KV 管理从隐式重算升级到一等公民。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00866",
+     "MORI 观察 agentic workload 的两相结构：busy 阶段密集短 tool 调用 + idle 阶段被超长 tool 卡住。LRU 等策略只看二值 busy/idle 抓不住忙闲比。MORI 显式建模相对空闲度，在 idle 窗口里把 KV 从 GPU HBM 异步搬到 CPU DRAM，busy 来时再换回，并控制好换回成本小于节省的 HBM 占用才迁移。给 Claude Code 这类 coding agent 的长 session KV offload 提供更精细的调度信号。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01839",
+     "Observation, Not Prediction：现有多轮 LLM serving 以 turn 为调度单位，逐 turn 判断是否 prefill/decode 解耦，但 turn 内 decode 长度、tool 行为、KV 增长在调度时刻不可观测，被迫预测出错。论文把调度单位抬到整段 conversation：转化为 turn-1 prefill compute-bound 加 后续 turn decode/IO 主导 两相稳定结构，于是 disagg 决策只需基于已观测量而非预测，对 agent 多轮场景明显更稳。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00946",
+     "Lodestar 给分布式 GPU 集群做 online-learning 请求路由：LLM 推理路由难在执行强依赖输入、batching 与 KV 复用造成跨请求耦合、延迟对 context 长度、引擎设置、异构卡非线性。简单 LB 与 LLM 启发式 heuristic 都不行。Lodestar 持续 online 学习每个 GPU 实例的真实代价模型并更新策略，在 TTFT、吞吐与 GPU 利用率上同时取胜，是 LLM router 走向自学习的代表工作。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2602.07223",
+     "Vegas 把投机解码与 sparse attention 合一：常规 self-spec decoding 用稀疏 KV 草拟、再用 full KV 并行验证。Vegas 注意到每个 KV 条目的关键性在 verify 阶段天然就算了出来，没必要再跑一遍独立的 KV selection；用 verification-guided sparse attention 复用这份关键性信号去引导 draft 的 KV 子集。无损加速，省掉一遍 selection kernel，是 SD 与 Sparse Attention 融合方向的干净答案。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00279",
+     "审视 LLM 推理输出的可验证性：现代 vLLM/HF transformers 在不开 deterministic flag 的情况下虽是 deterministic 但 non-invariant，同模型同输入跨 batch/TP/硬件可产生不同输出。论文证明这给隐写、未报告软件改动、隐藏 batch 元素的隐蔽计算留了攻击面，并给出 bit-exact 推理验证方案，不牺牲性能。对 AI 治理与可审计推理基础设施意义重大。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00365",
+     "SPARQLe 利用激活集中在 0 附近、高位比特天然稀疏这一统计特征做硬件-软件 codesign：在任意给定量化（W4A8 等）框架下，把激活的高位冗余识别为亚精度比特，硬件 datapath 只为非零高位激活付精度代价。等价于对任意量化方案再叠一层激活高位稀疏压缩，不牺牲精度，降低高精度 datapath 占比。是量化推理硬件路线上少见的、和具体量化方案正交的优化。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00144",
+     "BudgetDraft 解 sparse draft 与 full verify 的 SD 失配：中长 context（4K-16K）下 drafter 用 sparse KV 省显存、verifier 用 full KV 验证，naive 训出来的 drafter 接受率随 context 增长快速崩。BudgetDraft 在训练阶段对 drafter 多次采样不同 KV budget 暴露多视角，让它学到对 sparse-budget 鲁棒的 next-token 分布。post-training 阶段就能在不同 KV 预算下保持高接受率。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2602.01053",
+     "LRAgent 给 multi-LoRA multi-agent 系统做 KV cache 共享：多个 agent 共享 base 但用不同 LoRA adapter，对同一长上下文/tool trajectory 各算各的 KV 内存翻倍。LRAgent 把 KV 拆成共享 base activation 分量加 adapter-specific 残差分量，跨 agent 复用前者、只为后者付内存代价。对 multi-LoRA agent serving（角色专精、工具专精）显著降本，是 LoRA 与 agentic serving 这条线上少见的系统性 KV 工作。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.00735",
+     "ViBE 把工作负载倾斜与硬件变异性联合优化：MoE 推理中 token routing 让各 expert 负载不均、再叠上同型号 GPU 因制程/功率/温度造成的执行速度差异，导致同步执行下慢卡决定 layer 延迟。ViBE 把硬件 per-device 操作特征作为一等输入纳入 expert placement 与路由策略，cooptimize workload skew 与 HW asymmetry，对生产环境异构 GPU 上的 MoE serving 是工程派必读。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01143",
+     "Schedule-Level Shared-Prefix Reuse for LLM RL：GRPO/PPO 训练中同 prompt 采样多条轨迹然后 group 训练，长 context 下 shared prefix 含检索段、视觉 token、tool schema、system prompt，而 group 全量塞不进一个 microbatch，dense trainer 只能对每条 trajectory 重算 prefix 前向反向。论文给出 schedule-level 复用：prefix 前向跑一次，多条 suffix 作为普通 microbatch 读 prefix K/V 并累积梯度，最后再 prefix 反向一次。给 long-context RL 训练直接降一大块重复算。",
+     "训练"),
+
+    ("papers", "https://arxiv.org/abs/2512.10236",
+     "FiCCO 把 compute-comm overlap 推到比 sharding 更细的粒度：传统 overlap 沿已经被分片的 ML state/input 在 shard 边界做重叠，受限于网络拓扑与次优 dataflow。FiCCO 在 shard 内再切一层 DMA 粒度（finer-grain），与 NIC/NVLink 通信交叠。设计空间探索显示在多种拓扑/并行组合下可解锁额外 1.7x 加速空间。给训练/推理的 TP/EP 通信优化提供新可挖的一层。",
+     "训练"),
+
+    ("papers", "https://arxiv.org/abs/2606.01556",
+     "TwinQuant 把 4-bit LLM 量化的目标从残差能量最小改成量化后端到端误差最小：现有 SVD 类分解只让残差分量数值能量小，没考虑残差与低秩两路再做量化后的复合误差。TwinQuant 学习量化友好的子空间分解，并联合 reshape 权重，让低 bit 残差加高 bit 低秩组合后量化误差最优。在 Qwen/LLaMA 上 4-bit 精度优势明显。",
+     "推理"),
+
+    ("papers", "https://arxiv.org/abs/2606.01161",
+     "AcOrch 给昇腾 NPU 加 CPU 异构上的采样式 GNN 训练做协同调度：sampling-based GNN 训练含子图采样、特征聚合、模型训练三个阶段，资源需求与计算量各异，naive 全压到 NPU 浪费 CPU 也浪费 NPU。AcOrch 按阶段把工作分流到 CPU/NPU 并 overlap 数据搬运，对国产 Ascend NPU 上的图学习训练流水线有直接工程参考价值。",
+     "推理"),
+
+    # ===================== code (2) =====================
+    ("code", "https://github.com/InternLM/lmdeploy/releases/tag/0.14.0a1",
+     "LMDeploy v0.14.0a1：一次性塞进 FP8 KV cache 量化、Qwen3.5 MoE lite AWQ、turbomind 建模基础设施重构、CUDA 错误处理与手动 stacktrace 整合、sleep engine 时清空队列、chat completions 扩展 token-in/out 与 routed experts 上报、按 OpenAI spec 补 AllowedToolChoice 与 400 错误、health endpoint 改进、metrics 加投机解码统计、Anthropic adapter 修复。结构化输出与 tracing 钩子继续完善，是这个版本面向 agent 时代的明显信号。",
+     "推理"),
+
+    ("code", "https://github.com/langchain-ai/langgraph/releases/tag/1.2.3",
+     "LangGraph 1.2.3 加 sdk-py 0.4.1/0.4.2 三连：RemoteGraph 接入 sdk-py interleave_projections（多通道流交错投影标准化）、加 v3 streaming primitives 与 WebSocket 流传输、tool-dispatched subagent 通过 lc_agent_name 命名（agent graph 中给子 agent 一等身份）、ProtocolEvent.eventId 改 event_id 对齐线协议、ensure_config 改为 merge 而非 overwrite（避免 callbacks/tags/metadata 互覆盖）、区分用户主动取消与其它取消。是 agent runtime 协议层稳态化的一周。",
+     "agent"),
+
+    # ===================== community (2) =====================
+    ("community", "https://github.com/cnygaard/glq",
+     "Glq 用 E8 lattice 码本做 LLM 量化：在 2-4 bit 每权重区间，E8 格密度优势让 codebook 量化在低比特下的能量保真显著优于线性方法；支持混合精度（不同层不同 bit）。开源库瞄准家用 GPU 显存有限场景，是 lattice quantization 这条相对小众但理论扎实的路线在 LLM 部署侧的实例化，与近期 NF4/MXFP4/E8 码本系工作呼应。",
+     "推理"),
+
+    ("community", "https://developers.openai.com/codex/sdk",
+     "OpenAI Codex SDK：可编程地控制本地 Codex agent，把 coding agent 当作可被外部 orchestrator 调用的子进程暴露出来。属于 agent 系统基础设施层，与 Claude Code SDK、Anthropic Agents SDK 一道把宿主 agent 驱动 coding agent 子任务形式化为标准 API。对要在自己流水线里编排 coding agent 的团队是直接可用的 runtime 入口。",
+     "agent"),
+]
+
+pick_map = {(sec, link): (tldr, tag) for sec, link, tldr, tag in PICKS}
+
+curated_sections = {"papers": [], "code": [], "blogs": [], "community": []}
+
+section_order_in_picks: dict[str, list[str]] = {}
+for sec, link, _, _ in PICKS:
+    section_order_in_picks.setdefault(sec, []).append(link)
+
+for section, items in raw["sections"].items():
+    by_link = {it["link"]: it for it in items}
+    if section not in section_order_in_picks:
+        continue
+    for link in section_order_in_picks[section]:
+        item = by_link.get(link)
+        if item is None:
+            print(f"[warn] {section} link not in raw: {link}")
+            continue
+        tldr, tag = pick_map[(section, link)]
+        new_item = dict(item)
+        new_item["tldr"] = tldr
+        new_item["domain_tag"] = tag
+        curated_sections[section].append(new_item)
+
+now_iso = datetime.now(timezone.utc).isoformat()
+curated = {
+    "generated_at": now_iso,
+    "lookback_hours": raw.get("lookback_hours", 36),
+    "sections": curated_sections,
+}
+
+OUT.write_text(json.dumps(curated, ensure_ascii=False, indent=2), encoding="utf-8")
+
+total = sum(len(v) for v in curated_sections.values())
+by_tag = {"推理": 0, "训练": 0, "agent": 0}
+for items in curated_sections.values():
+    for it in items:
+        by_tag[it["domain_tag"]] = by_tag.get(it["domain_tag"], 0) + 1
+print(f"curated total: {total}")
+for s, v in curated_sections.items():
+    print(f"  {s}: {len(v)}")
+print(f"domain_tag: 推理 {by_tag['推理']} / 训练 {by_tag['训练']} / agent {by_tag['agent']}")
+print(f"generated_at: {now_iso}")
+print(f"raw generated_at: {raw['generated_at']}")
